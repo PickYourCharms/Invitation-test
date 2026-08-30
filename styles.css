@@ -1,19 +1,21 @@
-/* --- GLOBAL VARIABLES & RESET --- */
+/* --- DESIGN SYSTEM & CSS VARIABLES --- */
 :root {
-    /* Palettes */
     --ivory-cream: #FDFBF7;
     --antique-gold: #C5A059;
-    --bengali-red: #9B1B30;
-    --wedding-maroon: #6B0F1A;
-    --mehendi-green: #5A6B53;
-    --mehendi-cream: #E8EDE4;
-    --haldi-yellow: #F4B41A;
-    --haldi-peach: #FAD1B8;
-    --bidaye-blush: #E6C2C0;
-    --bidaye-rose: #B8737A;
-    --reception-navy: #1C2841;
+    --antique-gold-dark: #A08343;
+    --bengali-red: #8C1D2F;
+    --wedding-maroon: #5E131F;
     
-    /* Typography */
+    /* Event Specific Palettes */
+    --mehendi-green: #4A5D4E;
+    --mehendi-cream: #F0F4EE;
+    --haldi-yellow: #E6B839;
+    --haldi-bg: #FDF8EE;
+    --bidaye-blush: #EAD0CF;
+    --bidaye-rose: #9E5B62;
+    --reception-navy: #182238;
+    --reception-gold: #D4AF37;
+
     --font-serif: 'Playfair Display', Georgia, serif;
     --font-body: 'Lora', 'Times New Roman', serif;
 }
@@ -24,9 +26,11 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: var(--font-body);
+html, body {
+    width: 100%;
+    min-height: 100%;
     background-color: var(--ivory-cream);
+    font-family: var(--font-body);
     color: var(--bengali-red);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
@@ -34,74 +38,76 @@ body {
 
 .hidden { display: none !important; }
 
-/* --- OPENING / COVER --- */
+/* --- OPENING / COVER STYLING --- */
 #opening-screen {
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 2rem 1.5rem;
-    background-color: var(--ivory-cream);
-    /* Subtle background texture/gradient simulating paper */
-    background-image: radial-gradient(circle at center, #ffffff 0%, var(--ivory-cream) 100%);
+    padding: 2.5rem 1.5rem;
+    background: radial-gradient(circle at center, #FFFFFF 0%, var(--ivory-cream) 100%);
+    position: relative;
+    z-index: 10;
 }
 
-.opening-content {
-    max-width: 450px;
+.opening-card {
     width: 100%;
+    max-width: 420px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .bengali-artwork {
-    width: 140px;
-    margin-bottom: 2rem;
-    opacity: 0.9;
+    width: 130px;
+    height: auto;
+    margin-bottom: 1.75rem;
+    opacity: 0.95;
 }
 
-.couple-photo-wrapper {
-    width: 220px;
-    height: 280px;
-    margin: 0 auto 2rem auto;
-    border: 2px solid var(--antique-gold);
+.photo-frame {
+    width: 200px;
+    height: 255px;
     padding: 6px;
-    border-radius: 4px; /* Slight rounding, not a full generic circle */
+    border: 1px solid var(--antique-gold);
+    background-color: #FFFFFF;
+    box-shadow: 0 10px 30px rgba(197, 160, 89, 0.15);
+    margin-bottom: 1.75rem;
 }
 
-.couple-photo {
+.cover-photo, .close-photo {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 2px;
 }
 
 .couple-names {
     font-family: var(--font-serif);
-    font-size: 2.5rem;
+    font-size: 2.35rem;
     font-weight: 600;
     color: var(--bengali-red);
-    line-height: 1.2;
-    margin-bottom: 1rem;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
 }
 
 .couple-names .amp {
     font-family: var(--font-serif);
     font-style: italic;
-    font-size: 2rem;
     color: var(--antique-gold);
-    padding: 0 0.5rem;
+    font-weight: 400;
+    padding: 0 0.25rem;
 }
 
-.intro-text {
-    font-size: 1.1rem;
-    color: #555;
-    margin-bottom: 2.5rem;
+.opening-subtitle {
+    font-size: 1.05rem;
+    color: #665C54;
     font-style: italic;
-    line-height: 1.6;
+    margin-bottom: 2.25rem;
 }
 
-/* Code Input Area */
-.invite-code-container {
+.invite-entry-box {
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -109,150 +115,238 @@ body {
 }
 
 #invite-code-input {
-    width: 80%;
-    padding: 12px;
+    width: 85%;
+    max-width: 280px;
+    padding: 12px 16px;
     font-family: var(--font-serif);
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     text-align: center;
+    background-color: transparent;
     border: 1px solid var(--antique-gold);
-    background: transparent;
     color: var(--bengali-red);
     outline: none;
+    transition: all 0.3s ease;
 }
 
-#invite-code-input::placeholder { color: #A08C5B; font-style: italic; }
-#invite-code-input:focus { border-width: 2px; }
+#invite-code-input::placeholder {
+    color: #A89F91;
+    font-style: italic;
+}
 
-.ceremonial-btn {
+#invite-code-input:focus {
+    border-color: var(--bengali-red);
+    box-shadow: 0 0 0 2px rgba(140, 29, 47, 0.1);
+}
+
+.ceremonial-action-btn {
     background-color: var(--bengali-red);
     color: var(--ivory-cream);
     border: none;
-    padding: 12px 30px;
+    padding: 12px 28px;
     font-family: var(--font-serif);
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.ceremonial-btn:hover { background-color: var(--wedding-maroon); }
+.ceremonial-action-btn:hover {
+    background-color: var(--wedding-maroon);
+}
 
-.error-msg {
+.error-feedback {
     color: var(--wedding-maroon);
-    font-size: 0.9rem;
-    margin-top: -0.5rem;
+    font-size: 0.85rem;
+    font-style: italic;
 }
 
-/* --- EVENT JOURNEY (SCROLLING SECTIONS) --- */
-.event-section {
+/* --- CONTINUOUS INVITATION JOURNEY & NODES --- */
+.journey-container {
+    width: 100%;
+}
+
+.event-node {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 4rem 1.5rem;
+    padding: 5rem 1.5rem;
     position: relative;
+    transition: background 0.8s ease;
 }
 
-.event-content {
+.node-inner {
     width: 100%;
-    max-width: 500px;
+    max-width: 480px;
     text-align: center;
     position: relative;
     z-index: 2;
 }
 
-.event-title {
+.node-title {
     font-family: var(--font-serif);
     font-size: 2.2rem;
     font-weight: 600;
-    margin-bottom: 2rem;
-    letter-spacing: 1px;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.5px;
 }
 
-/* Typography elements generated by JS config */
-.event-details h3 { font-family: var(--font-serif); font-size: 1.4rem; margin-bottom: 0.5rem; }
-.event-details p { font-size: 1.1rem; line-height: 1.6; margin-bottom: 0.8rem; }
-.event-details a { color: inherit; text-decoration: underline; text-decoration-color: var(--antique-gold); }
+.node-subtitle {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1.75rem;
+    opacity: 0.85;
+}
 
-/* --- EVENT THEMES --- */
+.node-date-time {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
 
-/* 1. Aiburobhat */
-.aiburobhat {
+.node-venue {
+    font-size: 1.05rem;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+}
+
+.node-copy {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.map-link-btn {
+    display: inline-block;
+    padding: 8px 20px;
+    font-family: var(--font-serif);
+    font-size: 0.9rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border: 1px solid currentColor;
+    transition: all 0.3s ease;
+}
+
+.map-link-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* --- THEME-SPECIFIC STYLING (Seamless Flow) --- */
+.theme-aiburo {
     background-color: var(--ivory-cream);
     color: var(--bengali-red);
 }
-.aiburobhat .event-title { color: var(--bengali-red); }
+.theme-aiburo .node-subtitle, .theme-aiburo .map-link-btn {
+    color: var(--antique-gold-dark);
+    border-color: var(--antique-gold);
+}
 
-/* 2. Mehendi */
-.mehendi {
+.theme-mehendi {
     background-color: var(--mehendi-green);
     color: var(--mehendi-cream);
 }
-.mehendi .event-title { color: var(--antique-gold); }
+.theme-mehendi .node-title {
+    color: #D8E2D6;
+}
+.theme-mehendi .node-subtitle, .theme-mehendi .map-link-btn {
+    color: #A3B8A0;
+    border-color: #A3B8A0;
+}
 
-/* 3. Gaye Holud */
-.holud {
-    background-color: var(--haldi-yellow);
+.theme-holud {
+    background-color: var(--haldi-bg);
     color: #5C3A21;
 }
-.holud .event-title { color: #8B4513; }
+.theme-holud .node-title {
+    color: #8C581E;
+}
+.theme-holud .node-subtitle, .theme-holud .map-link-btn {
+    color: #C28E38;
+    border-color: #C28E38;
+}
 
-/* 4. The Wedding */
-.wedding-ceremony {
+.theme-wedding {
     background-color: var(--wedding-maroon);
     color: var(--ivory-cream);
-    border-top: 4px solid var(--antique-gold);
-    border-bottom: 4px solid var(--antique-gold);
+    border-top: 3px solid var(--antique-gold);
+    border-bottom: 3px solid var(--antique-gold);
 }
-.wedding-ceremony .event-title { color: var(--antique-gold); font-size: 2.6rem; }
-.wedding-ceremony .event-details { color: var(--antique-gold); }
+.theme-wedding .node-title {
+    color: var(--antique-gold);
+    font-size: 2.5rem;
+}
+.theme-wedding .node-subtitle, .theme-wedding .map-link-btn {
+    color: var(--antique-gold);
+    border-color: var(--antique-gold);
+}
 
-/* 5. Bidaye */
-.bidaye {
+.theme-bidaye {
     background-color: var(--bidaye-blush);
-    color: var(--bidaye-rose);
+    color: #4A2E33;
 }
-.bidaye .event-title { color: var(--wedding-maroon); font-style: italic; }
+.theme-bidaye .node-title {
+    color: var(--bidaye-rose);
+    font-style: italic;
+}
+.theme-bidaye .node-subtitle, .theme-bidaye .map-link-btn {
+    color: var(--bidaye-rose);
+    border-color: var(--bidaye-rose);
+}
 
-/* 6. Reception */
-.reception {
+.theme-reception {
     background-color: var(--reception-navy);
     color: var(--ivory-cream);
 }
-.reception .event-title { color: var(--antique-gold); }
+.theme-reception .node-title {
+    color: var(--reception-gold);
+}
+.theme-reception .node-subtitle, .theme-reception .map-link-btn {
+    color: var(--reception-gold);
+    border-color: var(--reception-gold);
+}
 
-/* --- CLOSING SECTION --- */
-.closing-screen {
+/* --- CLOSING NODE STYLING --- */
+.closing-node {
     background-color: var(--ivory-cream);
     color: var(--bengali-red);
-    text-align: center;
+    padding: 6rem 1.5rem;
 }
 
-.couple-close-wrapper {
-    width: 250px;
-    height: 320px;
+.close-frame {
+    width: 220px;
+    height: 280px;
     margin: 0 auto 2rem auto;
-    border: 2px solid var(--antique-gold);
-    padding: 6px;
 }
 
-.couple-close-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.closing-sentiment {
+    max-width: 380px;
+    margin: 0 auto 2rem auto;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    font-style: italic;
+    color: #554A42;
 }
 
-.closing-signoff {
+.signoff-title {
     font-family: var(--font-serif);
-    font-size: 1.8rem;
-    color: var(--antique-gold);
-    margin-top: 2rem;
+    font-size: 1.6rem;
+    color: var(--antique-gold-dark);
     font-style: italic;
     line-height: 1.4;
 }
 
-/* --- ANIMATIONS (Elegant & Subtle) --- */
+.signoff-title span {
+    color: var(--bengali-red);
+    font-style: normal;
+    font-weight: 600;
+}
+
+/* --- ANIMATIONS --- */
 .fade-in-up {
     animation: fadeInUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
@@ -262,34 +356,13 @@ body {
     100% { opacity: 1; transform: translateY(0); }
 }
 
-/* Intersection Observer Classes */
 .scroll-reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 1s ease-out, transform 1s ease-out;
+    transform: translateY(25px);
+    transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .scroll-reveal.visible {
     opacity: 1;
     transform: translateY(0);
 }
-
-/* Decorative Ornaments (CSS pseudo-elements to avoid generic geometry) */
-.ornament {
-    width: 50px;
-    height: 2px;
-    background-color: var(--antique-gold);
-    margin: 1rem auto;
-    position: relative;
-}
-.ornament::before, .ornament::after {
-    content: '';
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    background-color: var(--antique-gold);
-    border-radius: 50%;
-    top: -2px;
-}
-.ornament::before { left: -10px; }
-.ornament::after { right: -10px; }
