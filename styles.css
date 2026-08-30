@@ -1015,3 +1015,7 @@ input {
     width: 250px;
   }
 }
+/* Remove the two abstract cover ornaments */
+.cover-ornament {
+  display: none !important;
+}
