@@ -1,0 +1,1096 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --paper: #f8f1e8;
+  --paper-light: #fffaf4;
+  --ink: #40312b;
+  --rose: #a85a68;
+  --rose-deep: #914653;
+  --gold: #b4935a;
+  --gold-soft: #d4bd8b;
+  --muted: #806d63;
+
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans: "DM Sans", Arial, sans-serif;
+  --bengali: "Galada", "Noto Serif Bengali", serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  overflow-x: hidden;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.hidden {
+  display: none !important;
+}
+
+
+/* =========================================================
+   WELCOME / OPENING
+   ========================================================= */
+
+.gate {
+  min-height: 100svh;
+  min-height: 100dvh;
+
+  display: grid;
+  place-items: center;
+
+  position: relative;
+  overflow: hidden;
+
+  padding: 34px 22px;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 12%,
+      rgba(221, 181, 188, 0.25),
+      transparent 42%
+    ),
+    radial-gradient(
+      ellipse at 15% 85%,
+      rgba(205, 181, 143, 0.12),
+      transparent 35%
+    ),
+    linear-gradient(
+      180deg,
+      #fffaf4 0%,
+      #f8f0e7 100%
+    );
+}
+
+
+/* Main opening content */
+
+.gate-inner {
+  width: min(100%, 390px);
+
+  position: relative;
+  z-index: 2;
+
+  text-align: center;
+
+  animation: openingReveal 1.1s ease both;
+}
+
+
+/* =========================================================
+   BENGALI TITLE
+   ========================================================= */
+
+.bengali-title {
+  font-family: var(--bengali);
+
+  font-size: 42px;
+  line-height: 1;
+
+  color: var(--rose-deep);
+
+  margin: 0 0 18px;
+
+  letter-spacing: 0;
+
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.7);
+
+  position: relative;
+  z-index: 4;
+}
+
+.bengali-title.small {
+  font-size: 20px;
+  margin: 0;
+
+  color: var(--rose-deep);
+}
+
+
+/* =========================================================
+   COUPLE IMAGE
+   ========================================================= */
+
+.couple-frame {
+  width: min(82vw, 315px);
+  aspect-ratio: 4 / 5;
+
+  margin: 0 auto;
+
+  padding: 6px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #c7a873,
+      #f5e6cf 35%,
+      #c5a36b 70%,
+      #e8d2ad
+    );
+
+  border-radius: 165px 165px 18px 18px;
+
+  box-shadow:
+    0 22px 55px rgba(83, 57, 43, 0.16),
+    0 4px 12px rgba(83, 57, 43, 0.08);
+
+  position: relative;
+}
+
+
+/* subtle inner border */
+
+.couple-frame::after {
+  content: "";
+
+  position: absolute;
+  inset: 9px;
+
+  border: 1px solid rgba(255, 250, 240, 0.65);
+
+  border-radius: 158px 158px 12px 12px;
+
+  pointer-events: none;
+}
+
+
+.couple-frame img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  border-radius: 158px 158px 12px 12px;
+
+  background: #e9dfd5;
+}
+
+
+/* =========================================================
+   OPENING TEXT
+   ========================================================= */
+
+.eyebrow {
+  margin: 24px 0 7px;
+
+  color: #8f756b;
+
+  font-family: var(--sans);
+
+  font-size: 9px;
+  font-weight: 500;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.24em;
+}
+
+
+h1 {
+  margin: 0;
+
+  font-family: var(--serif);
+
+  font-size: clamp(48px, 13vw, 68px);
+
+  font-weight: 500;
+
+  line-height: 0.92;
+
+  letter-spacing: -0.035em;
+
+  color: #6f3d49;
+}
+
+
+/* The ampersand gets its own treatment */
+
+h1 span {
+  font-weight: 400;
+
+  font-style: italic;
+
+  color: var(--gold);
+
+  padding: 0 3px;
+}
+
+
+.intro {
+  max-width: 310px;
+
+  margin: 19px auto 25px;
+
+  color: #6d5b53;
+
+  font-family: var(--serif);
+
+  font-size: 18px;
+
+  line-height: 1.45;
+}
+
+
+/* =========================================================
+   INVITATION CODE
+   ========================================================= */
+
+.code-form {
+  margin-top: 10px;
+
+  text-align: left;
+}
+
+
+.code-form label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  text-align: center;
+
+  color: #927c72;
+
+  font-family: var(--sans);
+
+  font-size: 9px;
+
+  font-weight: 500;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.16em;
+}
+
+
+.code-row {
+  display: flex;
+
+  padding: 4px;
+
+  border: 1px solid #d6c4b6;
+
+  border-radius: 999px;
+
+  background: rgba(255, 252, 247, 0.78);
+
+  box-shadow:
+    0 10px 28px rgba(85, 58, 45, 0.07);
+}
+
+
+.code-row input {
+  min-width: 0;
+
+  flex: 1;
+
+  border: 0;
+  outline: 0;
+
+  background: transparent;
+
+  padding: 12px 14px;
+
+  color: var(--ink);
+
+  font-family: var(--sans);
+
+  font-size: 13px;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+}
+
+
+.code-row input::placeholder {
+  color: #ad9c92;
+
+  letter-spacing: 0.08em;
+}
+
+
+.code-row button {
+  border: 0;
+
+  border-radius: 999px;
+
+  padding: 11px 21px;
+
+  background: #6f3d49;
+
+  color: #fffaf4;
+
+  font-size: 12px;
+
+  font-weight: 500;
+
+  letter-spacing: 0.04em;
+
+  cursor: pointer;
+}
+
+
+.error {
+  min-height: 18px;
+
+  margin: 8px 0 0;
+
+  text-align: center;
+
+  color: #9c4d4d;
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   DELICATE FLORAL FRAME
+   ========================================================= */
+
+.gate-floral {
+  position: absolute;
+
+  width: 330px;
+  height: 330px;
+
+  pointer-events: none;
+
+  opacity: 0.55;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      transparent 54%,
+      rgba(181, 130, 140, 0.20) 55%,
+      transparent 56%
+    ),
+    radial-gradient(
+      ellipse at 32% 32%,
+      rgba(181, 130, 140, 0.18) 0 3%,
+      transparent 3.5%
+    ),
+    radial-gradient(
+      ellipse at 67% 67%,
+      rgba(181, 147, 91, 0.17) 0 2%,
+      transparent 2.8%
+    );
+}
+
+
+.floral-top {
+  top: -155px;
+  left: -125px;
+
+  transform: rotate(18deg);
+}
+
+
+.floral-bottom {
+  right: -120px;
+  bottom: -160px;
+
+  transform: rotate(-25deg);
+}
+
+
+/* =========================================================
+   INVITATION STORY
+   ========================================================= */
+
+.story-header {
+  position: sticky;
+
+  top: 0;
+
+  z-index: 20;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 13px 17px;
+
+  background: rgba(251, 246, 238, 0.78);
+
+  backdrop-filter: blur(12px);
+
+  border-bottom: 1px solid rgba(140, 110, 88, 0.10);
+}
+
+
+.header-name {
+  margin: 0;
+
+  font-family: var(--serif);
+
+  font-size: 18px;
+
+  color: #6f3d49;
+}
+
+
+.change-code {
+  border: 0;
+
+  padding: 6px;
+
+  background: transparent;
+
+  color: #8a7165;
+
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   EVENT CANVAS
+   ========================================================= */
+
+.event {
+  position: relative;
+
+  overflow: hidden;
+
+  min-height: 100svh;
+
+  padding: 100px 24px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  isolation: isolate;
+}
+
+
+.event-content {
+  width: min(100%, 430px);
+
+  position: relative;
+
+  z-index: 3;
+}
+
+
+.event-date {
+  margin: 0 0 15px;
+
+  font-size: 10px;
+
+  letter-spacing: 0.24em;
+
+  text-transform: uppercase;
+
+  opacity: 0.72;
+}
+
+
+.event h2 {
+  margin: 0 0 15px;
+
+  font-family: var(--serif);
+
+  font-size: clamp(50px, 14vw, 72px);
+
+  font-weight: 600;
+
+  line-height: 0.88;
+
+  letter-spacing: -0.035em;
+}
+
+
+.event h3 {
+  margin: 0 0 13px;
+
+  font-family: var(--sans);
+
+  font-size: 14px;
+
+  line-height: 1.5;
+
+  font-weight: 500;
+}
+
+
+.event-copy {
+  max-width: 340px;
+
+  margin: 0 auto 25px;
+
+  font-family: var(--serif);
+
+  font-size: 18px;
+
+  line-height: 1.5;
+}
+
+
+.meta {
+  font-size: 11px;
+
+  line-height: 1.7;
+
+  letter-spacing: 0.07em;
+
+  opacity: 0.84;
+}
+
+
+.map-link {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  margin-top: 18px;
+
+  padding: 10px 17px;
+
+  border: 1px solid currentColor;
+
+  border-radius: 999px;
+
+  color: inherit;
+
+  text-decoration: none;
+
+  font-size: 10px;
+
+  letter-spacing: 0.13em;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   DECORATIVE LAYER
+   ========================================================= */
+
+.event .motif {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 1;
+
+  pointer-events: none;
+}
+
+
+.event .motif::before,
+.event .motif::after {
+  content: "";
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  animation: float 8s ease-in-out infinite;
+}
+
+
+.event .motif::before {
+  width: 190px;
+  height: 190px;
+
+  left: -80px;
+  top: 10%;
+
+  border: 1px solid currentColor;
+
+  opacity: 0.13;
+}
+
+
+.event .motif::after {
+  width: 290px;
+  height: 290px;
+
+  right: -135px;
+  bottom: 2%;
+
+  border: 1px solid currentColor;
+
+  opacity: 0.09;
+}
+
+
+/* =========================================================
+   EVENT COLOURS
+   ========================================================= */
+
+.theme-aiburo {
+  background: #fffdf9;
+  color: #a61e25;
+}
+
+
+.theme-aiburo .motif {
+  background:
+    radial-gradient(
+      circle at 12% 20%,
+      transparent 0 25px,
+      currentColor 26px 27px,
+      transparent 28px
+    ),
+    radial-gradient(
+      circle at 88% 75%,
+      transparent 0 35px,
+      currentColor 36px 37px,
+      transparent 38px
+    );
+}
+
+
+.theme-mehendi {
+  background: #edf4e8;
+  color: #214c35;
+}
+
+
+.theme-mehendi .motif {
+  background:
+    radial-gradient(
+      ellipse at 18% 25%,
+      transparent 0 25px,
+      currentColor 26px 27px,
+      transparent 28px
+    ),
+    radial-gradient(
+      ellipse at 83% 68%,
+      transparent 0 45px,
+      currentColor 46px 47px,
+      transparent 48px
+    );
+}
+
+
+.theme-holud {
+  background: #fff5b9;
+  color: #7d5a08;
+}
+
+
+.theme-holud .motif {
+  background:
+    radial-gradient(
+      circle at 20% 18%,
+      rgba(255,255,255,.45) 0 7px,
+      transparent 8px
+    ),
+    radial-gradient(
+      circle at 82% 72%,
+      rgba(255,255,255,.38) 0 10px,
+      transparent 11px
+    );
+}
+
+
+.theme-wedding {
+  background: #7f1018;
+  color: #fff7e6;
+}
+
+
+.theme-wedding .motif {
+  background:
+    radial-gradient(
+      circle at 18% 22%,
+      transparent 0 44px,
+      #d6ae62 45px 46px,
+      transparent 47px
+    ),
+    radial-gradient(
+      circle at 84% 78%,
+      transparent 0 65px,
+      #d6ae62 66px 67px,
+      transparent 68px
+    );
+}
+
+
+.theme-wedding .event-date,
+.theme-wedding .meta {
+  color: #f1dba8;
+}
+
+
+.theme-bidaye {
+  background: #f8dfe3;
+  color: #6d3c49;
+}
+
+
+.theme-bidaye .motif {
+  background:
+    radial-gradient(
+      ellipse at 18% 28%,
+      transparent 0 35px,
+      currentColor 36px 37px,
+      transparent 38px
+    ),
+    radial-gradient(
+      ellipse at 82% 72%,
+      transparent 0 30px,
+      currentColor 31px 32px,
+      transparent 33px
+    );
+
+  opacity: 0.7;
+}
+
+
+.theme-reception {
+  background: #162e54;
+  color: #f8efd8;
+}
+
+
+.theme-reception .motif {
+  background:
+    radial-gradient(
+      circle at 16% 20%,
+      transparent 0 42px,
+      #c8a85d 43px 44px,
+      transparent 45px
+    ),
+    radial-gradient(
+      circle at 85% 74%,
+      transparent 0 52px,
+      #c8a85d 53px 54px,
+      transparent 55px
+    );
+}
+
+
+.theme-reception .event-date,
+.theme-reception .meta {
+  color: #d9c58e;
+}
+
+
+/* =========================================================
+   EVENT DECORATIVE DETAILS
+   ========================================================= */
+
+.alpana-ring {
+  width: 190px;
+  height: 190px;
+
+  margin: 28px auto -10px;
+
+  border: 1px dashed currentColor;
+
+  border-radius: 50%;
+
+  opacity: 0.55;
+
+  animation: spin 28s linear infinite;
+
+  position: relative;
+}
+
+
+.alpana-ring::before,
+.alpana-ring::after {
+  content: "";
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  border: 1px dotted currentColor;
+}
+
+
+.alpana-ring::before {
+  inset: 16px;
+}
+
+
+.alpana-ring::after {
+  inset: 42px;
+}
+
+
+.petal-row {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-top: 25px;
+}
+
+
+.petal {
+  width: 22px;
+  height: 34px;
+
+  border: 1px solid currentColor;
+
+  border-radius: 100% 0 100% 0;
+
+  transform: rotate(45deg);
+
+  opacity: 0.5;
+}
+
+
+.music-note {
+  margin-top: 24px;
+
+  font-family: var(--serif);
+
+  font-size: 32px;
+
+  opacity: 0.45;
+}
+
+
+.haldis {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 9px;
+
+  margin-top: 25px;
+}
+
+
+.haldis span {
+  width: 14px;
+  height: 14px;
+
+  border-radius: 50%;
+
+  background: currentColor;
+
+  opacity: 0.28;
+
+  animation: bob 1.8s ease-in-out infinite alternate;
+}
+
+
+.haldis span:nth-child(2) {
+  animation-delay: .25s;
+}
+
+
+.haldis span:nth-child(3) {
+  animation-delay: .5s;
+}
+
+
+.haldis span:nth-child(4) {
+  animation-delay: .75s;
+}
+
+
+.wedding-mark {
+  margin: 8px 0 22px;
+
+  color: #d6ae62;
+
+  font-family: var(--serif);
+
+  font-size: 44px;
+
+  animation: pulse 3s ease-in-out infinite;
+}
+
+
+.bidaye-line {
+  width: 130px;
+
+  height: 1px;
+
+  margin: 28px auto;
+
+  background: currentColor;
+
+  opacity: 0.25;
+}
+
+
+.reception-stars {
+  margin-top: 25px;
+
+  color: #d6c083;
+
+  font-size: 21px;
+
+  letter-spacing: 0.7em;
+}
+
+
+/* =========================================================
+   CLOSING
+   ========================================================= */
+
+.closing {
+  min-height: 100svh;
+
+  display: grid;
+
+  place-items: center;
+
+  padding: 90px 28px;
+
+  text-align: center;
+
+  background:
+    radial-gradient(
+      circle at 50% 25%,
+      rgba(225,190,194,.25),
+      transparent 40%
+    ),
+    #fbf6ee;
+
+  color: #49362e;
+}
+
+
+.closing .bengali-title {
+  font-size: 34px;
+
+  margin-bottom: 14px;
+}
+
+
+.closing h2 {
+  margin: 0 0 18px;
+
+  font-family: var(--serif);
+
+  font-size: 48px;
+
+  font-weight: 600;
+
+  line-height: 1;
+}
+
+
+.closing p:not(.bengali-title) {
+  max-width: 330px;
+
+  margin: 0 auto;
+
+  color: #735f56;
+
+  font-family: var(--serif);
+
+  font-size: 18px;
+
+  line-height: 1.5;
+}
+
+
+.closing-ornament {
+  margin-bottom: 12px;
+
+  color: var(--gold);
+
+  font-size: 24px;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes openingReveal {
+
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(3deg);
+  }
+
+}
+
+
+@keyframes spin {
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+
+@keyframes bob {
+
+  to {
+    transform: translateY(-7px);
+  }
+
+}
+
+
+@keyframes pulse {
+
+  50% {
+    transform: scale(1.08);
+  }
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+
+}

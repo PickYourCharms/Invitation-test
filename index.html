@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Chandrima & Arnab — Wedding Invitation</title>
+
+  <!-- Wedding invitation fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=Galada&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <main id="app">
+
+    <!-- =========================
+         WELCOME / INVITATION GATE
+         ========================= -->
+
+    <section class="gate" id="gate">
+
+      <div class="gate-floral floral-top" aria-hidden="true"></div>
+      <div class="gate-floral floral-bottom" aria-hidden="true"></div>
+
+      <div class="gate-inner">
+
+        <!-- Bengali title -->
+        <div class="bengali-title">
+          শুভ বিবাহ
+        </div>
+
+        <!-- Couple photograph -->
+        <div class="couple-frame">
+          <img
+            id="coupleImage"
+            src="images/couple.jpg"
+            alt="Chandrima and Arnab"
+          >
+        </div>
+
+        <p class="eyebrow">
+          A Wedding Invitation
+        </p>
+
+        <h1>
+          Chandrima <span>&amp;</span> Arnab
+        </h1>
+
+        <p class="intro">
+          I would love for you to be part of my wedding celebrations.
+        </p>
+
+
+        <!-- Invitation code -->
+
+        <form id="codeForm" class="code-form">
+
+          <label for="inviteCode">
+            Your invitation code
+          </label>
+
+          <div class="code-row">
+
+            <input
+              id="inviteCode"
+              name="inviteCode"
+              type="text"
+              autocomplete="off"
+              autocapitalize="characters"
+              spellcheck="false"
+              placeholder="Enter your code"
+            >
+
+            <button type="submit">
+              Open
+            </button>
+
+          </div>
+
+          <p
+            class="error"
+            id="codeError"
+            role="alert"
+          ></p>
+
+        </form>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         PERSONALIZED INVITATION
+         ========================= -->
+
+    <section
+      class="invitation hidden"
+      id="invitation"
+    >
+
+      <header class="story-header">
+
+        <div class="bengali-title small">
+          শুভ বিবাহ
+        </div>
+
+        <p class="header-name">
+          Chandrima &amp; Arnab
+        </p>
+
+        <button
+          class="change-code"
+          id="changeCode"
+          type="button"
+        >
+          Change invitation
+        </button>
+
+      </header>
+
+
+      <!--
+        The personalized wedding journey
+        is dynamically inserted here.
+      -->
+
+      <div id="story"></div>
+
+
+      <!-- =========================
+           CLOSING
+           ========================= -->
+
+      <footer
+        class="closing"
+        id="closing"
+      >
+
+        <!-- Closing photograph placeholder -->
+        <div class="closing-image-frame">
+          <img
+            id="closingImage"
+            src="images/couple-close.jpg"
+            alt="Chandrima"
+          >
+        </div>
+
+        <div
+          class="closing-ornament"
+          aria-hidden="true"
+        >
+          ✦
+        </div>
+
+        <div class="bengali-title">
+          শুভ বিবাহ
+        </div>
+
+        <h2>
+          With love, Chandrima
+        </h2>
+
+        <p>
+          Thank you for being a part of these precious moments.
+          I can't wait to celebrate with you.
+        </p>
+
+      </footer>
+
+    </section>
+
+  </main>
+
+
+  <!--
+    Wedding information and guest access
+  -->
+  <script src="config/invitation-data.js"></script>
+
+  <!--
+    Website functionality
+  -->
+  <script src="script.js"></script>
+
+</body>
+</html>
