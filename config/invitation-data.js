@@ -10,7 +10,7 @@
   Create as many codes as you need. Each code points to one profile.
 */
 
-const INVITATION_DATA = {
+window.INVITATION_DATA = {
   events: [
     {
       key: "aiburobhat",
@@ -20,8 +20,8 @@ const INVITATION_DATA = {
       time: "Morning / Afternoon",
       venue: "Home",
       mapUrl: "REPLACE_WITH_GOOGLE_MAPS_LINK",
-      theme: "theme-aiburo"
-      ,copy: "A beautiful beginning to the celebrations — an intimate day of tradition, blessings and family."
+      theme: "theme-aiburo",
+      copy: "A beautiful beginning to the celebrations — an intimate day of tradition, blessings and family."
     },
     {
       key: "mehendi",
