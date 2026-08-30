@@ -1019,3 +1019,50 @@ input {
 .cover-ornament {
   display: none !important;
 }
+/* =========================================================
+   CLEAN UP OVERSIZED DECORATIVE MOTIFS
+   Keep the existing layout and colours.
+   Remove the oversized geometric ornaments.
+   ========================================================= */
+
+/* Remove the large circular "mandala" backgrounds */
+.theme-aiburo::before,
+.theme-aiburo::after,
+.theme-holud::after,
+.theme-reception::before,
+.theme-reception::after {
+  display: none !important;
+}
+
+/* Remove the small paisley decorations that currently
+   read as random blobs rather than Bengali ornament */
+.theme-aiburo .event-content::before,
+.theme-aiburo .event-content::after,
+.theme-holud .event-content::before,
+.theme-holud .event-content::after {
+  display: none !important;
+}
+
+/* Remove the oversized repeated toran strips.
+   They are currently too literal and too repetitive. */
+.theme-holud::before,
+.theme-wedding::before {
+  display: none !important;
+}
+
+/* Remove the decorative corner SVGs from event cards */
+.theme-mehendi::before,
+.theme-mehendi::after,
+.theme-bidaye::before,
+.theme-bidaye::after,
+.theme-reception .event-content::before,
+.theme-reception .event-content::after,
+.theme-wedding .event-content::before,
+.theme-wedding .event-content::after {
+  display: none !important;
+}
+
+/* Remove the oversized rotating wedding mandala */
+.theme-wedding::after {
+  display: none !important;
+}
