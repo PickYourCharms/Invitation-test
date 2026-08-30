@@ -3,18 +3,18 @@
 }
 
 :root {
-  --paper: #f8f1e8;
-  --paper-light: #fffaf4;
+  --paper: #fbf6ee;
   --ink: #40312b;
+  --muted: #806d63;
+
   --rose: #a85a68;
   --rose-deep: #914653;
+
   --gold: #b4935a;
-  --gold-soft: #d4bd8b;
-  --muted: #806d63;
+  --gold-soft: #d9c18c;
 
   --serif: "Cormorant Garamond", Georgia, serif;
   --sans: "DM Sans", Arial, sans-serif;
-  --bengali: "Galada", "Noto Serif Bengali", serif;
 }
 
 html {
@@ -40,7 +40,7 @@ input {
 
 
 /* =========================================================
-   WELCOME / OPENING
+   OPENING
    ========================================================= */
 
 .gate {
@@ -57,65 +57,73 @@ input {
 
   background:
     radial-gradient(
-      ellipse at 50% 12%,
-      rgba(221, 181, 188, 0.25),
-      transparent 42%
+      circle at 50% 8%,
+      rgba(206, 151, 163, 0.22),
+      transparent 32%
     ),
     radial-gradient(
-      ellipse at 15% 85%,
-      rgba(205, 181, 143, 0.12),
-      transparent 35%
+      circle at 10% 90%,
+      rgba(184, 148, 91, 0.12),
+      transparent 30%
     ),
     linear-gradient(
       180deg,
       #fffaf4 0%,
-      #f8f0e7 100%
+      #fbf4ec 100%
     );
 }
-
-
-/* Main opening content */
 
 .gate-inner {
   width: min(100%, 390px);
 
   position: relative;
-  z-index: 2;
+  z-index: 5;
 
   text-align: center;
 
-  animation: openingReveal 1.1s ease both;
+  animation: openingReveal 1.2s ease both;
 }
 
 
 /* =========================================================
-   BENGALI TITLE
+   ACTUAL PHYSICAL-CARD BENGALI LOGO
    ========================================================= */
 
-.bengali-title {
-  font-family: var(--bengali);
+.bengali-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  font-size: 42px;
-  line-height: 1;
-
-  color: var(--rose-deep);
-
-  margin: 0 0 18px;
-
-  letter-spacing: 0;
-
-  text-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.7);
+  margin: 0 auto 18px;
 
   position: relative;
-  z-index: 4;
+  z-index: 5;
 }
 
-.bengali-title.small {
-  font-size: 20px;
-  margin: 0;
+.bengali-logo img {
+  display: block;
 
-  color: var(--rose-deep);
+  width: auto;
+  height: auto;
+
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.gate .bengali-logo img {
+  width: min(58vw, 225px);
+}
+
+.bengali-logo.small img {
+  width: 70px;
+}
+
+.closing-logo {
+  margin: 4px auto 18px;
+}
+
+.closing-logo img {
+  width: min(48vw, 190px);
 }
 
 
@@ -131,13 +139,15 @@ input {
 
   padding: 6px;
 
+  position: relative;
+
   background:
     linear-gradient(
       135deg,
       #c7a873,
       #f5e6cf 35%,
       #c5a36b 70%,
-      #e8d2ad
+      #ead8b8
     );
 
   border-radius: 165px 165px 18px 18px;
@@ -146,25 +156,22 @@ input {
     0 22px 55px rgba(83, 57, 43, 0.16),
     0 4px 12px rgba(83, 57, 43, 0.08);
 
-  position: relative;
+  animation: imageBreath 6s ease-in-out infinite;
 }
-
-
-/* subtle inner border */
 
 .couple-frame::after {
   content: "";
 
   position: absolute;
+
   inset: 9px;
 
-  border: 1px solid rgba(255, 250, 240, 0.65);
+  border: 1px solid rgba(255, 250, 240, 0.7);
 
   border-radius: 158px 158px 12px 12px;
 
   pointer-events: none;
 }
-
 
 .couple-frame img {
   width: 100%;
@@ -181,15 +188,13 @@ input {
 
 
 /* =========================================================
-   OPENING TEXT
+   OPENING TYPOGRAPHY
    ========================================================= */
 
 .eyebrow {
   margin: 24px 0 7px;
 
-  color: #8f756b;
-
-  font-family: var(--sans);
+  color: #947c71;
 
   font-size: 9px;
   font-weight: 500;
@@ -199,36 +204,30 @@ input {
   letter-spacing: 0.24em;
 }
 
-
-h1 {
+.gate h1 {
   margin: 0;
 
   font-family: var(--serif);
 
   font-size: clamp(48px, 13vw, 68px);
 
-  font-weight: 500;
+  font-weight: 600;
 
-  line-height: 0.92;
+  line-height: 0.9;
 
   letter-spacing: -0.035em;
 
-  color: #6f3d49;
+  color: #46332c;
 }
 
-
-/* The ampersand gets its own treatment */
-
-h1 span {
+.gate h1 span {
   font-weight: 400;
-
   font-style: italic;
 
-  color: var(--gold);
+  color: #b4935a;
 
   padding: 0 3px;
 }
-
 
 .intro {
   max-width: 310px;
@@ -251,10 +250,7 @@ h1 span {
 
 .code-form {
   margin-top: 10px;
-
-  text-align: left;
 }
-
 
 .code-form label {
   display: block;
@@ -265,8 +261,6 @@ h1 span {
 
   color: #927c72;
 
-  font-family: var(--sans);
-
   font-size: 9px;
 
   font-weight: 500;
@@ -275,7 +269,6 @@ h1 span {
 
   letter-spacing: 0.16em;
 }
-
 
 .code-row {
   display: flex;
@@ -286,12 +279,11 @@ h1 span {
 
   border-radius: 999px;
 
-  background: rgba(255, 252, 247, 0.78);
+  background: rgba(255, 252, 247, 0.82);
 
   box-shadow:
     0 10px 28px rgba(85, 58, 45, 0.07);
 }
-
 
 .code-row input {
   min-width: 0;
@@ -307,8 +299,6 @@ h1 span {
 
   color: var(--ink);
 
-  font-family: var(--sans);
-
   font-size: 13px;
 
   letter-spacing: 0.12em;
@@ -316,13 +306,9 @@ h1 span {
   text-transform: uppercase;
 }
 
-
 .code-row input::placeholder {
   color: #ad9c92;
-
-  letter-spacing: 0.08em;
 }
-
 
 .code-row button {
   border: 0;
@@ -331,19 +317,24 @@ h1 span {
 
   padding: 11px 21px;
 
-  background: #6f3d49;
+  background: #46332c;
 
   color: #fffaf4;
 
   font-size: 12px;
 
-  font-weight: 500;
-
-  letter-spacing: 0.04em;
+  font-weight: 600;
 
   cursor: pointer;
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease;
 }
 
+.code-row button:active {
+  transform: scale(.96);
+}
 
 .error {
   min-height: 18px;
@@ -359,7 +350,7 @@ h1 span {
 
 
 /* =========================================================
-   DELICATE FLORAL FRAME
+   OPENING FLORAL MOVEMENT
    ========================================================= */
 
 .gate-floral {
@@ -370,27 +361,51 @@ h1 span {
 
   pointer-events: none;
 
-  opacity: 0.55;
+  opacity: .55;
+
+  border-radius: 50%;
 
   background:
     radial-gradient(
       ellipse at center,
       transparent 54%,
-      rgba(181, 130, 140, 0.20) 55%,
+      rgba(181,130,140,.20) 55%,
       transparent 56%
-    ),
-    radial-gradient(
-      ellipse at 32% 32%,
-      rgba(181, 130, 140, 0.18) 0 3%,
-      transparent 3.5%
-    ),
-    radial-gradient(
-      ellipse at 67% 67%,
-      rgba(181, 147, 91, 0.17) 0 2%,
-      transparent 2.8%
     );
+
+  animation: slowFloat 12s ease-in-out infinite;
 }
 
+.gate-floral::before,
+.gate-floral::after {
+  content: "";
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(181,130,140,.18);
+}
+
+.gate-floral::before {
+  width: 90px;
+  height: 90px;
+
+  left: 80px;
+  top: 70px;
+}
+
+.gate-floral::after {
+  width: 28px;
+  height: 28px;
+
+  left: 120px;
+  top: 120px;
+
+  background: rgba(181,130,140,.08);
+
+  border: 0;
+}
 
 .floral-top {
   top: -155px;
@@ -399,17 +414,18 @@ h1 span {
   transform: rotate(18deg);
 }
 
-
 .floral-bottom {
   right: -120px;
   bottom: -160px;
 
   transform: rotate(-25deg);
+
+  animation-delay: -5s;
 }
 
 
 /* =========================================================
-   INVITATION STORY
+   STORY HEADER
    ========================================================= */
 
 .story-header {
@@ -417,22 +433,23 @@ h1 span {
 
   top: 0;
 
-  z-index: 20;
+  z-index: 50;
 
   display: flex;
 
   align-items: center;
   justify-content: space-between;
 
-  padding: 13px 17px;
+  min-height: 50px;
 
-  background: rgba(251, 246, 238, 0.78);
+  padding: 9px 14px;
 
-  backdrop-filter: blur(12px);
+  background: rgba(251,246,238,.72);
 
-  border-bottom: 1px solid rgba(140, 110, 88, 0.10);
+  backdrop-filter: blur(14px);
+
+  border-bottom: 1px solid rgba(140,110,88,.08);
 }
-
 
 .header-name {
   margin: 0;
@@ -441,9 +458,8 @@ h1 span {
 
   font-size: 18px;
 
-  color: #6f3d49;
+  color: #49362e;
 }
-
 
 .change-code {
   border: 0;
@@ -459,17 +475,55 @@ h1 span {
 
 
 /* =========================================================
-   EVENT CANVAS
+   THE IMPORTANT PART:
+   ONE CONTINUOUS STORY — NO EVENT BLOCKS
    ========================================================= */
 
-.event {
+#story {
   position: relative;
 
   overflow: hidden;
 
-  min-height: 100svh;
+  background:
+    linear-gradient(
+      180deg,
 
-  padding: 100px 24px;
+      #fffdf9 0%,
+      #fffdf9 11%,
+
+      #f4f4e8 20%,
+      #edf4e8 28%,
+
+      #f4efc2 38%,
+      #fff0a8 45%,
+
+      #dca4a5 53%,
+      #7f1018 61%,
+
+      #d18b98 72%,
+      #f8dfe3 79%,
+
+      #b8bfd0 87%,
+      #162e54 94%,
+
+      #493d42 97%,
+      #fbf6ee 100%
+    );
+}
+
+
+/*
+   Each event is now TRANSPARENT.
+   The background belongs to the STORY,
+   not to each individual event.
+*/
+
+.event {
+  position: relative;
+
+  min-height: 82svh;
+
+  padding: 110px 24px 115px;
 
   display: flex;
 
@@ -478,7 +532,114 @@ h1 span {
 
   text-align: center;
 
+  background: transparent !important;
+
+  overflow: hidden;
+
   isolation: isolate;
+}
+
+
+/*
+   Large blurred transition fields.
+   These make one colour melt into another.
+*/
+
+.event::before {
+  content: "";
+
+  position: absolute;
+
+  inset: -20% -15%;
+
+  z-index: -2;
+
+  pointer-events: none;
+
+  opacity: .8;
+
+  filter: blur(35px);
+}
+
+
+/* AIBUROBHAT */
+
+.theme-aiburo::before {
+  background:
+    radial-gradient(
+      ellipse at 50% 35%,
+      rgba(255,253,249,.95) 0%,
+      rgba(255,253,249,.85) 45%,
+      rgba(188,37,48,.18) 72%,
+      transparent 100%
+    );
+}
+
+
+/* MEHENDI */
+
+.theme-mehendi::before {
+  background:
+    radial-gradient(
+      ellipse at 50% 45%,
+      rgba(237,244,232,.95),
+      rgba(130,160,119,.28) 62%,
+      transparent 100%
+    );
+}
+
+
+/* HOLUD */
+
+.theme-holud::before {
+  background:
+    radial-gradient(
+      ellipse at 50% 45%,
+      rgba(255,246,185,.98),
+      rgba(244,199,58,.32) 65%,
+      transparent 100%
+    );
+}
+
+
+/* WEDDING */
+
+.theme-wedding::before {
+  background:
+    radial-gradient(
+      ellipse at 50% 45%,
+      rgba(127,16,24,.98),
+      rgba(127,16,24,.85) 62%,
+      rgba(207,159,83,.2) 85%,
+      transparent 100%
+    );
+}
+
+
+/* BIDAYE */
+
+.theme-bidaye::before {
+  background:
+    radial-gradient(
+      ellipse at 50% 45%,
+      rgba(248,223,227,.96),
+      rgba(207,140,155,.26) 65%,
+      transparent 100%
+    );
+}
+
+
+/* RECEPTION */
+
+.theme-reception::before {
+  background:
+    radial-gradient(
+      ellipse at 50% 45%,
+      rgba(22,46,84,.98),
+      rgba(22,46,84,.9) 65%,
+      rgba(196,164,89,.2) 88%,
+      transparent 100%
+    );
 }
 
 
@@ -487,22 +648,30 @@ h1 span {
 
   position: relative;
 
-  z-index: 3;
+  z-index: 5;
+
+  animation: eventReveal linear both;
+
+  animation-timeline: view();
+  animation-range: entry 5% cover 30%;
 }
 
+
+/* =========================================================
+   EVENT TYPOGRAPHY
+   ========================================================= */
 
 .event-date {
   margin: 0 0 15px;
 
   font-size: 10px;
 
-  letter-spacing: 0.24em;
+  letter-spacing: .25em;
 
   text-transform: uppercase;
 
-  opacity: 0.72;
+  opacity: .72;
 }
-
 
 .event h2 {
   margin: 0 0 15px;
@@ -513,11 +682,10 @@ h1 span {
 
   font-weight: 600;
 
-  line-height: 0.88;
+  line-height: .88;
 
-  letter-spacing: -0.035em;
+  letter-spacing: -.035em;
 }
-
 
 .event h3 {
   margin: 0 0 13px;
@@ -531,7 +699,6 @@ h1 span {
   font-weight: 500;
 }
 
-
 .event-copy {
   max-width: 340px;
 
@@ -544,17 +711,15 @@ h1 span {
   line-height: 1.5;
 }
 
-
 .meta {
   font-size: 11px;
 
   line-height: 1.7;
 
-  letter-spacing: 0.07em;
+  letter-spacing: .07em;
 
-  opacity: 0.84;
+  opacity: .84;
 }
-
 
 .map-link {
   display: inline-flex;
@@ -578,14 +743,22 @@ h1 span {
 
   font-size: 10px;
 
-  letter-spacing: 0.13em;
+  letter-spacing: .13em;
 
   text-transform: uppercase;
+
+  transition:
+    background .3s ease,
+    transform .3s ease;
+}
+
+.map-link:active {
+  transform: scale(.96);
 }
 
 
 /* =========================================================
-   DECORATIVE LAYER
+   DECORATIVE EVENT LAYER
    ========================================================= */
 
 .event .motif {
@@ -596,8 +769,9 @@ h1 span {
   z-index: 1;
 
   pointer-events: none;
-}
 
+  overflow: hidden;
+}
 
 .event .motif::before,
 .event .motif::after {
@@ -607,112 +781,128 @@ h1 span {
 
   border-radius: 50%;
 
-  animation: float 8s ease-in-out infinite;
+  animation: float 9s ease-in-out infinite;
 }
 
+
+/* Large floating circles */
 
 .event .motif::before {
   width: 190px;
   height: 190px;
 
-  left: -80px;
-  top: 10%;
+  left: -90px;
+  top: 8%;
 
   border: 1px solid currentColor;
 
-  opacity: 0.13;
+  opacity: .12;
 }
 
-
 .event .motif::after {
-  width: 290px;
-  height: 290px;
+  width: 300px;
+  height: 300px;
 
-  right: -135px;
-  bottom: 2%;
+  right: -145px;
+  bottom: 0;
 
   border: 1px solid currentColor;
 
-  opacity: 0.09;
+  opacity: .08;
+
+  animation-delay: -3s;
 }
 
 
 /* =========================================================
-   EVENT COLOURS
+   AIBUROBHAT — ALPONA
    ========================================================= */
 
 .theme-aiburo {
-  background: #fffdf9;
   color: #a61e25;
 }
-
 
 .theme-aiburo .motif {
   background:
     radial-gradient(
-      circle at 12% 20%,
-      transparent 0 25px,
-      currentColor 26px 27px,
-      transparent 28px
-    ),
-    radial-gradient(
-      circle at 88% 75%,
-      transparent 0 35px,
-      currentColor 36px 37px,
-      transparent 38px
+      circle at 15% 18%,
+      transparent 0 26px,
+      rgba(166,30,37,.16) 27px 28px,
+      transparent 29px
     );
 }
 
+.theme-aiburo .motif::after {
+  border-radius: 50%;
 
-.theme-mehendi {
-  background: #edf4e8;
-  color: #214c35;
+  box-shadow:
+    inset 0 0 0 1px rgba(166,30,37,.12),
+    0 0 0 18px rgba(166,30,37,.04),
+    0 0 0 36px rgba(166,30,37,.035);
 }
 
+
+/* =========================================================
+   MEHENDI / SANGEET
+   ========================================================= */
+
+.theme-mehendi {
+  color: #214c35;
+}
 
 .theme-mehendi .motif {
   background:
     radial-gradient(
       ellipse at 18% 25%,
-      transparent 0 25px,
-      currentColor 26px 27px,
-      transparent 28px
+      transparent 0 26px,
+      rgba(33,76,53,.14) 27px 28px,
+      transparent 29px
     ),
     radial-gradient(
-      ellipse at 83% 68%,
-      transparent 0 45px,
-      currentColor 46px 47px,
-      transparent 48px
+      ellipse at 84% 70%,
+      transparent 0 48px,
+      rgba(33,76,53,.12) 49px 50px,
+      transparent 51px
     );
 }
 
 
+/* =========================================================
+   HOLUD
+   ========================================================= */
+
 .theme-holud {
-  background: #fff5b9;
   color: #7d5a08;
 }
-
 
 .theme-holud .motif {
   background:
     radial-gradient(
       circle at 20% 18%,
-      rgba(255,255,255,.45) 0 7px,
+      rgba(255,255,255,.55) 0 7px,
       transparent 8px
     ),
     radial-gradient(
-      circle at 82% 72%,
-      rgba(255,255,255,.38) 0 10px,
-      transparent 11px
+      circle at 78% 70%,
+      rgba(255,255,255,.4) 0 11px,
+      transparent 12px
     );
 }
 
-
-.theme-wedding {
-  background: #7f1018;
-  color: #fff7e6;
+.theme-holud .motif::after {
+  box-shadow:
+    0 0 0 16px rgba(125,90,8,.035),
+    0 0 0 32px rgba(125,90,8,.025);
 }
 
+
+/* =========================================================
+   WEDDING — BENGALI ORNAMENTAL
+   ========================================================= */
+
+.theme-wedding {
+  color: #fff7e6;
+}
 
 .theme-wedding .motif {
   background:
@@ -730,6 +920,21 @@ h1 span {
     );
 }
 
+.theme-wedding .motif::before {
+  border-color: #d6ae62;
+
+  opacity: .45;
+}
+
+.theme-wedding .motif::after {
+  border-color: #d6ae62;
+
+  opacity: .3;
+
+  box-shadow:
+    0 0 0 18px rgba(214,174,98,.05),
+    0 0 0 36px rgba(214,174,98,.035);
+}
 
 .theme-wedding .event-date,
 .theme-wedding .meta {
@@ -737,36 +942,44 @@ h1 span {
 }
 
 
+/* =========================================================
+   BIDAYE
+   ========================================================= */
+
 .theme-bidaye {
-  background: #f8dfe3;
   color: #6d3c49;
 }
 
-
 .theme-bidaye .motif {
+  opacity: .7;
+
   background:
     radial-gradient(
       ellipse at 18% 28%,
       transparent 0 35px,
-      currentColor 36px 37px,
+      rgba(109,60,73,.13) 36px 37px,
       transparent 38px
     ),
     radial-gradient(
       ellipse at 82% 72%,
       transparent 0 30px,
-      currentColor 31px 32px,
+      rgba(109,60,73,.11) 31px 32px,
       transparent 33px
     );
-
-  opacity: 0.7;
 }
 
+.theme-bidaye .motif::after {
+  border-color: rgba(109,60,73,.16);
+}
+
+
+/* =========================================================
+   RECEPTION
+   ========================================================= */
 
 .theme-reception {
-  background: #162e54;
   color: #f8efd8;
 }
-
 
 .theme-reception .motif {
   background:
@@ -784,6 +997,12 @@ h1 span {
     );
 }
 
+.theme-reception .motif::before,
+.theme-reception .motif::after {
+  border-color: #c8a85d;
+
+  opacity: .25;
+}
 
 .theme-reception .event-date,
 .theme-reception .meta {
@@ -792,26 +1011,25 @@ h1 span {
 
 
 /* =========================================================
-   EVENT DECORATIVE DETAILS
+   EVENT DETAILS
    ========================================================= */
 
 .alpana-ring {
   width: 190px;
   height: 190px;
 
-  margin: 28px auto -10px;
+  margin: 30px auto -10px;
 
   border: 1px dashed currentColor;
 
   border-radius: 50%;
 
-  opacity: 0.55;
+  opacity: .42;
 
   animation: spin 28s linear infinite;
 
   position: relative;
 }
-
 
 .alpana-ring::before,
 .alpana-ring::after {
@@ -824,11 +1042,9 @@ h1 span {
   border: 1px dotted currentColor;
 }
 
-
 .alpana-ring::before {
   inset: 16px;
 }
-
 
 .alpana-ring::after {
   inset: 42px;
@@ -845,7 +1061,6 @@ h1 span {
   margin-top: 25px;
 }
 
-
 .petal {
   width: 22px;
   height: 34px;
@@ -856,7 +1071,17 @@ h1 span {
 
   transform: rotate(45deg);
 
-  opacity: 0.5;
+  opacity: .5;
+
+  animation: petalFloat 4s ease-in-out infinite;
+}
+
+.petal:nth-child(2) {
+  animation-delay: -.8s;
+}
+
+.petal:nth-child(3) {
+  animation-delay: -1.6s;
 }
 
 
@@ -867,7 +1092,9 @@ h1 span {
 
   font-size: 32px;
 
-  opacity: 0.45;
+  opacity: .45;
+
+  animation: musicFloat 3s ease-in-out infinite;
 }
 
 
@@ -881,7 +1108,6 @@ h1 span {
   margin-top: 25px;
 }
 
-
 .haldis span {
   width: 14px;
   height: 14px;
@@ -890,21 +1116,18 @@ h1 span {
 
   background: currentColor;
 
-  opacity: 0.28;
+  opacity: .28;
 
   animation: bob 1.8s ease-in-out infinite alternate;
 }
-
 
 .haldis span:nth-child(2) {
   animation-delay: .25s;
 }
 
-
 .haldis span:nth-child(3) {
   animation-delay: .5s;
 }
-
 
 .haldis span:nth-child(4) {
   animation-delay: .75s;
@@ -933,7 +1156,7 @@ h1 span {
 
   background: currentColor;
 
-  opacity: 0.25;
+  opacity: .25;
 }
 
 
@@ -944,7 +1167,9 @@ h1 span {
 
   font-size: 21px;
 
-  letter-spacing: 0.7em;
+  letter-spacing: .7em;
+
+  animation: starFloat 4s ease-in-out infinite;
 }
 
 
@@ -955,30 +1180,101 @@ h1 span {
 .closing {
   min-height: 100svh;
 
-  display: grid;
+  position: relative;
 
-  place-items: center;
+  display: flex;
 
-  padding: 90px 28px;
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 100px 28px;
 
   text-align: center;
+
+  overflow: hidden;
 
   background:
     radial-gradient(
       circle at 50% 25%,
-      rgba(225,190,194,.25),
-      transparent 40%
+      rgba(225,190,194,.26),
+      transparent 38%
     ),
-    #fbf6ee;
+    linear-gradient(
+      180deg,
+      #fbf6ee 0%,
+      #fffaf4 100%
+    );
 
   color: #49362e;
 }
 
 
-.closing .bengali-title {
-  font-size: 34px;
+/* Closing image */
 
-  margin-bottom: 14px;
+.closing-image-frame {
+  width: min(72vw, 285px);
+
+  aspect-ratio: 4 / 5;
+
+  margin: 0 auto 28px;
+
+  padding: 5px;
+
+  position: relative;
+
+  background:
+    linear-gradient(
+      135deg,
+      #d7c09b,
+      #f5e6cf,
+      #b4935a
+    );
+
+  border-radius: 145px 145px 16px 16px;
+
+  box-shadow:
+    0 20px 55px rgba(83,57,43,.14);
+
+  animation: closingImageReveal 1s ease both;
+}
+
+.closing-image-frame::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 8px;
+
+  border: 1px solid rgba(255,250,240,.7);
+
+  border-radius: 140px 140px 11px 11px;
+
+  pointer-events: none;
+}
+
+.closing-image-frame img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  border-radius: 140px 140px 11px 11px;
+}
+
+
+.closing-ornament {
+  margin-bottom: 8px;
+
+  color: var(--gold);
+
+  font-size: 24px;
+
+  animation: pulse 3s ease-in-out infinite;
 }
 
 
@@ -994,8 +1290,7 @@ h1 span {
   line-height: 1;
 }
 
-
-.closing p:not(.bengali-title) {
+.closing p {
   max-width: 330px;
 
   margin: 0 auto;
@@ -1010,15 +1305,6 @@ h1 span {
 }
 
 
-.closing-ornament {
-  margin-bottom: 12px;
-
-  color: var(--gold);
-
-  font-size: 24px;
-}
-
-
 /* =========================================================
    ANIMATIONS
    ========================================================= */
@@ -1027,12 +1313,44 @@ h1 span {
 
   from {
     opacity: 0;
-    transform: translateY(20px);
+
+    transform:
+      translateY(22px);
   }
 
   to {
     opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+
+}
+
+
+@keyframes imageBreath {
+
+  0%,
+  100% {
     transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+
+}
+
+
+@keyframes slowFloat {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(18deg);
+  }
+
+  50% {
+    transform: translateY(-15px) rotate(21deg);
   }
 
 }
@@ -1042,11 +1360,15 @@ h1 span {
 
   0%,
   100% {
-    transform: translateY(0) rotate(0deg);
+    transform:
+      translateY(0)
+      rotate(0deg);
   }
 
   50% {
-    transform: translateY(-10px) rotate(3deg);
+    transform:
+      translateY(-14px)
+      rotate(4deg);
   }
 
 }
@@ -1079,8 +1401,136 @@ h1 span {
 }
 
 
+@keyframes petalFloat {
+
+  0%,
+  100% {
+    transform:
+      rotate(45deg)
+      translateY(0);
+  }
+
+  50% {
+    transform:
+      rotate(45deg)
+      translateY(-7px);
+  }
+
+}
+
+
+@keyframes musicFloat {
+
+  50% {
+    transform:
+      translateY(-7px)
+      rotate(3deg);
+  }
+
+}
+
+
+@keyframes starFloat {
+
+  50% {
+    transform:
+      translateY(-5px);
+  }
+
+}
+
+
+@keyframes closingImageReveal {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(18px)
+      scale(.97);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+@keyframes eventReveal {
+
+  from {
+    opacity: .55;
+
+    transform:
+      translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+
+}
+
+
 /* =========================================================
-   ACCESSIBILITY
+   MOBILE POLISH
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+  .gate {
+    padding:
+      28px 18px
+      34px;
+  }
+
+  .gate .bengali-logo img {
+    width: 205px;
+  }
+
+  .couple-frame {
+    width: min(84vw, 300px);
+  }
+
+  .gate h1 {
+    font-size: clamp(47px, 13vw, 63px);
+  }
+
+  .event {
+    min-height: 78svh;
+
+    padding:
+      105px 20px
+      120px;
+  }
+
+  .event h2 {
+    font-size: clamp(48px, 14vw, 68px);
+  }
+
+  .closing {
+    padding:
+      85px 22px
+      100px;
+  }
+
+  .closing-image-frame {
+    width: min(70vw, 270px);
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
    ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
@@ -1090,6 +1540,7 @@ h1 span {
   *::after {
     animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;
+
     scroll-behavior: auto !important;
   }
 
