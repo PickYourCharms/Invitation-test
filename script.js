@@ -1,90 +1,201 @@
-/**
- * Digital Bengali Wedding Invitation — Chandrima & Arnab
- * Handles dynamic invitation configuration lookup and continuous UI populating.
- */
+const state = {
+  profile: null
+};
 
-function openInvitation() {
-    const input = document.getElementById("invitation-code");
-    const errorMsg = document.getElementById("error-message");
-    const code = input ? input.value.trim().toUpperCase() : "";
+const story = document.getElementById("story");
+const gate = document.getElementById("gate");
+const invitation = document.getElementById("invitation");
+const form = document.getElementById("codeForm");
+const input = document.getElementById("inviteCode");
+const error = document.getElementById("codeError");
 
-    if (!code) {
-        if (errorMsg) errorMsg.textContent = "Please enter a valid invitation code.";
-        return;
-    }
-
-    // Check against global INVITATION_DATA or custom config object
-    const data = (window.INVITATION_DATA && window.INVITATION_DATA[code]) 
-        ? window.INVITATION_DATA[code] 
-        : (window.INVITATION_DATA ? window.INVITATION_DATA["ALL-001"] || Object.values(window.INVITATION_DATA)[0] : null);
-
-    if (!data) {
-        if (errorMsg) errorMsg.textContent = "Invalid invitation code. Please try again.";
-        return;
-    }
-
-    if (errorMsg) errorMsg.textContent = "";
-
-    // Populate events
-    populateEvents(data);
-
-    // Hide opening form/cover gracefully or scroll down
-    const journey = document.getElementById("event-journey");
-    if (journey) {
-        journey.classList.remove("hidden");
-        journey.scrollIntoView({ behavior: "smooth" });
-    }
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, ch => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;"
+  }[ch]));
 }
 
-function populateEvents(data) {
-    const events = [
-        { id: "aiburobhat", key: "aiburobhat" },
-        { id: "mehendi", key: "mehendi" },
-        { id: "holud", key: "gaye_holud" },
-        { id: "wedding", key: "wedding" },
-        { id: "bidaye", key: "bidaye" },
-        { id: "reception", key: "reception" }
-    ];
+function eventMarkup(event) {
 
-    events.forEach(item => {
-        const eventData = data[item.key] || (data.events ? data.events[item.key] : null);
-        if (!eventData) return;
+  const venue = event.venue
+    ? `
+      <div class="meta">
+        ${escapeHtml(event.time)}
+        <br>
+        ${escapeHtml(event.venue)}
+      </div>
 
-        const slotElem = document.getElementById(`slot-${item.id}`);
-        const dateElem = document.getElementById(`date-${item.id}`);
-        const venueElem = document.getElementById(`venue-${item.id}`);
-        const descElem = document.getElementById(`desc-${item.id}`);
-        const mapContainer = document.getElementById(`map-container-${item.id}`);
+      ${
+        event.mapUrl &&
+        event.mapUrl !== "REPLACE_WITH_GOOGLE_MAPS_LINK"
 
-        if (slotElem) slotElem.textContent = eventData.time || eventData.subtitle || "";
-        if (dateElem) dateElem.textContent = eventData.date || "";
-        if (venueElem) venueElem.textContent = eventData.venue || "";
-        if (descElem) descElem.textContent = eventData.description || "";
+        ? `
+          <a
+            class="map-link"
+            href="${escapeHtml(event.mapUrl)}"
+            target="_blank"
+            rel="noopener"
+          >
+            ↗ View on Google Maps
+          </a>
+        `
 
-        if (mapContainer) {
-            if (eventData.mapLink || eventData.locationUrl) {
-                const url = eventData.mapLink || eventData.locationUrl;
-                mapContainer.innerHTML = `<a href="${url}" target="_blank" rel="noopener">View Location on Map ➔</a>`;
-            } else {
-                mapContainer.innerHTML = "";
-            }
-        }
-    });
+        : `
+          <span
+            class="map-link"
+            aria-label="Google Maps link placeholder"
+          >
+            ↗ Google Maps Link
+          </span>
+        `
+      }
+    `
 
-    if (data.closingMessage) {
-        const closingMsgElem = document.getElementById("closing-message");
-        if (closingMsgElem) closingMsgElem.textContent = data.closingMessage;
-    }
+    : `
+      <div class="meta">
+        ${escapeHtml(event.time)}
+      </div>
+    `;
+
+  return `
+    <section
+      class="event ${event.theme}"
+      id="event-${event.key}"
+    >
+
+      <div class="event-content">
+
+        <p class="event-date">
+          ${escapeHtml(event.date)}
+        </p>
+
+        <h2>
+          ${escapeHtml(event.title)}
+        </h2>
+
+        <h3>
+          ${escapeHtml(event.subtitle)}
+        </h3>
+
+        <p class="event-copy">
+          ${escapeHtml(event.copy)}
+        </p>
+
+        ${venue}
+
+      </div>
+
+    </section>
+  `;
 }
 
-// Allow Enter key press in the code input
-document.addEventListener("DOMContentLoaded", function() {
-    const input = document.getElementById("invitation-code");
-    if (input) {
-        input.addEventListener("keypress", function(e) {
-            if (e.key === "Enter") {
-                openInvitation();
-            }
-        });
-    }
+function renderProfile(profile) {
+
+  story.innerHTML = profile.events
+    .map(key => {
+
+      const event =
+        INVITATION_DATA.events.find(
+          e => e.key === key
+        );
+
+      return event
+        ? eventMarkup(event)
+        : "";
+
+    })
+    .join("");
+
+  state.profile = profile;
+
+  gate.classList.add("hidden");
+  invitation.classList.remove("hidden");
+
+  window.scrollTo({
+    top: 0,
+    behavior: "instant"
+  });
+
+  observeEvents();
+}
+
+function lookupCode(code) {
+
+  const normalized =
+    code.trim().toUpperCase();
+
+  return (
+    INVITATION_DATA.profiles[normalized]
+    || null
+  );
+}
+
+form.addEventListener("submit", event => {
+
+  event.preventDefault();
+
+  const profile =
+    lookupCode(input.value);
+
+  if (!profile) {
+
+    error.textContent =
+      "That invitation code could not be found. Please check it and try again.";
+
+    input.focus();
+
+    return;
+  }
+
+  error.textContent = "";
+
+  renderProfile(profile);
 });
+
+
+/* ---------------------------------------------------------
+   Gentle reveal animation as events enter the viewport
+   --------------------------------------------------------- */
+
+function observeEvents() {
+
+  const sections =
+    document.querySelectorAll(".event");
+
+  if (!("IntersectionObserver" in window)) {
+    return;
+  }
+
+  const observer =
+    new IntersectionObserver(
+      entries => {
+
+        entries.forEach(entry => {
+
+          if (entry.isIntersecting) {
+
+            entry.target
+              .classList
+              .add("is-visible");
+
+            observer.unobserve(
+              entry.target
+            );
+          }
+
+        });
+
+      },
+      {
+        threshold:0.18
+      }
+    );
+
+  sections.forEach(section => {
+    observer.observe(section);
+  });
+}
