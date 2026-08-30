@@ -2,61 +2,144 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chandrima & Arnab — Wedding Invitation</title>
-    <!-- Traditional Serif Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- OPENING / COVER (Strictly contains subho-bibaho.png here only) -->
-    <main id="opening-screen" class="screen-view active-screen">
-        <div class="opening-card fade-in-up">
-            <img src="images/subho-bibaho.png" alt="শুভ বিবাহ" class="bengali-artwork" />
+    <!-- OPENING / COVER SECTION -->
+    <section id="opening-cover" class="cover-section">
+        <div class="cover-content">
             
-            <div class="photo-frame">
-                <img src="images/couple.jpg" alt="Chandrima & Arnab" class="cover-photo" />
+            <!-- subho-bibaho.png artwork MUST appear ONLY HERE -->
+            <div class="subho-bibaho-wrapper">
+                <img src="images/subho-bibaho.png" alt="Shubho Bibaho" class="subho-bibaho-img">
             </div>
 
-            <h1 class="couple-names">
-                Chandrima <span class="amp">&</span> Arnab
-            </h1>
-            
-            <p class="opening-subtitle">Joyfully invite you to celebrate their wedding</p>
-
-            <div class="invite-entry-box">
-                <input type="text" id="invite-code-input" placeholder="Enter invitation code" autocomplete="off" />
-                <button id="open-invite-btn" class="ceremonial-action-btn">Open Invitation</button>
-                <p id="code-error" class="error-feedback hidden">Please enter a valid invitation code.</p>
+            <!-- Opening Couple Photo -->
+            <div class="hero-photo-frame">
+                <img src="images/couple.jpg" alt="Chandrima and Arnab" class="hero-photo">
             </div>
-        </div>
-    </main>
 
-    <!-- CONTINUOUS INVITATION JOURNEY (Populated dynamically based on profile codes) -->
-    <div id="invitation-journey" class="journey-container hidden">
-        <div id="dynamic-events-wrapper">
-            <!-- Events rendered dynamically from script.js + config data -->
-        </div>
+            <!-- Couple Names -->
+            <div class="couple-title-container">
+                <h1 class="couple-names">Chandrima <span class="ampersand">&amp;</span> Arnab</h1>
+            </div>
 
-        <!-- CLOSING SECTION (Strictly uses couple-close.jpg, NO subho-bibaho.png) -->
-        <section class="event-node closing-node" id="closing-section">
-            <div class="node-inner scroll-reveal">
-                <div class="photo-frame close-frame">
-                    <img src="images/couple-close.jpg" alt="Chandrima and Arnab" class="close-photo" />
+            <p class="welcome-intro">Joyfully invite you to celebrate their wedding festivities</p>
+
+            <!-- Invitation Code Form -->
+            <div class="invitation-auth-form">
+                <div class="input-wrapper">
+                    <input type="text" id="invitation-code" placeholder="Enter invitation code" autocomplete="off" spellcheck="false">
+                    <button id="open-btn" type="button" onclick="openInvitation()">Open Invitation</button>
                 </div>
-                <div class="closing-sentiment">
-                    <p>As we step into this beautiful journey of togetherness, your presence and blessings mean the world to us.</p>
-                </div>
-                <h3 class="signoff-title">With love,<br><span>Chandrima</span></h3>
+                <p id="error-message" class="error-message"></p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- EVENT JOURNEY (Continuous vertical flow, NO cards) -->
+    <main id="event-journey" class="event-journey hidden">
+        
+        <!-- EVENT 1: AIBUROBHAT -->
+        <section id="event-aiburobhat" class="event-section theme-aiburo">
+            <div class="section-inner">
+                <div class="motif-divider">❖  🌸  ❖</div>
+                <h2 class="event-title">Aiburobhat</h2>
+                <p class="event-slot" id="slot-aiburobhat"></p>
+                <p class="event-date" id="date-aiburobhat"></p>
+                <p class="event-venue" id="venue-aiburobhat"></p>
+                <p class="event-desc" id="desc-aiburobhat"></p>
+                <div id="map-container-aiburobhat" class="map-link-container"></div>
             </div>
         </section>
-    </div>
 
-    <!-- Configuration & Application Logic -->
-<script src="config/invitation-data.js"></script>
+        <!-- EVENT 2: MEHENDI & SANGEET -->
+        <section id="event-mehendi" class="event-section theme-mehendi">
+            <div class="section-inner">
+                <div class="motif-divider">🌿  🎶  🌿</div>
+                <h2 class="event-title">Mehendi &amp; Sangeet</h2>
+                <p class="event-slot" id="slot-mehendi"></p>
+                <p class="event-date" id="date-mehendi"></p>
+                <p class="event-venue" id="venue-mehendi"></p>
+                <p class="event-desc" id="desc-mehendi"></p>
+                <div id="map-container-mehendi" class="map-link-container"></div>
+            </div>
+        </section>
+
+        <!-- EVENT 3: GAYE HOLUD -->
+        <section id="event-holud" class="event-section theme-holud">
+            <div class="section-inner">
+                <div class="motif-divider">🌼  ✨  🌼</div>
+                <h2 class="event-title">Gaye Holud</h2>
+                <p class="event-slot" id="slot-holud"></p>
+                <p class="event-date" id="date-holud"></p>
+                <p class="event-venue" id="venue-holud"></p>
+                <p class="event-desc" id="desc-holud"></p>
+                <div id="map-container-holud" class="map-link-container"></div>
+            </div>
+        </section>
+
+        <!-- EVENT 4: THE WEDDING -->
+        <section id="event-wedding" class="event-section theme-wedding">
+            <div class="section-inner">
+                <div class="motif-divider">🪔  ❖  🪔</div>
+                <h2 class="event-title">The Wedding</h2>
+                <p class="event-slot" id="slot-wedding"></p>
+                <p class="event-date" id="date-wedding"></p>
+                <p class="event-venue" id="venue-wedding"></p>
+                <p class="event-desc" id="desc-wedding"></p>
+                <div id="map-container-wedding" class="map-link-container"></div>
+            </div>
+        </section>
+
+        <!-- EVENT 5: BIDAYE -->
+        <section id="event-bidaye" class="event-section theme-bidaye">
+            <div class="section-inner">
+                <div class="motif-divider">🌸</div>
+                <h2 class="event-title">Bidaye</h2>
+                <p class="event-slot" id="slot-bidaye"></p>
+                <p class="event-date" id="date-bidaye"></p>
+                <p class="event-venue" id="venue-bidaye"></p>
+                <p class="event-desc" id="desc-bidaye"></p>
+                <div id="map-container-bidaye" class="map-link-container"></div>
+            </div>
+        </section>
+
+        <!-- EVENT 6: RECEPTION -->
+        <section id="event-reception" class="event-section theme-reception">
+            <div class="section-inner">
+                <div class="motif-divider">🥂  ✦  🥂</div>
+                <h2 class="event-title">Reception</h2>
+                <p class="event-slot" id="slot-reception"></p>
+                <p class="event-date" id="date-reception"></p>
+                <p class="event-venue" id="venue-reception"></p>
+                <p class="event-desc" id="desc-reception"></p>
+                <div id="map-container-reception" class="map-link-container"></div>
+            </div>
+        </section>
+
+        <!-- CLOSING SECTION -->
+        <section id="closing-section" class="closing-section">
+            <div class="closing-inner">
+                <div class="closing-photo-frame">
+                    <img src="images/couple-close.jpeg" alt="Chandrima and Arnab" class="closing-photo">
+                </div>
+                <div class="gold-ornament">✦ ✤ ✦</div>
+                <p id="closing-message" class="closing-message">As we step into this beautiful journey of togetherness, your presence and blessings mean the world to us.</p>
+                <p class="closing-signoff">With love,<br><strong>Chandrima</strong></p>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="config/invitation-data.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
