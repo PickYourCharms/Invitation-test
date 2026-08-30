@@ -1,234 +1,359 @@
 /* ===================================================
-   1. CORE IMPORTS & RESETS
+   1. CORE RESETS & ESSENTIAL STYLING
    =================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap');
-
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    background-color: #0d1526;
-    color: #333;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+html, body {
+    width: 100%;
     overflow-x: hidden;
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #FFFDF9;
+    color: #2A2A2A;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* Image containment to prevent huge zoomed photos */
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    border-radius: 8px;
-}
-
-/* Base Headings & Text */
-h1, h2, h3 {
-    font-family: 'Playfair Display', serif;
-}
-
-p {
-    line-height: 1.6;
-    font-size: 0.95rem;
+.hidden {
+    display: none !important;
 }
 
 /* ===================================================
-   2. UI CONTROLS & FORM STYLING
+   2. COVER / OPENING SECTION
    =================================================== */
-.container {
+.cover-section {
+    min-height: 100vh;
     width: 100%;
-    max-width: 440px;
-    margin: 0 auto;
-    padding: 24px 16px;
+    background: radial-gradient(circle at center, #FFFDF9 0%, #F5EFEB 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
     text-align: center;
+}
+
+.cover-content {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Shubho Bibaho Artwork - ONLY ON COVER */
+.subho-bibaho-wrapper {
+    width: 100%;
+    max-width: 220px;
+    margin-bottom: 24px;
+}
+
+.subho-bibaho-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Photo Frames - Scaled to fit portrait fully without crop */
+.hero-photo-frame, 
+.closing-photo-frame {
+    width: 88%;
+    max-width: 360px;
+    margin: 0 auto 28px auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 12px 32px rgba(136, 28, 28, 0.12);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    background-color: #FFFDF9;
+}
+
+.hero-photo, 
+.closing-photo {
+    width: 100%;
+    height: auto;
+    max-height: 65vh;
+    object-fit: contain;
+    object-position: top center;
+    display: block;
+}
+
+/* Couple Names Typography */
+.couple-title-container {
+    margin-bottom: 12px;
+}
+
+.couple-names {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: #800020; /* Bengali Alta Crimson */
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+}
+
+.couple-names .ampersand {
+    font-family: 'Cinzel', serif;
+    color: #D4AF37; /* Antique Gold */
+    font-weight: 500;
+    padding: 0 4px;
+}
+
+.welcome-intro {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.95rem;
+    color: #6A5247;
+    margin-bottom: 32px;
+    line-height: 1.5;
+    padding: 0 12px;
+}
+
+/* Form Controls - Premium Stationery Style */
+.invitation-auth-form {
+    width: 100%;
+    max-width: 340px;
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
 }
 
 input[type="text"] {
-    padding: 10px 16px;
-    border: 1px solid #d4af37;
-    border-radius: 24px;
-    font-size: 0.9rem;
-    outline: none;
-    margin-bottom: 12px;
+    width: 100%;
+    padding: 12px 20px;
+    border: 1.5px solid #D4AF37;
+    border-radius: 30px;
+    font-size: 0.95rem;
     text-align: center;
-    background: rgba(255, 255, 255, 0.9);
+    background-color: #FFFFFF;
+    color: #333333;
+    outline: none;
+    transition: all 0.3s ease;
 }
 
-button, .btn {
-    padding: 10px 22px;
-    background: linear-gradient(135deg, #a01c1c 0%, #6b0f0f 100%);
-    color: #fff;
-    border: 1px solid #d4af37;
-    border-radius: 24px;
+input[type="text"]:focus {
+    border-color: #800020;
+    box-shadow: 0 0 10px rgba(128, 0, 32, 0.15);
+}
+
+button {
+    width: 100%;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #800020 0%, #580016 100%);
+    color: #FFFFFF;
+    border: 1px solid #D4AF37;
+    border-radius: 30px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.95rem;
     font-weight: 600;
-    font-size: 0.9rem;
+    letter-spacing: 0.5px;
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(160, 28, 28, 0.3);
+button:active {
+    transform: scale(0.98);
 }
 
 .error-message {
-    color: #d9534f;
+    color: #C62828;
     font-size: 0.85rem;
-    margin-top: 8px;
+    margin-top: 10px;
+    min-height: 18px;
 }
 
 /* ===================================================
-   3. CARD & NODE STRUCTURE
+   3. EVENT JOURNEY — FULL-BLEED SEAMLESS FLOW (NO CARDS)
    =================================================== */
-.node-inner {
-    position: relative;
-    max-width: 380px;
+.event-journey {
     width: 100%;
-    margin: 20px auto;
-    padding: 42px 24px;
-    border-radius: 16px;
-    box-sizing: border-box;
+}
+
+.event-section {
+    width: 100%;
+    padding: 64px 24px;
     text-align: center;
-    transition: all 0.4s ease;
+    position: relative;
 }
 
-.node-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.1rem;
-    margin-bottom: 8px;
+.section-inner {
+    width: 100%;
+    max-width: 460px;
+    margin: 0 auto;
+    /* Strictly no borders, shadows, rounded card boxes, or floating background layers */
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 
-.node-title::after {
-    display: block;
-    font-size: 0.9rem;
-    margin: 12px auto 16px auto;
+.motif-divider {
+    font-size: 1.1rem;
+    margin-bottom: 16px;
     letter-spacing: 4px;
+}
+
+.event-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.event-slot {
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
     opacity: 0.9;
 }
 
+.event-date {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.event-venue {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 16px;
+    opacity: 0.9;
+}
+
+.event-desc {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    margin-bottom: 20px;
+    opacity: 0.95;
+}
+
+.map-link-container a {
+    display: inline-block;
+    padding: 8px 18px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 20px;
+    transition: background 0.3s ease;
+}
+
 /* ===================================================
-   4. SIX DISTINCT BENGALI VISUAL MOODS
+   4. EVENT COLOR THEMES & VISUAL IDENTITIES
    =================================================== */
 
-/* 1. AIBUROBHAT — Ivory, Red, Alpana, Traditional */
+/* 1. Aiburobhat — Ivory / Alta Red / Gold */
 .theme-aiburo {
-    background: radial-gradient(circle at center, #FFFDF9 0%, #F4ECE1 100%);
+    background-color: #FFFDF9;
     color: #3A2219;
 }
-.theme-aiburo .node-inner {
-    border: 2px solid #A01C1C;
-    background: rgba(255, 255, 255, 0.88);
-    box-shadow: 0 10px 30px rgba(160, 28, 28, 0.08);
-}
-.theme-aiburo .node-title {
-    color: #A01C1C;
-}
-.theme-aiburo .node-title::after {
-    content: "❖  🌸  ❖";
-    color: #A01C1C;
+.theme-aiburo .event-title { color: #800020; }
+.theme-aiburo .motif-divider { color: #D4AF37; }
+.theme-aiburo .map-link-container a {
+    color: #800020;
+    border: 1px solid #800020;
 }
 
-/* 2. MEHENDI / SANGEET — Green, Botanical, Mehendi, Musical */
+/* 2. Mehendi & Sangeet — Soft Botanical Green */
 .theme-mehendi {
-    background: radial-gradient(circle at center, #264332 0%, #13241A 100%);
+    background-color: #1A3323;
     color: #E6EFEA;
 }
-.theme-mehendi .node-inner {
-    border: 1.5px solid rgba(163, 201, 168, 0.4);
-    background: rgba(18, 33, 24, 0.7);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
-}
-.theme-mehendi .node-title {
+.theme-mehendi .event-title { color: #A8E0B5; }
+.theme-mehendi .motif-divider { color: #79C28B; }
+.theme-mehendi .map-link-container a {
     color: #A8E0B5;
-}
-.theme-mehendi .node-title::after {
-    content: "🌿  🎶  🌿";
-    color: #79C28B;
+    border: 1px solid #A8E0B5;
 }
 
-/* 3. GAYE HOLUD — Yellow, Marigold, Haldi, Festive */
+/* 3. Gaye Holud — Saffron / Turmeric Yellow */
 .theme-holud {
-    background: radial-gradient(circle at center, #FFF8E1 0%, #FFDC80 100%);
+    background-color: #FFF3D6;
     color: #4E342E;
 }
-.theme-holud .node-inner {
-    border: 2px dashed #E65100;
-    background: rgba(255, 254, 248, 0.92);
-    box-shadow: 0 10px 30px rgba(230, 81, 0, 0.12);
-}
-.theme-holud .node-title {
+.theme-holud .event-title { color: #D84315; }
+.theme-holud .motif-divider { color: #F57C00; }
+.theme-holud .map-link-container a {
     color: #D84315;
-}
-.theme-holud .node-title::after {
-    content: "🌼  ✨  🌼";
-    color: #F57C00;
+    border: 1px solid #D84315;
 }
 
-/* 4. WEDDING — Deep Bengali Red + Antique Gold, Richly Ceremonial */
+/* 4. The Wedding — Deep Bengali Crimson Red & Antique Gold */
 .theme-wedding {
-    background: radial-gradient(circle at center, #5A0A10 0%, #2D0306 100%);
+    background-color: #4A080E;
     color: #FFF2E6;
 }
-.theme-wedding .node-inner {
-    border: 2px solid #D4AF37;
-    background: rgba(45, 5, 8, 0.85);
-    box-shadow: 0 14px 40px rgba(212, 175, 55, 0.22);
-}
-.theme-wedding .node-title {
+.theme-wedding .event-title { color: #E5C158; }
+.theme-wedding .motif-divider { color: #D4AF37; }
+.theme-wedding .map-link-container a {
     color: #E5C158;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-}
-.theme-wedding .node-title::after {
-    content: "🪔  ❖  🪔";
-    color: #D4AF37;
+    border: 1px solid #E5C158;
 }
 
-/* 5. BIDAYE — Soft Pink/Blush, Sparse & Emotional */
+/* 5. Bidaye — Soft Blush & Warm Rose */
 .theme-bidaye {
-    background: radial-gradient(circle at center, #FDF5F3 0%, #F2DDD8 100%);
+    background-color: #F9ECE8;
     color: #5C3D38;
 }
-.theme-bidaye .node-inner {
-    border: 1px solid rgba(184, 137, 131, 0.35);
-    background: rgba(255, 255, 255, 0.65);
-    padding: 54px 28px;
-    box-shadow: 0 8px 24px rgba(140, 90, 86, 0.06);
-}
-.theme-bidaye .node-title {
+.theme-bidaye .event-title { color: #8C5A56; font-style: italic; }
+.theme-bidaye .motif-divider { color: #B88983; }
+.theme-bidaye .map-link-container a {
     color: #8C5A56;
-    font-weight: 400;
-    font-style: italic;
-}
-.theme-bidaye .node-title::after {
-    content: "🌸";
-    font-size: 0.75rem;
-    color: #B88983;
-    opacity: 0.7;
+    border: 1px solid #8C5A56;
 }
 
-/* 6. RECEPTION — Blue + Gold, Elegant Evening Celebration */
+/* 6. Reception — Royal Navy Blue & Gold */
 .theme-reception {
-    background: radial-gradient(circle at center, #0F2042 0%, #050C1B 100%);
+    background-color: #0B172E;
     color: #E2E8F0;
 }
-.theme-reception .node-inner {
-    border: 1.5px solid rgba(226, 184, 87, 0.65);
-    background: rgba(10, 20, 42, 0.78);
-    box-shadow: 0 14px 38px rgba(0, 0, 0, 0.45);
-}
-.theme-reception .node-title {
+.theme-reception .event-title { color: #E2B857; }
+.theme-reception .motif-divider { color: #E2B857; }
+.theme-reception .map-link-container a {
     color: #E2B857;
-    letter-spacing: 1px;
+    border: 1px solid #E2B857;
 }
-.theme-reception .node-title::after {
-    content: "🥂  ✦  🥂";
-    color: #E2B857;
+
+/* ===================================================
+   5. CLOSING SECTION
+   =================================================== */
+.closing-section {
+    background-color: #FFFDF9;
+    padding: 64px 24px;
+    text-align: center;
+}
+
+.closing-inner {
+    width: 100%;
+    max-width: 460px;
+    margin: 0 auto;
+}
+
+.gold-ornament {
+    color: #D4AF37;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    letter-spacing: 4px;
+}
+
+.closing-message {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #4A2E2B;
+    line-height: 1.7;
+    margin-bottom: 28px;
+}
+
+.closing-signoff {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1rem;
+    color: #800020;
+    line-height: 1.6;
 }
