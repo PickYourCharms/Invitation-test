@@ -8,8 +8,6 @@ const invitation = document.getElementById("invitation");
 const form = document.getElementById("codeForm");
 const input = document.getElementById("inviteCode");
 const error = document.getElementById("codeError");
-const changeCode = document.getElementById("changeCode");
-
 
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, ch => ({
@@ -21,13 +19,13 @@ function escapeHtml(value) {
   }[ch]));
 }
 
-
 function eventMarkup(event) {
 
   const venue = event.venue
     ? `
       <div class="meta">
-        ${escapeHtml(event.time)}<br>
+        ${escapeHtml(event.time)}
+        <br>
         ${escapeHtml(event.venue)}
       </div>
 
@@ -35,25 +33,25 @@ function eventMarkup(event) {
         event.mapUrl &&
         event.mapUrl !== "REPLACE_WITH_GOOGLE_MAPS_LINK"
 
-          ? `
-            <a
-              class="map-link"
-              href="${escapeHtml(event.mapUrl)}"
-              target="_blank"
-              rel="noopener"
-            >
-              ↗ View on Google Maps
-            </a>
-          `
+        ? `
+          <a
+            class="map-link"
+            href="${escapeHtml(event.mapUrl)}"
+            target="_blank"
+            rel="noopener"
+          >
+            ↗ View on Google Maps
+          </a>
+        `
 
-          : `
-            <span
-              class="map-link"
-              aria-label="Google Maps link placeholder"
-            >
-              ↗ Google Maps link
-            </span>
-          `
+        : `
+          <span
+            class="map-link"
+            aria-label="Google Maps link placeholder"
+          >
+            ↗ Google Maps Link
+          </span>
+        `
       }
     `
 
@@ -63,112 +61,11 @@ function eventMarkup(event) {
       </div>
     `;
 
-
-  let motif = "";
-
-
-  if (event.key === "aiburobhat") {
-
-    motif = `
-      <div
-        class="alpana-ring"
-        aria-hidden="true"
-      ></div>
-    `;
-
-  }
-
-
-  if (event.key === "mehendi") {
-
-    motif = `
-      <div
-        class="music-note"
-        aria-hidden="true"
-      >
-        ♪ ♫ ♪
-      </div>
-
-      <div
-        class="petal-row"
-        aria-hidden="true"
-      >
-        <i class="petal"></i>
-        <i class="petal"></i>
-        <i class="petal"></i>
-      </div>
-    `;
-
-  }
-
-
-  if (event.key === "holud") {
-
-    motif = `
-      <div
-        class="haldis"
-        aria-hidden="true"
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    `;
-
-  }
-
-
-  if (event.key === "wedding") {
-
-    motif = `
-      <div
-        class="wedding-mark"
-        aria-hidden="true"
-      >
-        ❈
-      </div>
-    `;
-
-  }
-
-
-  if (event.key === "bidaye") {
-
-    motif = `
-      <div
-        class="bidaye-line"
-        aria-hidden="true"
-      ></div>
-    `;
-
-  }
-
-
-  if (event.key === "reception") {
-
-    motif = `
-      <div
-        class="reception-stars"
-        aria-hidden="true"
-      >
-        ✦ ✧ ✦
-      </div>
-    `;
-
-  }
-
-
   return `
     <section
-      class="event ${escapeHtml(event.theme)}"
-      id="event-${escapeHtml(event.key)}"
+      class="event ${event.theme}"
+      id="event-${event.key}"
     >
-
-      <div
-        class="motif"
-        aria-hidden="true"
-      ></div>
 
       <div class="event-content">
 
@@ -190,27 +87,21 @@ function eventMarkup(event) {
 
         ${venue}
 
-        ${motif}
-
       </div>
 
     </section>
   `;
 }
 
-
 function renderProfile(profile) {
-
-  /* Keep story as one continuous visual canvas */
-  story.className = "story";
-
 
   story.innerHTML = profile.events
     .map(key => {
 
-      const event = INVITATION_DATA.events.find(
-        e => e.key === key
-      );
+      const event =
+        INVITATION_DATA.events.find(
+          e => e.key === key
+        );
 
       return event
         ? eventMarkup(event)
@@ -219,39 +110,36 @@ function renderProfile(profile) {
     })
     .join("");
 
+  state.profile = profile;
 
   gate.classList.add("hidden");
-
   invitation.classList.remove("hidden");
-
 
   window.scrollTo({
     top: 0,
-    behavior: "auto"
+    behavior: "instant"
   });
 
-
-  state.profile = profile;
+  observeEvents();
 }
-
 
 function lookupCode(code) {
 
-  const normalized = code
-    .trim()
-    .toUpperCase();
+  const normalized =
+    code.trim().toUpperCase();
 
-  return INVITATION_DATA.profiles[normalized] || null;
+  return (
+    INVITATION_DATA.profiles[normalized]
+    || null
+  );
 }
-
 
 form.addEventListener("submit", event => {
 
   event.preventDefault();
 
-
-  const profile = lookupCode(input.value);
-
+  const profile =
+    lookupCode(input.value);
 
   if (!profile) {
 
@@ -263,35 +151,51 @@ form.addEventListener("submit", event => {
     return;
   }
 
-
   error.textContent = "";
 
   renderProfile(profile);
-
 });
 
 
-changeCode.addEventListener("click", () => {
+/* ---------------------------------------------------------
+   Gentle reveal animation as events enter the viewport
+   --------------------------------------------------------- */
 
-  invitation.classList.add("hidden");
+function observeEvents() {
 
-  gate.classList.remove("hidden");
+  const sections =
+    document.querySelectorAll(".event");
 
-  story.innerHTML = "";
+  if (!("IntersectionObserver" in window)) {
+    return;
+  }
 
-  story.className = "story";
+  const observer =
+    new IntersectionObserver(
+      entries => {
 
-  input.value = "";
+        entries.forEach(entry => {
 
-  error.textContent = "";
+          if (entry.isIntersecting) {
 
+            entry.target
+              .classList
+              .add("is-visible");
 
-  window.scrollTo({
-    top: 0,
-    behavior: "auto"
+            observer.unobserve(
+              entry.target
+            );
+          }
+
+        });
+
+      },
+      {
+        threshold:0.18
+      }
+    );
+
+  sections.forEach(section => {
+    observer.observe(section);
   });
-
-
-  input.focus();
-
-});
+}
