@@ -21,45 +21,29 @@ function escapeHtml(value) {
 
 function eventMarkup(event) {
 
-  const venue = event.venue
-    ? `
-      <div class="meta">
-        ${escapeHtml(event.time)}
-        <br>
-        ${escapeHtml(event.venue)}
-      </div>
+  const mapLink =
+    event.mapUrl &&
+    event.mapUrl !== "REPLACE_WITH_GOOGLE_MAPS_LINK"
 
-      ${
-        event.mapUrl &&
-        event.mapUrl !== "REPLACE_WITH_GOOGLE_MAPS_LINK"
+      ? `
+        <a
+          class="map-link"
+          href="${escapeHtml(event.mapUrl)}"
+          target="_blank"
+          rel="noopener"
+        >
+          ↗ Google Maps Link
+        </a>
+      `
 
-        ? `
-          <a
-            class="map-link"
-            href="${escapeHtml(event.mapUrl)}"
-            target="_blank"
-            rel="noopener"
-          >
-            ↗ View on Google Maps
-          </a>
-        `
-
-        : `
-          <span
-            class="map-link"
-            aria-label="Google Maps link placeholder"
-          >
-            ↗ Google Maps Link
-          </span>
-        `
-      }
-    `
-
-    : `
-      <div class="meta">
-        ${escapeHtml(event.time)}
-      </div>
-    `;
+      : `
+        <span
+          class="map-link"
+          aria-label="Google Maps link placeholder"
+        >
+          ↗ Google Maps Link
+        </span>
+      `;
 
   return `
     <section
@@ -85,7 +69,7 @@ function eventMarkup(event) {
           ${escapeHtml(event.copy)}
         </p>
 
-        ${venue}
+        ${mapLink}
 
       </div>
 
