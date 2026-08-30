@@ -1,6 +1,14 @@
 /* =========================================================
    CHANDRIMA & ARNAB — BENGALI WEDDING INVITATION
    Visual layer only — invitation logic remains untouched.
+
+   This pass keeps the original layout, structure, spacing
+   and scroll behaviour intact, and re-tunes the visual
+   language toward a genuine Bengali wedding-card feel:
+   alpana linework, kolka (paisley) motifs, dashed alpana
+   rings, alta red, turmeric/marigold, antique gold and
+   deep ceremonial red/blue — used sparingly, as line art
+   rather than clip-art.
    ========================================================= */
 
 * {
@@ -22,9 +30,24 @@
   --pink: #8d5663;
   --navy: #182f52;
 
+  /* additional traditional accents used sparingly */
+  --marigold: #e08a1e;
+  --sindoor: #c8262e;
+
   --serif: "Cormorant Garamond", Georgia, serif;
   --sans: "DM Sans", Arial, sans-serif;
   --bengali: "Galada", serif;
+
+  /* -----------------------------------------------------
+     Hand-drawn alpana-style motifs, reused throughout via
+     mask-image so a single line-art asset can be recoloured
+     and re-oriented per ceremony with CSS alone.
+     ----------------------------------------------------- */
+  --motif-kolka: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2060%20100%22%3E%20%3Cpath%20d%3D%22M30%206%20C48%2010%2050%2034%2038%2046%20C28%2055%2024%2066%2034%2074%20C40%2079%2040%2087%2030%2094%20C34%2086%2030%2080%2022%2078%20C10%2075%204%2064%2010%2052%20C15%2042%2026%2040%2024%2028%20C22%2016%2024%209%2030%206%20Z%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222.2%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%20%3Cpath%20d%3D%22M27%2024%20C31%2030%2031%2038%2025%2044%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22/%3E%20%3C/svg%3E");
+  --motif-vine: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20200%2024%22%3E%20%3Cpath%20d%3D%22M2%2012%20C%2030%202%2C%2045%2022%2C%2070%2012%20S%20110%202%2C%20130%2012%20S%20170%2022%2C%20198%2012%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22/%3E%20%3Ccircle%20cx%3D%2218%22%20cy%3D%229%22%20r%3D%221.6%22%20fill%3D%22black%22/%3E%20%3Ccircle%20cx%3D%2258%22%20cy%3D%2217%22%20r%3D%221.6%22%20fill%3D%22black%22/%3E%20%3Ccircle%20cx%3D%22100%22%20cy%3D%228%22%20r%3D%221.6%22%20fill%3D%22black%22/%3E%20%3Ccircle%20cx%3D%22142%22%20cy%3D%2217%22%20r%3D%221.6%22%20fill%3D%22black%22/%3E%20%3Ccircle%20cx%3D%22182%22%20cy%3D%229%22%20r%3D%221.6%22%20fill%3D%22black%22/%3E%20%3C/svg%3E");
+  --motif-lotus: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2080%2080%22%3E%20%3Cg%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%3E%20%3Cpath%20d%3D%22M40%2040%20C40%2022%2030%2010%2040%204%20C50%2010%2040%2022%2040%2040%20Z%22/%3E%20%3Cpath%20d%3D%22M40%2040%20C58%2034%2070%2040%2076%2032%20C74%2044%2062%2048%2040%2040%20Z%22/%3E%20%3Cpath%20d%3D%22M40%2040%20C58%2046%2070%2040%2076%2048%20C74%2036%2062%2032%2040%2040%20Z%22/%3E%20%3Cpath%20d%3D%22M40%2040%20C22%2034%2010%2040%204%2032%20C6%2044%2018%2048%2040%2040%20Z%22/%3E%20%3Cpath%20d%3D%22M40%2040%20C22%2046%2010%2040%204%2048%20C6%2036%2018%2032%2040%2040%20Z%22/%3E%20%3Ccircle%20cx%3D%2240%22%20cy%3D%2240%22%20r%3D%224.5%22/%3E%20%3C/g%3E%20%3C/svg%3E");
+  --motif-tendril: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2060%2060%22%3E%20%3Cpath%20d%3D%22M4%204%20C4%2024%204%2040%2020%2046%20C10%2040%208%2028%2014%2020%20C20%2030%2018%2042%2032%2046%20C44%2050%2050%2044%2056%2046%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22/%3E%20%3Ccircle%20cx%3D%2256%22%20cy%3D%2246%22%20r%3D%222%22%20fill%3D%22black%22/%3E%20%3C/svg%3E");
+  --motif-spark: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2040%2040%22%3E%20%3Cpath%20d%3D%22M20%202%20L23%2017%20L38%2020%20L23%2023%20L20%2038%20L17%2023%20L2%2020%20L17%2017%20Z%22%20fill%3D%22black%22/%3E%20%3C/svg%3E");
 }
 
 html {
@@ -34,7 +57,12 @@ html {
 
 body {
   margin: 0;
-  background: var(--ivory);
+
+  background:
+    radial-gradient(rgba(122, 90, 58, 0.05) 0.6px, transparent 0.7px)
+      0 0 / 15px 15px,
+    var(--ivory);
+
   color: var(--ink);
   font-family: var(--sans);
   overflow-x: hidden;
@@ -63,6 +91,8 @@ input {
   padding: 42px 22px 46px;
 
   background:
+    radial-gradient(rgba(157, 32, 40, 0.035) 0.6px, transparent 0.7px)
+      0 0 / 16px 16px,
     radial-gradient(
       ellipse at 50% 18%,
       rgba(184, 133, 73, 0.09),
@@ -104,7 +134,9 @@ input {
 }
 
 
-/* Couple photograph */
+/* Couple photograph — shaped like a Bengali card medallion,
+   with a small kolka pendant hanging from its base, the way
+   a printed invitation frame often finishes with a motif. */
 
 .couple-frame {
   width: min(72vw, 285px);
@@ -141,6 +173,20 @@ input {
   z-index: 2;
 }
 
+.couple-frame::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -20px;
+  transform: translateX(-50%);
+  width: 15px;
+  height: 25px;
+  background-color: var(--gold);
+  -webkit-mask: var(--motif-kolka) no-repeat center / contain;
+  mask: var(--motif-kolka) no-repeat center / contain;
+  opacity: 0.8;
+}
+
 .couple-frame img {
   width: 100%;
   height: 100%;
@@ -157,6 +203,8 @@ input {
 /* Small English introduction */
 
 .eyebrow {
+  position: relative;
+
   margin: 23px 0 7px;
 
   color: #9b7762;
@@ -167,6 +215,21 @@ input {
 
   text-transform: uppercase;
   letter-spacing: 0.24em;
+}
+
+.eyebrow::before {
+  content: "";
+  display: block;
+
+  width: 84px;
+  height: 9px;
+
+  margin: 0 auto 9px;
+
+  background-color: var(--gold);
+  -webkit-mask: var(--motif-vine) no-repeat center / contain;
+  mask: var(--motif-vine) no-repeat center / contain;
+  opacity: 0.55;
 }
 
 
@@ -187,6 +250,8 @@ input {
   font-weight: 600;
   line-height: 0.92;
   letter-spacing: -0.035em;
+
+  text-shadow: 0 0 26px rgba(176, 138, 75, 0.16);
 }
 
 .couple-names span {
@@ -246,6 +311,8 @@ input {
 /* Opening message */
 
 .intro {
+  position: relative;
+
   max-width: 310px;
 
   margin: 13px auto 24px;
@@ -350,48 +417,35 @@ input {
 
 /* =========================================================
    OPENING ORNAMENTS
+   Delicate kolka (paisley) linework rather than soft blobs —
+   the same silhouette a rice-paste alpana artist would trace
+   in the corners of a card.
    ========================================================= */
 
 .cover-ornament {
   position: absolute;
-  width: 230px;
-  height: 300px;
+  width: 120px;
+  height: 190px;
 
-  opacity: 0.45;
+  background-color: var(--deep-red);
+  -webkit-mask: var(--motif-kolka) no-repeat center / contain;
+  mask: var(--motif-kolka) no-repeat center / contain;
+
+  opacity: 0.14;
 
   pointer-events: none;
-
-  background:
-    radial-gradient(
-      ellipse at center,
-      transparent 0 57%,
-      rgba(157, 32, 40, 0.18) 58% 58.6%,
-      transparent 59%
-    ),
-    radial-gradient(
-      ellipse at 28% 27%,
-      transparent 0 13px,
-      rgba(176, 138, 75, 0.25) 14px 15px,
-      transparent 16px
-    ),
-    radial-gradient(
-      ellipse at 72% 73%,
-      transparent 0 18px,
-      rgba(157, 32, 40, 0.16) 19px 20px,
-      transparent 21px
-    );
 }
 
 .ornament-left {
-  left: -145px;
-  top: -110px;
-  transform: rotate(20deg);
+  left: -34px;
+  top: -30px;
+  transform: rotate(-18deg);
 }
 
 .ornament-right {
-  right: -145px;
-  bottom: -120px;
-  transform: rotate(-25deg);
+  right: -34px;
+  bottom: -36px;
+  transform: rotate(162deg);
 }
 
 
@@ -509,6 +563,8 @@ input {
 }
 
 .event-copy {
+  position: relative;
+
   max-width: 345px;
 
   margin: 0 auto 25px;
@@ -516,6 +572,25 @@ input {
   font-family: var(--serif);
   font-size: 18px;
   line-height: 1.52;
+}
+
+/* A single alpana thread, repeated in miniature above the copy
+   of every ceremony — the connective tissue that ties all six
+   sections back to one hand-drawn visual language. */
+.event-copy::before {
+  content: "";
+  display: block;
+
+  width: 64px;
+  height: 9px;
+
+  margin: 0 auto 16px;
+
+  background-color: currentColor;
+  -webkit-mask: var(--motif-vine) no-repeat center / contain;
+  mask: var(--motif-vine) no-repeat center / contain;
+
+  opacity: 0.4;
 }
 
 
@@ -556,10 +631,15 @@ input {
 
 /* =========================================================
    EVENT 1 — AIBUROBHAAT
+   The first ceremony — quiet and close to home. Fine dashed
+   alpana rings (rice-paste dot-and-line work) rather than
+   solid drawn circles.
    ========================================================= */
 
 .theme-aiburo {
   background:
+    radial-gradient(rgba(166, 30, 37, 0.04) 0.6px, transparent 0.7px)
+      0 0 / 16px 16px,
     radial-gradient(
       ellipse at 50% 15%,
       rgba(166, 30, 37, 0.06),
@@ -572,12 +652,6 @@ input {
   --next-tone: rgba(237, 244, 232, 0.95);
 }
 
-
-/*
-   Fine alpana-inspired linework.
-   Deliberately restrained.
-*/
-
 .theme-aiburo::before,
 .theme-aiburo::after {
   content: "";
@@ -587,7 +661,7 @@ input {
   width: 270px;
   height: 270px;
 
-  border: 1px solid rgba(166, 30, 37, 0.20);
+  border: 1.5px dashed rgba(166, 30, 37, 0.30);
   border-radius: 50%;
 
   z-index: 1;
@@ -598,10 +672,6 @@ input {
 .theme-aiburo::before {
   left: -125px;
   top: 8%;
-
-  box-shadow:
-    inset 0 0 0 12px transparent,
-    inset 0 0 0 13px rgba(166, 30, 37, 0.08);
 
   animation: alpanaDrift 9s ease-in-out infinite;
 }
@@ -618,13 +688,45 @@ input {
   animation: alpanaDrift 11s ease-in-out infinite reverse;
 }
 
+.theme-aiburo .event-content::before,
+.theme-aiburo .event-content::after {
+  content: "";
+
+  position: absolute;
+
+  width: 18px;
+  height: 30px;
+
+  background-color: var(--red);
+  -webkit-mask: var(--motif-kolka) no-repeat center / contain;
+  mask: var(--motif-kolka) no-repeat center / contain;
+
+  opacity: 0.3;
+}
+
+.theme-aiburo .event-content::before {
+  left: 4px;
+  top: -46px;
+  transform: rotate(-10deg);
+}
+
+.theme-aiburo .event-content::after {
+  right: 4px;
+  bottom: -50px;
+  transform: rotate(170deg);
+}
+
 
 /* =========================================================
    EVENT 2 — MEHENDI / SANGEET
+   Festive and musical: a faint henna-dot texture underneath
+   the usual green glow, plus soft dashed leaf outlines.
    ========================================================= */
 
 .theme-mehendi {
   background:
+    radial-gradient(rgba(49, 90, 67, 0.055) 1px, transparent 1.3px)
+      0 0 / 15px 15px,
     radial-gradient(
       ellipse at 20% 20%,
       rgba(70, 113, 75, 0.10),
@@ -651,7 +753,7 @@ input {
   width: 230px;
   height: 230px;
 
-  border: 1px solid rgba(49, 90, 67, 0.18);
+  border: 1.5px dashed rgba(49, 90, 67, 0.26);
 
   border-radius: 48% 52% 58% 42%;
 
@@ -681,6 +783,8 @@ input {
 
 /* =========================================================
    EVENT 3 — GAYE HOLUD
+   Warm, yellow, floral: the generic flower glyphs are
+   replaced with a hand-drawn marigold/lotus outline.
    ========================================================= */
 
 .theme-holud {
@@ -704,16 +808,18 @@ input {
 
 .theme-holud::before,
 .theme-holud::after {
-  content: "✽";
+  content: "";
 
   position: absolute;
 
-  color: #d39a17;
+  width: 92px;
+  height: 92px;
 
-  font-family: var(--serif);
-  font-size: 90px;
+  background-color: #d39a17;
+  -webkit-mask: var(--motif-lotus) no-repeat center / contain;
+  mask: var(--motif-lotus) no-repeat center / contain;
 
-  opacity: 0.22;
+  opacity: 0.24;
 
   z-index: 1;
 
@@ -721,15 +827,16 @@ input {
 }
 
 .theme-holud::before {
-  left: -24px;
+  left: -14px;
   top: 13%;
 }
 
 .theme-holud::after {
-  right: -24px;
+  right: -10px;
   bottom: 13%;
 
-  font-size: 72px;
+  width: 72px;
+  height: 72px;
 
   animation-delay: -3s;
 }
@@ -737,6 +844,9 @@ input {
 
 /* =========================================================
    EVENT 4 — WEDDING
+   The richest, most traditionally Bengali section: deep alta
+   red, antique gold tendrils at the corners of the frame in
+   place of a generic glyph, and a slow-turning gold ring.
    ========================================================= */
 
 .theme-wedding {
@@ -783,7 +893,7 @@ input {
   right: -190px;
   top: 12%;
 
-  border: 1px solid rgba(216, 174, 98, 0.32);
+  border: 1px dashed rgba(216, 174, 98, 0.34);
   border-radius: 50%;
 
   box-shadow:
@@ -796,30 +906,34 @@ input {
 }
 
 
-/* Rich but subtle Bengali ceremonial corner details */
+/* Fine gold tendrils at the corners of the ceremonial frame */
 
 .theme-wedding .event-content::before,
 .theme-wedding .event-content::after {
-  content: "❈";
+  content: "";
 
   position: absolute;
 
-  color: var(--soft-gold);
+  width: 32px;
+  height: 32px;
 
-  font-family: var(--serif);
-  font-size: 27px;
+  background-color: var(--soft-gold);
+  -webkit-mask: var(--motif-tendril) no-repeat center / contain;
+  mask: var(--motif-tendril) no-repeat center / contain;
 
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 .theme-wedding .event-content::before {
-  left: 4px;
-  top: -55px;
+  left: 2px;
+  top: -58px;
+  transform: scaleX(-1);
 }
 
 .theme-wedding .event-content::after {
-  right: 4px;
-  bottom: -58px;
+  right: 2px;
+  bottom: -60px;
+  transform: rotate(180deg);
 }
 
 .theme-wedding .event-date {
@@ -837,6 +951,8 @@ input {
 
 /* =========================================================
    EVENT 5 — BIDAYE
+   Softer, quieter, more emotional — a thin trailing vine
+   rather than a bold decorative glyph.
    ========================================================= */
 
 .theme-bidaye {
@@ -853,38 +969,41 @@ input {
   --next-tone: rgba(22, 46, 84, 0.98);
 }
 
-.theme-bidaye::before {
-  content: "❧";
+.theme-bidaye::before,
+.theme-bidaye::after {
+  content: "";
 
   position: absolute;
 
-  left: -20px;
-  top: 18%;
+  background-color: var(--pink);
+  -webkit-mask: var(--motif-vine) no-repeat center / contain;
+  mask: var(--motif-vine) no-repeat center / contain;
+}
 
-  color: rgba(109, 60, 73, 0.22);
+.theme-bidaye::before {
+  left: -34px;
+  top: 22%;
 
-  font-family: var(--serif);
-  font-size: 100px;
+  width: 170px;
+  height: 20px;
 
-  transform: rotate(-18deg);
+  opacity: 0.24;
+
+  transform: rotate(-72deg);
 
   animation: farewellFloat 9s ease-in-out infinite;
 }
 
 .theme-bidaye::after {
-  content: "❧";
+  right: -34px;
+  bottom: 20%;
 
-  position: absolute;
+  width: 150px;
+  height: 18px;
 
-  right: -18px;
-  bottom: 16%;
+  opacity: 0.18;
 
-  color: rgba(109, 60, 73, 0.18);
-
-  font-family: var(--serif);
-  font-size: 78px;
-
-  transform: rotate(160deg);
+  transform: rotate(108deg);
 
   animation: farewellFloat 11s ease-in-out infinite reverse;
 }
@@ -892,6 +1011,8 @@ input {
 
 /* =========================================================
    EVENT 6 — RECEPTION
+   An elegant Bengali evening: deep blue, antique gold, and a
+   scatter of small gold sparks in place of plain circles.
    ========================================================= */
 
 .theme-reception {
@@ -923,7 +1044,7 @@ input {
 
   position: absolute;
 
-  border: 1px solid rgba(208, 177, 105, 0.34);
+  border: 1.5px dashed rgba(208, 177, 105, 0.36);
 
   border-radius: 50%;
 
@@ -939,10 +1060,6 @@ input {
   left: -125px;
   top: 12%;
 
-  box-shadow:
-    inset 0 0 0 15px rgba(208, 177, 105, 0.04),
-    inset 0 0 0 30px rgba(208, 177, 105, 0.04);
-
   animation: receptionDrift 12s ease-in-out infinite;
 }
 
@@ -956,6 +1073,32 @@ input {
   opacity: 0.7;
 
   animation: receptionDrift 14s ease-in-out infinite reverse;
+}
+
+.theme-reception .event-content::before,
+.theme-reception .event-content::after {
+  content: "";
+
+  position: absolute;
+
+  width: 13px;
+  height: 13px;
+
+  background-color: #d9c58e;
+  -webkit-mask: var(--motif-spark) no-repeat center / contain;
+  mask: var(--motif-spark) no-repeat center / contain;
+
+  opacity: 0.6;
+}
+
+.theme-reception .event-content::before {
+  left: 8px;
+  top: -38px;
+}
+
+.theme-reception .event-content::after {
+  right: 8px;
+  bottom: -40px;
 }
 
 .theme-reception .event-date {
@@ -984,6 +1127,8 @@ input {
   padding: 80px 28px 90px;
 
   background:
+    radial-gradient(rgba(157, 32, 40, 0.03) 0.6px, transparent 0.7px)
+      0 0 / 16px 16px,
     radial-gradient(
       ellipse at 50% 18%,
       rgba(220, 185, 190, 0.20),
@@ -1003,7 +1148,8 @@ input {
 }
 
 
-/* Closing photograph */
+/* Closing photograph — mirrors the cover medallion, with a
+   matching kolka pendant at its crown to bookend the card. */
 
 .closing-image-frame {
   width: min(72vw, 285px);
@@ -1029,6 +1175,21 @@ input {
   border-radius: 18px 18px 145px 145px;
 
   position: relative;
+}
+
+.closing-image-frame::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -20px;
+  transform: translateX(-50%) rotate(180deg);
+  width: 15px;
+  height: 25px;
+  background-color: var(--gold);
+  -webkit-mask: var(--motif-kolka) no-repeat center / contain;
+  mask: var(--motif-kolka) no-repeat center / contain;
+  opacity: 0.8;
+  z-index: 2;
 }
 
 .closing-image-frame::after {
@@ -1189,11 +1350,11 @@ input {
 @keyframes farewellFloat {
   0%,
   100% {
-    transform: translateY(0) rotate(-18deg);
+    transform: translateY(0) rotate(-72deg);
   }
 
   50% {
-    transform: translateY(-14px) rotate(-10deg);
+    transform: translateY(-12px) rotate(-64deg);
   }
 }
 
