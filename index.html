@@ -1,163 +1,111 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Chandrima & Arnab — Wedding Invitation</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=Galada&display=swap"
-    rel="stylesheet"
-  >
-
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Chandrima & Arnab - Wedding Invitation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
-  <main id="app">
+    <main id="opening-screen" class="active">
+        <div class="opening-content fade-in-up">
+            <img src="images/subho-bibaho.png" alt="শুভ বিবাহ" class="bengali-artwork">
+            
+            <div class="couple-photo-wrapper">
+                <img src="images/couple.jpg" alt="Chandrima and Arnab" class="couple-photo">
+            </div>
 
-    <!-- =========================
-         OPENING COVER
-         ========================= -->
+            <h1 class="couple-names">
+                Chandrima <span class="amp">&</span> Arnab
+            </h1>
+            
+            <p class="intro-text">Joyfully invite you to share in their celebration of love and togetherness.</p>
 
-    <section class="gate" id="gate">
-
-      <div class="cover-ornament ornament-left" aria-hidden="true"></div>
-      <div class="cover-ornament ornament-right" aria-hidden="true"></div>
-
-      <div class="gate-inner">
-
-        <!-- Physical wedding-card artwork -->
-        <div class="wedding-logo">
-          <img
-            src="images/subho-bibaho.png"
-            alt="শুভ বিবাহ"
-          >
+            <div class="invite-code-container">
+                <input type="text" id="invite-code-input" placeholder="Enter your invitation code" autocomplete="off">
+                <button id="open-invite-btn" class="ceremonial-btn">Open Invitation</button>
+                <p id="code-error" class="error-msg hidden">Please enter a valid code.</p>
+            </div>
         </div>
+    </main>
 
-        <div class="couple-frame">
-          <img
-            id="coupleImage"
-            src="images/couple.jpg"
-            alt="Chandrima and Arnab"
-          >
-        </div>
+    <div id="invitation-journey" class="hidden">
+        
+        <section class="event-section aiburobhat" id="event-aiburobhat">
+            <div class="event-content scroll-reveal">
+                <div class="ornament top-ornament"></div>
+                <h2 class="event-title">Aiburobhat</h2>
+                <div class="event-details" id="data-aiburobhat">
+                    </div>
+                <div class="ornament bottom-ornament"></div>
+            </div>
+        </section>
 
-        <p class="eyebrow">
-          A Wedding Invitation
-        </p>
+        <section class="event-section mehendi" id="event-mehendi">
+            <div class="event-content scroll-reveal">
+                <div class="ornament top-ornament"></div>
+                <h2 class="event-title">Mehendi & Sangeet</h2>
+                <div class="event-details" id="data-mehendi">
+                    </div>
+                <div class="ornament bottom-ornament"></div>
+            </div>
+        </section>
 
-        <div class="couple-names">
-          <span>Chandrima</span>
-          <small>&amp;</small>
-          <span>Arnab</span>
-        </div>
+        <section class="event-section holud" id="event-holud">
+            <div class="event-content scroll-reveal">
+                <div class="ornament top-ornament"></div>
+                <h2 class="event-title">Gaye Holud</h2>
+                <div class="event-details" id="data-holud">
+                    </div>
+                <div class="ornament bottom-ornament"></div>
+            </div>
+        </section>
 
-        <div class="name-rule" aria-hidden="true">
-          <i></i>
-          <span>✦</span>
-          <i></i>
-        </div>
+        <section class="event-section wedding-ceremony" id="event-wedding">
+            <div class="event-content scroll-reveal">
+                <div class="ornament top-ornament"></div>
+                <h2 class="event-title">The Wedding</h2>
+                <div class="event-details" id="data-wedding">
+                    </div>
+                <div class="ornament bottom-ornament"></div>
+            </div>
+        </section>
 
-        <p class="intro">
-          I would love for you to be part of my wedding celebrations.
-        </p>
+        <section class="event-section bidaye" id="event-bidaye">
+            <div class="event-content scroll-reveal">
+                <h2 class="event-title">Bidaye</h2>
+                <div class="event-details" id="data-bidaye">
+                    </div>
+            </div>
+        </section>
 
-        <form id="codeForm" class="code-form">
+        <section class="event-section reception" id="event-reception">
+            <div class="event-content scroll-reveal">
+                <div class="ornament top-ornament"></div>
+                <h2 class="event-title">Reception</h2>
+                <div class="event-details" id="data-reception">
+                    </div>
+                <div class="ornament bottom-ornament"></div>
+            </div>
+        </section>
 
-          <label for="inviteCode">
-            Your invitation code
-          </label>
+        <section class="event-section closing-screen" id="closing-screen">
+            <div class="event-content scroll-reveal">
+                <div class="couple-close-wrapper">
+                    <img src="images/couple-close.jpeg" alt="Chandrima and Arnab" class="couple-close-photo">
+                </div>
+                <div id="existing-sentiment-container">
+                    </div>
+                <h3 class="closing-signoff">With love,<br>Chandrima</h3>
+            </div>
+        </section>
 
-          <div class="code-row">
+    </div>
 
-            <input
-              id="inviteCode"
-              name="inviteCode"
-              type="text"
-              autocomplete="off"
-              autocapitalize="characters"
-              spellcheck="false"
-              placeholder="Enter your code"
-            >
-
-            <button type="submit">
-              Open Invitation
-            </button>
-
-          </div>
-
-          <p
-            class="error"
-            id="codeError"
-            role="alert"
-          ></p>
-
-        </form>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         PERSONALIZED INVITATION
-         ========================= -->
-
-    <section
-      class="invitation hidden"
-      id="invitation"
-    >
-
-      <div id="story"></div>
-
-      <!-- =========================
-           CLOSING
-           ========================= -->
-
-      <footer class="closing" id="closing">
-
-        <div class="closing-image-frame">
-          <img
-            id="closingImage"
-            src="images/couple-close.jpeg"
-            alt="Chandrima"
-          >
-        </div>
-
-        <div class="closing-ornament" aria-hidden="true">
-          ✦
-        </div>
-
-        <h2>
-          With love,<br>
-          Chandrima
-        </h2>
-
-        <p>
-          Thank you for being a part of these precious moments.
-          I can't wait to celebrate with you.
-        </p>
-
-        <div class="closing-rule" aria-hidden="true">
-          <span>❧</span>
-          <i></i>
-          <span>❧</span>
-        </div>
-
-      </footer>
-
-    </section>
-
-  </main>
-
-  <script src="config/invitation-data.js"></script>
-  <script src="script.js"></script>
-
+    <script src="script.js"></script>
 </body>
 </html>
