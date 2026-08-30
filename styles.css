@@ -308,30 +308,6 @@ input {
   text-align: center;
 }
 
-/* Authentic Kolka Corner Ornaments on Cover */
-.cover-ornament {
-  position: absolute;
-  width: 120px;
-  height: 190px;
-  background-color: var(--deep-red);
-  -webkit-mask: var(--motif-kolka) no-repeat center / contain;
-  mask: var(--motif-kolka) no-repeat center / contain;
-  opacity: 0.18;
-  pointer-events: none;
-}
-
-.ornament-left {
-  left: -20px;
-  top: -10px;
-  transform: rotate(-15deg);
-}
-
-.ornament-right {
-  right: -20px;
-  bottom: -10px;
-  transform: rotate(165deg);
-}
-
 
 /* =========================================================
    EVENT JOURNEY
