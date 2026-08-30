@@ -1,1310 +1,295 @@
-*{
-  box-sizing:border-box;
-}
-
-:root{
-  --paper:#fbf5eb;
-  --paper-deep:#f4e8d9;
-
-  --red:#a52b35;
-  --red-dark:#86232c;
-  --alta:#b93643;
-
-  --gold:#b58b45;
-  --gold-light:#d7b86d;
-
-  --ink:#593a32;
-  --muted:#866b61;
-
-  --serif:"Cormorant Garamond", Georgia, serif;
-  --sans:"DM Sans", Arial, sans-serif;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  margin:0;
-  background:var(--paper);
-  color:var(--ink);
-  font-family:var(--sans);
-  overflow-x:hidden;
-}
-
-button,
-input{
-  font:inherit;
-}
-
-.hidden{
-  display:none!important;
-}
-
-
-/* =========================================================
-   OPENING COVER
-   ========================================================= */
-
-.gate{
-  min-height:100svh;
-  position:relative;
-  display:grid;
-  place-items:center;
-  overflow:hidden;
-  padding:48px 22px 54px;
-
-  background:
-    radial-gradient(
-      ellipse at 50% 8%,
-      rgba(202,145,107,.16),
-      transparent 38%
-    ),
-    radial-gradient(
-      ellipse at 0% 100%,
-      rgba(174,44,55,.08),
-      transparent 35%
-    ),
-    linear-gradient(
-      180deg,
-      #fffaf3 0%,
-      #fbf3e9 55%,
-      #f7eadb 100%
-    );
-}
-
-.gate::before{
-  content:"";
-  position:absolute;
-  inset:16px;
-  border:1px solid rgba(165,43,53,.12);
-  pointer-events:none;
-}
-
-.gate::after{
-  content:"";
-  position:absolute;
-  inset:28px;
-  border:1px solid rgba(181,139,69,.16);
-  pointer-events:none;
-}
-
-.gate-inner{
-  width:min(100%,430px);
-  position:relative;
-  z-index:5;
-  text-align:center;
-
-  animation:
-    coverRise 1.1s cubic-bezier(.2,.8,.2,1) both;
-}
-
-
-/* ---------------------------------------------------------
-   ACTUAL SHUBHO BIBAHO ARTWORK
-   --------------------------------------------------------- */
-
-.wedding-logo{
-  width:min(70vw,260px);
-  margin:0 auto 20px;
-
-  animation:
-    logoReveal 1.2s ease both;
-}
-
-.wedding-logo img{
-  display:block;
-  width:100%;
-  height:auto;
-  object-fit:contain;
-}
-
-
-/* ---------------------------------------------------------
-   COUPLE PHOTOGRAPH
-   --------------------------------------------------------- */
-
-.couple-frame{
-  width:min(78vw,310px);
-  aspect-ratio:4 / 5;
-  margin:0 auto;
-
-  padding:7px;
-
-  border-radius:
-    155px 155px 20px 20px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #d7bd91,
-      #f6e5c8 35%,
-      #b48a47 75%,
-      #dfc596
-    );
-
-  box-shadow:
-    0 20px 55px rgba(91,58,43,.18),
-    0 3px 0 rgba(181,139,69,.22);
-
-  position:relative;
-}
-
-.couple-frame::before{
-  content:"";
-  position:absolute;
-  inset:3px;
-
-  border:
-    1px solid rgba(255,255,255,.75);
-
-  border-radius:
-    150px 150px 17px 17px;
-
-  pointer-events:none;
-  z-index:2;
-}
-
-.couple-frame img{
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-
-  border-radius:
-    148px 148px 14px 14px;
-}
-
-
-/* ---------------------------------------------------------
-   COVER TYPOGRAPHY
-   --------------------------------------------------------- */
-
-.eyebrow{
-  margin:25px 0 8px;
-
-  color:#967e70;
-
-  font-family:var(--sans);
-  font-size:9px;
-  font-weight:500;
-
-  letter-spacing:.28em;
-  text-transform:uppercase;
-}
-
-.couple-names{
-  display:flex;
-  align-items:baseline;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:10px;
-
-  color:var(--red);
-
-  font-family:var(--serif);
-  font-size:clamp(43px,11vw,59px);
-  font-weight:600;
-  line-height:.92;
-
-  letter-spacing:-.035em;
-
-  text-shadow:
-    0 1px 0 rgba(255,255,255,.5);
-}
-
-.couple-names small{
-  color:var(--gold);
-
-  font-family:var(--serif);
-  font-size:.55em;
-  font-weight:500;
-  font-style:italic;
-
-  transform:translateY(-2px);
-}
-
-.name-rule{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-
-  margin:17px auto 14px;
-
-  width:min(72%,230px);
-
-  color:var(--gold);
-}
-
-.name-rule i{
-  height:1px;
-  flex:1;
-  background:linear-gradient(
-    90deg,
-    transparent,
-    rgba(181,139,69,.55)
-  );
-}
-
-.name-rule i:last-child{
-  background:linear-gradient(
-    90deg,
-    rgba(181,139,69,.55),
-    transparent
-  );
-}
-
-.name-rule span{
-  font-size:11px;
-}
-
-.intro{
-  max-width:330px;
-  margin:0 auto 25px;
-
-  color:#775e54;
-
-  font-family:var(--serif);
-  font-size:18px;
-  line-height:1.45;
-}
-
-
-/* ---------------------------------------------------------
-   INVITATION CODE
-   --------------------------------------------------------- */
-
-.code-form{
-  width:100%;
-  margin-top:20px;
-}
-
-.code-form label{
-  display:block;
-
-  margin-bottom:8px;
-
-  color:#967e70;
-
-  font-size:9px;
-  font-weight:500;
-
-  letter-spacing:.2em;
-  text-transform:uppercase;
-}
-
-.code-row{
-  display:flex;
-  align-items:center;
-
-  padding:5px;
-
-  background:rgba(255,255,255,.72);
-
-  border:1px solid rgba(181,139,69,.35);
-  border-radius:999px;
-
-  box-shadow:
-    0 10px 30px rgba(91,58,43,.08);
-}
-
-.code-row input{
-  min-width:0;
-  flex:1;
-
-  border:0;
-  outline:0;
-
-  background:transparent;
-
-  padding:13px 14px;
-
-  color:var(--ink);
-
-  font-size:13px;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-}
-
-.code-row input::placeholder{
-  color:#ad988d;
-  opacity:1;
-}
-
-.code-row button{
-  flex-shrink:0;
-
-  border:0;
-  border-radius:999px;
-
-  padding:12px 19px;
-
-  background:var(--red);
-  color:#fff9ef;
-
-  font-size:11px;
-  font-weight:600;
-
-  letter-spacing:.04em;
-
-  cursor:pointer;
-
-  box-shadow:
-    0 5px 14px rgba(132,35,44,.18);
-
-  transition:
-    transform .25s ease,
-    background .25s ease;
-}
-
-.code-row button:hover{
-  background:var(--red-dark);
-  transform:translateY(-1px);
-}
-
-.error{
-  min-height:18px;
-  margin:8px 0 0;
-
-  color:#a54a4a;
-
-  font-size:11px;
-}
-
-
-/* =========================================================
-   COVER ORNAMENTS
-   ========================================================= */
-
-.cover-ornament{
-  position:absolute;
-  width:220px;
-  height:220px;
-
-  opacity:.32;
-
-  pointer-events:none;
-}
-
-.cover-ornament::before,
-.cover-ornament::after{
-  content:"";
-  position:absolute;
-
-  border:1px solid var(--red);
-  border-radius:50%;
-}
-
-.cover-ornament::before{
-  width:150px;
-  height:150px;
-  top:15px;
-  left:15px;
-}
-
-.cover-ornament::after{
-  width:85px;
-  height:85px;
-  top:47px;
-  left:47px;
-
-  border-color:var(--gold);
-}
-
-.ornament-left{
-  top:-70px;
-  left:-90px;
-  transform:rotate(25deg);
-}
-
-.ornament-right{
-  bottom:-95px;
-  right:-100px;
-  transform:rotate(-30deg);
-}
-
-
-/* =========================================================
-   EVENT STORY
-   ========================================================= */
-
-.event{
-  position:relative;
-
-  min-height:100svh;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  padding:110px 25px 125px;
-
-  overflow:hidden;
-
-  isolation:isolate;
-
-  text-align:center;
-
-  /* soft section overlap */
-  margin-top:-28px;
-
-  border-radius:
-    38px 38px 0 0;
-
-  box-shadow:
-    0 -15px 40px rgba(71,43,32,.05);
-
-  transform:translateY(0);
-}
-
-.event:first-child{
-  margin-top:0;
-}
-
-.event-content{
-  width:min(100%,460px);
-
-  position:relative;
-  z-index:5;
-
-  animation:
-    eventRise 1s cubic-bezier(.2,.8,.2,1) both;
-}
-
-
-/* ---------------------------------------------------------
-   SHARED EVENT TYPOGRAPHY
-   --------------------------------------------------------- */
-
-.event-date{
-  margin:0 0 14px;
-
-  font-size:9px;
-  font-weight:500;
-
-  letter-spacing:.28em;
-  text-transform:uppercase;
-
-  opacity:.72;
-}
-
-.event h2{
-  margin:0 auto 12px;
-
-  font-family:var(--serif);
-  font-size:clamp(52px,14vw,76px);
-  font-weight:600;
-  line-height:.82;
-
-  letter-spacing:-.045em;
-}
-
-.event h3{
-  margin:0 0 19px;
-
-  font-family:var(--sans);
-  font-size:13px;
-  font-weight:600;
-
-  line-height:1.5;
-}
-
-.event-copy{
-  max-width:365px;
-
-  margin:0 auto 28px;
-
-  font-family:var(--serif);
-  font-size:18px;
-  line-height:1.52;
-}
-
-.meta{
-  font-family:var(--sans);
-  font-size:11px;
-  line-height:1.8;
-  letter-spacing:.08em;
-  opacity:.78;
-}
-
-.map-link{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-
-  margin-top:20px;
-
-  padding:10px 17px;
-
-  border:1px solid currentColor;
-  border-radius:999px;
-
-  color:inherit;
-
-  font-family:var(--sans);
-  font-size:9px;
-  font-weight:600;
-
-  letter-spacing:.14em;
-  text-transform:uppercase;
-
-  text-decoration:none;
-
-  transition:
-    transform .25s ease,
-    background .25s ease;
-}
-
-.map-link:hover{
-  transform:translateY(-2px);
-  background:rgba(255,255,255,.12);
-}
-
-
-/* =========================================================
-   BENGALI-STYLE ORNAMENTAL FRAME
-   ========================================================= */
-
-.event::before{
-  content:"";
-
-  position:absolute;
-  inset:24px;
-
-  border:1px solid currentColor;
-  border-radius:24px;
-
-  opacity:.12;
-
-  pointer-events:none;
-}
-
-.event::after{
-  content:"";
-
-  position:absolute;
-
-  width:260px;
-  height:260px;
+/* --- GLOBAL VARIABLES & RESET --- */
+:root {
+    /* Palettes */
+    --ivory-cream: #FDFBF7;
+    --antique-gold: #C5A059;
+    --bengali-red: #9B1B30;
+    --wedding-maroon: #6B0F1A;
+    --mehendi-green: #5A6B53;
+    --mehendi-cream: #E8EDE4;
+    --haldi-yellow: #F4B41A;
+    --haldi-peach: #FAD1B8;
+    --bidaye-blush: #E6C2C0;
+    --bidaye-rose: #B8737A;
+    --reception-navy: #1C2841;
+    
+    /* Typography */
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-body: 'Lora', 'Times New Roman', serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--ivory-cream);
+    color: var(--bengali-red);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+.hidden { display: none !important; }
+
+/* --- OPENING / COVER --- */
+#opening-screen {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+    background-color: var(--ivory-cream);
+    /* Subtle background texture/gradient simulating paper */
+    background-image: radial-gradient(circle at center, #ffffff 0%, var(--ivory-cream) 100%);
+}
+
+.opening-content {
+    max-width: 450px;
+    width: 100%;
+    text-align: center;
+}
+
+.bengali-artwork {
+    width: 140px;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.couple-photo-wrapper {
+    width: 220px;
+    height: 280px;
+    margin: 0 auto 2rem auto;
+    border: 2px solid var(--antique-gold);
+    padding: 6px;
+    border-radius: 4px; /* Slight rounding, not a full generic circle */
+}
+
+.couple-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 2px;
+}
+
+.couple-names {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--bengali-red);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.couple-names .amp {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 2rem;
+    color: var(--antique-gold);
+    padding: 0 0.5rem;
+}
+
+.intro-text {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 2.5rem;
+    font-style: italic;
+    line-height: 1.6;
+}
 
-  border:
-    1px solid currentColor;
-
-  border-radius:50%;
-
-  opacity:.1;
-
-  pointer-events:none;
-}
-
-
-/* =========================================================
-   AIBUROBHAT
-   ========================================================= */
-
-.theme-aiburo{
-  background:
-    radial-gradient(
-      ellipse at 50% 45%,
-      rgba(255,255,255,.92),
-      transparent 52%
-    ),
-    radial-gradient(
-      circle at 10% 80%,
-      rgba(166,30,37,.10),
-      transparent 28%
-    ),
-    #fffaf2;
-
-  color:#a62029;
-}
-
-.theme-aiburo::after{
-  right:-90px;
-  bottom:-70px;
-}
-
-.theme-aiburo .event-content::before{
-  content:"";
-
-  position:absolute;
-
-  width:210px;
-  height:210px;
-
-  top:-95px;
-  left:50%;
-
-  transform:translateX(-50%);
-
-  border:
-    1px dashed rgba(166,30,37,.28);
-
-  border-radius:50%;
-
-  box-shadow:
-    inset 0 0 0 18px rgba(166,30,37,.025),
-    inset 0 0 0 38px rgba(166,30,37,.025);
-
-  animation:
-    alpanaRotate 30s linear infinite;
-
-  pointer-events:none;
-}
-
-.theme-aiburo .event-content::after{
-  content:"✦  ❋  ✦";
-
-  display:block;
-
-  margin-top:30px;
-
-  color:#b58b45;
-
-  font-size:17px;
-  letter-spacing:.5em;
-
-  opacity:.65;
-}
-
-
-/* =========================================================
-   MEHENDI / SANGEET
-   ========================================================= */
-
-.theme-mehendi{
-  background:
-    radial-gradient(
-      circle at 8% 22%,
-      rgba(49,99,70,.13),
-      transparent 24%
-    ),
-    radial-gradient(
-      circle at 92% 82%,
-      rgba(49,99,70,.11),
-      transparent 25%
-    ),
-    linear-gradient(
-      135deg,
-      #eef4e8,
-      #e2ecd9
-    );
-
-  color:#23553c;
-}
-
-.theme-mehendi::after{
-  right:-110px;
-  bottom:-80px;
-
-  width:310px;
-  height:310px;
-}
-
-.theme-mehendi .event-content::before{
-  content:"❧";
-
-  position:absolute;
-
-  left:-10px;
-  top:-65px;
-
-  font-family:var(--serif);
-  font-size:75px;
-
-  opacity:.22;
-
-  transform:rotate(-25deg);
-}
-
-.theme-mehendi .event-content::after{
-  content:"♪   ♫   ♪";
-
-  display:block;
-
-  margin-top:27px;
-
-  font-family:var(--serif);
-  font-size:27px;
-
-  letter-spacing:.22em;
-
-  opacity:.45;
-
-  animation:
-    musicFloat 3s ease-in-out infinite;
-}
-
-
-/* =========================================================
-   GAYE HOLUD
-   ========================================================= */
-
-.theme-holud{
-  background:
-    radial-gradient(
-      circle at 18% 18%,
-      rgba(255,255,255,.55) 0 7px,
-      transparent 8px
-    ),
-    radial-gradient(
-      circle at 80% 72%,
-      rgba(255,255,255,.4) 0 11px,
-      transparent 12px
-    ),
-    radial-gradient(
-      ellipse at 50% 100%,
-      rgba(226,122,55,.18),
-      transparent 52%
-    ),
-    #fff3a9;
-
-  color:#76570b;
-}
-
-.theme-holud::after{
-  width:300px;
-  height:300px;
-
-  left:-145px;
-  bottom:-80px;
-}
-
-.theme-holud .event-content::before{
-  content:"✽";
-
-  display:block;
-
-  margin-bottom:15px;
-
-  color:#d28a28;
-
-  font-size:45px;
-
-  animation:
-    flowerSway 4s ease-in-out infinite;
-}
-
-.theme-holud .event-content::after{
-  content:"•  •  •  •";
-
-  display:block;
-
-  margin-top:30px;
-
-  color:#b98a31;
-
-  font-size:19px;
-  letter-spacing:.4em;
-
-  opacity:.55;
-}
-
-
-/* =========================================================
-   WEDDING
-   ========================================================= */
-
-.theme-wedding{
-  background:
-    radial-gradient(
-      ellipse at 50% 40%,
-      rgba(180,38,48,.7),
-      transparent 55%
-    ),
-    radial-gradient(
-      circle at 15% 15%,
-      rgba(214,174,98,.13),
-      transparent 20%
-    ),
-    linear-gradient(
-      145deg,
-      #77131c,
-      #981a25 48%,
-      #721018
-    );
-
-  color:#fff6e6;
-
-  box-shadow:
-    0 -15px 45px rgba(83,10,18,.16),
-    0 15px 45px rgba(83,10,18,.16);
-}
-
-.theme-wedding::before{
-  inset:20px;
-
-  border-color:#d6ae62;
-  opacity:.28;
-}
-
-.theme-wedding::after{
-  width:360px;
-  height:360px;
-
-  right:-180px;
-  bottom:-140px;
-
-  border-color:#d6ae62;
-  opacity:.32;
-}
-
-.theme-wedding .event-content::before{
-  content:"❋";
-
-  display:block;
-
-  margin-bottom:12px;
-
-  color:#d6ae62;
-
-  font-size:40px;
-
-  animation:
-    ceremonialPulse 3.5s ease-in-out infinite;
-}
-
-.theme-wedding .event-content::after{
-  content:"✦     ❈     ✦";
-
-  display:block;
-
-  margin-top:28px;
-
-  color:#d6ae62;
-
-  font-size:18px;
-  letter-spacing:.3em;
-}
-
-
-/* =========================================================
-   BIDAYE
-   ========================================================= */
-
-.theme-bidaye{
-  background:
-    radial-gradient(
-      ellipse at 50% 30%,
-      rgba(255,255,255,.4),
-      transparent 48%
-    ),
-    linear-gradient(
-      150deg,
-      #f5d6dc,
-      #efd0d8 55%,
-      #e6c4cf
-    );
-
-  color:#713f4c;
-}
-
-.theme-bidaye::after{
-  width:270px;
-  height:270px;
-
-  right:-125px;
-  bottom:-70px;
-}
-
-.theme-bidaye .event-content::before{
-  content:"❧";
-
-  display:block;
-
-  color:#b36a78;
-
-  font-size:55px;
-
-  opacity:.35;
-
-  transform:rotate(180deg);
-}
-
-.theme-bidaye .event-content::after{
-  content:"";
-
-  display:block;
-
-  width:130px;
-  height:1px;
-
-  margin:29px auto 0;
-
-  background:currentColor;
-
-  opacity:.28;
-}
-
-
-/* =========================================================
-   RECEPTION
-   ========================================================= */
-
-.theme-reception{
-  background:
-    radial-gradient(
-      circle at 20% 20%,
-      rgba(205,169,83,.13),
-      transparent 20%
-    ),
-    radial-gradient(
-      circle at 80% 80%,
-      rgba(205,169,83,.11),
-      transparent 22%
-    ),
-    linear-gradient(
-      150deg,
-      #162f55,
-      #203e6b 55%,
-      #152c4c
-    );
-
-  color:#f8efd8;
-}
-
-.theme-reception::before{
-  border-color:#c9a75d;
-  opacity:.2;
+/* Code Input Area */
+.invite-code-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
 }
-
-.theme-reception::after{
-  width:340px;
-  height:340px;
-
-  right:-165px;
-  bottom:-145px;
-
-  border-color:#c9a75d;
-  opacity:.38;
-}
-
-.theme-reception .event-content::before{
-  content:"✦";
-
-  display:block;
-
-  margin-bottom:10px;
-
-  color:#d5b86d;
-
-  font-size:30px;
-
-  animation:
-    starPulse 2.8s ease-in-out infinite;
-}
-
-.theme-reception .event-content::after{
-  content:"✦   ✧   ✦";
-
-  display:block;
-
-  margin-top:28px;
-
-  color:#d5b86d;
-
-  font-size:18px;
-
-  letter-spacing:.45em;
-}
-
-
-/* =========================================================
-   CLOSING
-   ========================================================= */
-
-.closing{
-  min-height:100svh;
-
-  display:grid;
-  place-items:center;
-
-  align-content:center;
-
-  padding:90px 25px 100px;
-
-  text-align:center;
-
-  background:
-    radial-gradient(
-      ellipse at 50% 15%,
-      rgba(204,158,111,.12),
-      transparent 38%
-    ),
-    linear-gradient(
-      180deg,
-      #fffaf3,
-      #f8eee2
-    );
-
-  color:#663f35;
-
-  position:relative;
-  overflow:hidden;
+
+#invite-code-input {
+    width: 80%;
+    padding: 12px;
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    text-align: center;
+    border: 1px solid var(--antique-gold);
+    background: transparent;
+    color: var(--bengali-red);
+    outline: none;
 }
-
-.closing::before{
-  content:"";
+
+#invite-code-input::placeholder { color: #A08C5B; font-style: italic; }
+#invite-code-input:focus { border-width: 2px; }
 
-  position:absolute;
-  inset:25px;
-
-  border:1px solid rgba(165,43,53,.12);
-  border-radius:24px;
-
-  pointer-events:none;
+.ceremonial-btn {
+    background-color: var(--bengali-red);
+    color: var(--ivory-cream);
+    border: none;
+    padding: 12px 30px;
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
-
-
-/* ---------------------------------------------------------
-   CLOSING PHOTOGRAPH
-   --------------------------------------------------------- */
-
-.closing-image-frame{
-  width:min(76vw,310px);
-  aspect-ratio:4 / 5;
-
-  margin:0 auto 30px;
-
-  padding:7px;
-
-  border-radius:
-    150px 150px 16px 16px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #d7bd91,
-      #f5e2c3,
-      #b58b45,
-      #dfc596
-    );
-
-  box-shadow:
-    0 20px 50px rgba(91,58,43,.15);
+
+.ceremonial-btn:hover { background-color: var(--wedding-maroon); }
 
-  position:relative;
-
-  animation:
-    closingReveal 1s ease both;
+.error-msg {
+    color: var(--wedding-maroon);
+    font-size: 0.9rem;
+    margin-top: -0.5rem;
 }
-
-.closing-image-frame::after{
-  content:"";
-
-  position:absolute;
-  inset:3px;
 
-  border:1px solid rgba(255,255,255,.8);
-
-  border-radius:
-    146px 146px 13px 13px;
+/* --- EVENT JOURNEY (SCROLLING SECTIONS) --- */
+.event-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 1.5rem;
+    position: relative;
 }
-
-.closing-image-frame img{
-  width:100%;
-  height:100%;
-
-  display:block;
 
-  object-fit:cover;
-
-  border-radius:
-    145px 145px 10px 10px;
+.event-content {
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
 }
-
-
-/* ---------------------------------------------------------
-   CLOSING TYPE
-   --------------------------------------------------------- */
 
-.closing-ornament{
-  margin:0 0 13px;
-
-  color:var(--gold);
-
-  font-size:24px;
-
-  animation:
-    ceremonialPulse 3s ease-in-out infinite;
+.event-title {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
 }
-
-.closing h2{
-  margin:0 0 20px;
 
-  color:#7f2933;
+/* Typography elements generated by JS config */
+.event-details h3 { font-family: var(--font-serif); font-size: 1.4rem; margin-bottom: 0.5rem; }
+.event-details p { font-size: 1.1rem; line-height: 1.6; margin-bottom: 0.8rem; }
+.event-details a { color: inherit; text-decoration: underline; text-decoration-color: var(--antique-gold); }
 
-  font-family:var(--serif);
-  font-size:clamp(48px,12vw,66px);
-  font-weight:500;
+/* --- EVENT THEMES --- */
 
-  line-height:.9;
-
-  letter-spacing:-.035em;
+/* 1. Aiburobhat */
+.aiburobhat {
+    background-color: var(--ivory-cream);
+    color: var(--bengali-red);
 }
-
-.closing p{
-  max-width:330px;
-
-  margin:0 auto;
+.aiburobhat .event-title { color: var(--bengali-red); }
 
-  color:#795f55;
-
-  font-family:var(--serif);
-  font-size:18px;
-
-  line-height:1.5;
+/* 2. Mehendi */
+.mehendi {
+    background-color: var(--mehendi-green);
+    color: var(--mehendi-cream);
 }
-
-.closing-rule{
-  display:flex;
-  align-items:center;
-  justify-content:center;
+.mehendi .event-title { color: var(--antique-gold); }
 
-  gap:10px;
-
-  width:180px;
-
-  margin:30px auto 0;
-
-  color:var(--gold);
+/* 3. Gaye Holud */
+.holud {
+    background-color: var(--haldi-yellow);
+    color: #5C3A21;
 }
+.holud .event-title { color: #8B4513; }
 
-.closing-rule i{
-  height:1px;
-  flex:1;
-
-  background:rgba(181,139,69,.35);
+/* 4. The Wedding */
+.wedding-ceremony {
+    background-color: var(--wedding-maroon);
+    color: var(--ivory-cream);
+    border-top: 4px solid var(--antique-gold);
+    border-bottom: 4px solid var(--antique-gold);
 }
+.wedding-ceremony .event-title { color: var(--antique-gold); font-size: 2.6rem; }
+.wedding-ceremony .event-details { color: var(--antique-gold); }
 
-.closing-rule span{
-  font-size:14px;
+/* 5. Bidaye */
+.bidaye {
+    background-color: var(--bidaye-blush);
+    color: var(--bidaye-rose);
 }
-
-
-/* =========================================================
-   ANIMATIONS
-   ========================================================= */
-
-@keyframes coverRise{
-  from{
-    opacity:0;
-    transform:translateY(28px);
-  }
+.bidaye .event-title { color: var(--wedding-maroon); font-style: italic; }
 
-  to{
-    opacity:1;
-    transform:none;
-  }
+/* 6. Reception */
+.reception {
+    background-color: var(--reception-navy);
+    color: var(--ivory-cream);
 }
+.reception .event-title { color: var(--antique-gold); }
 
-@keyframes logoReveal{
-  from{
-    opacity:0;
-    transform:translateY(-15px) scale(.96);
-  }
-
-  to{
-    opacity:1;
-    transform:none;
-  }
+/* --- CLOSING SECTION --- */
+.closing-screen {
+    background-color: var(--ivory-cream);
+    color: var(--bengali-red);
+    text-align: center;
 }
 
-@keyframes eventRise{
-  from{
-    opacity:0;
-    transform:translateY(20px);
-  }
-
-  to{
-    opacity:1;
-    transform:none;
-  }
+.couple-close-wrapper {
+    width: 250px;
+    height: 320px;
+    margin: 0 auto 2rem auto;
+    border: 2px solid var(--antique-gold);
+    padding: 6px;
 }
-
-@keyframes closingReveal{
-  from{
-    opacity:0;
-    transform:translateY(20px) scale(.97);
-  }
 
-  to{
-    opacity:1;
-    transform:none;
-  }
+.couple-close-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-@keyframes alpanaRotate{
-  to{
-    transform:translateX(-50%) rotate(360deg);
-  }
+.closing-signoff {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    color: var(--antique-gold);
+    margin-top: 2rem;
+    font-style: italic;
+    line-height: 1.4;
 }
 
-@keyframes musicFloat{
-  50%{
-    transform:translateY(-7px);
-  }
+/* --- ANIMATIONS (Elegant & Subtle) --- */
+.fade-in-up {
+    animation: fadeInUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
-@keyframes flowerSway{
-  50%{
-    transform:rotate(5deg) translateY(-4px);
-  }
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes ceremonialPulse{
-  50%{
-    transform:scale(1.08);
-  }
+/* Intersection Observer Classes */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
-@keyframes starPulse{
-  50%{
-    opacity:.5;
-    transform:scale(.9);
-  }
+.scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media(max-width:380px){
 
-  .gate{
-    padding-left:17px;
-    padding-right:17px;
-  }
-
-  .couple-names{
-    font-size:42px;
-  }
-
-  .code-row button{
-    padding-left:14px;
-    padding-right:14px;
-  }
-
-  .event{
-    padding-left:19px;
-    padding-right:19px;
-  }
+/* Decorative Ornaments (CSS pseudo-elements to avoid generic geometry) */
+.ornament {
+    width: 50px;
+    height: 2px;
+    background-color: var(--antique-gold);
+    margin: 1rem auto;
+    position: relative;
 }
-
-
-/* =========================================================
-   REDUCED MOTION
-   ========================================================= */
-
-@media(prefers-reduced-motion:reduce){
-
-  *,
-  *::before,
-  *::after{
-    animation-duration:.01ms!important;
-    animation-iteration-count:1!important;
-    scroll-behavior:auto!important;
-  }
+.ornament::before, .ornament::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: var(--antique-gold);
+    border-radius: 50%;
+    top: -2px;
 }
+.ornament::before { left: -10px; }
+.ornament::after { right: -10px; }
