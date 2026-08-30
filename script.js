@@ -1,108 +1,90 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const inviteBtn = document.getElementById("open-invite-btn");
-    const codeInput = document.getElementById("invite-code-input");
-    const errorMsg = document.getElementById("code-error");
-    const openingScreen = document.getElementById("opening-screen");
-    const invitationJourney = document.getElementById("invitation-journey");
-    const dynamicEventsWrapper = document.getElementById("dynamic-events-wrapper");
+/**
+ * Digital Bengali Wedding Invitation — Chandrima & Arnab
+ * Handles dynamic invitation configuration lookup and continuous UI populating.
+ */
 
-    // Handle code submission
-    inviteBtn.addEventListener("click", processInvitationCode);
-    codeInput.addEventListener("keypress", (e) => {
-        if (e.key === "Enter") {
-            processInvitationCode();
+function openInvitation() {
+    const input = document.getElementById("invitation-code");
+    const errorMsg = document.getElementById("error-message");
+    const code = input ? input.value.trim().toUpperCase() : "";
+
+    if (!code) {
+        if (errorMsg) errorMsg.textContent = "Please enter a valid invitation code.";
+        return;
+    }
+
+    // Check against global INVITATION_DATA or custom config object
+    const data = (window.INVITATION_DATA && window.INVITATION_DATA[code]) 
+        ? window.INVITATION_DATA[code] 
+        : (window.INVITATION_DATA ? window.INVITATION_DATA["ALL-001"] || Object.values(window.INVITATION_DATA)[0] : null);
+
+    if (!data) {
+        if (errorMsg) errorMsg.textContent = "Invalid invitation code. Please try again.";
+        return;
+    }
+
+    if (errorMsg) errorMsg.textContent = "";
+
+    // Populate events
+    populateEvents(data);
+
+    // Hide opening form/cover gracefully or scroll down
+    const journey = document.getElementById("event-journey");
+    if (journey) {
+        journey.classList.remove("hidden");
+        journey.scrollIntoView({ behavior: "smooth" });
+    }
+}
+
+function populateEvents(data) {
+    const events = [
+        { id: "aiburobhat", key: "aiburobhat" },
+        { id: "mehendi", key: "mehendi" },
+        { id: "holud", key: "gaye_holud" },
+        { id: "wedding", key: "wedding" },
+        { id: "bidaye", key: "bidaye" },
+        { id: "reception", key: "reception" }
+    ];
+
+    events.forEach(item => {
+        const eventData = data[item.key] || (data.events ? data.events[item.key] : null);
+        if (!eventData) return;
+
+        const slotElem = document.getElementById(`slot-${item.id}`);
+        const dateElem = document.getElementById(`date-${item.id}`);
+        const venueElem = document.getElementById(`venue-${item.id}`);
+        const descElem = document.getElementById(`desc-${item.id}`);
+        const mapContainer = document.getElementById(`map-container-${item.id}`);
+
+        if (slotElem) slotElem.textContent = eventData.time || eventData.subtitle || "";
+        if (dateElem) dateElem.textContent = eventData.date || "";
+        if (venueElem) venueElem.textContent = eventData.venue || "";
+        if (descElem) descElem.textContent = eventData.description || "";
+
+        if (mapContainer) {
+            if (eventData.mapLink || eventData.locationUrl) {
+                const url = eventData.mapLink || eventData.locationUrl;
+                mapContainer.innerHTML = `<a href="${url}" target="_blank" rel="noopener">View Location on Map ➔</a>`;
+            } else {
+                mapContainer.innerHTML = "";
+            }
         }
     });
 
-    function processInvitationCode() {
-        const enteredCode = codeInput.value.trim();
-
-        if (!enteredCode) {
-            showError("Please enter an invitation code.");
-            return;
-        }
-
-        // Validate against INVITATION_DATA profiles defined in config/config.js
-        if (typeof INVITATION_DATA === "undefined") {
-            showError("Configuration data not loaded.");
-            return;
-        }
-
-        const profile = INVITATION_DATA.profiles[enteredCode];
-
-        if (!profile) {
-            showError("Invalid invitation code. Please check and try again.");
-            return;
-        }
-
-        // Build the continuous event journey dynamically based on authorized event keys
-        buildEventJourney(profile.events);
-
-        // Transition views smoothly
-        openingScreen.classList.add("hidden");
-        invitationJourney.classList.remove("hidden");
-
-        // Initialize scroll animations for the new elements
-        initScrollAnimations();
-
-        // Scroll cleanly to the top of the journey
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (data.closingMessage) {
+        const closingMsgElem = document.getElementById("closing-message");
+        if (closingMsgElem) closingMsgElem.textContent = data.closingMessage;
     }
+}
 
-    function showError(message) {
-        errorMsg.textContent = message;
-        errorMsg.classList.remove("hidden");
-    }
-
-    function buildEventJourney(allowedEventKeys) {
-        dynamicEventsWrapper.innerHTML = "";
-
-        const allEvents = INVITATION_DATA.events;
-        const activeEvents = allEvents.filter(ev => allowedEventKeys.includes(ev.key));
-
-        activeEvents.forEach(ev => {
-            const section = document.createElement("section");
-            section.className = `event-node ${ev.theme || 'theme-aiburo'}`;
-            section.setAttribute("id", `event-${ev.key}`);
-
-            // Construct map link HTML only if provided and valid
-            let mapHtml = "";
-            if (ev.mapUrl && ev.mapUrl !== "REPLACE_WITH_GOOGLE_MAPS_LINK") {
-                mapHtml = `<a href="${ev.mapUrl}" target="_blank" rel="noopener noreferrer" class="map-link-btn">View Map</a>`;
+// Allow Enter key press in the code input
+document.addEventListener("DOMContentLoaded", function() {
+    const input = document.getElementById("invitation-code");
+    if (input) {
+        input.addEventListener("keypress", function(e) {
+            if (e.key === "Enter") {
+                openInvitation();
             }
-
-            section.innerHTML = `
-                <div class="node-inner scroll-reveal">
-                    <h2 class="node-title">${ev.title}</h2>
-                    <p class="node-subtitle">${ev.subtitle}</p>
-                    <p class="node-date-time">${ev.date} · ${ev.time}</p>
-                    <p class="node-venue">${ev.venue}</p>
-                    <p class="node-copy">${ev.copy}</p>
-                    ${mapHtml}
-                </div>
-            `;
-
-            dynamicEventsWrapper.appendChild(section);
         });
-    }
-
-    function initScrollAnimations() {
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.15
-        };
-
-        const observer = new IntersectionObserver((entries, observerInstance) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observerInstance.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        const revealElements = document.querySelectorAll('.scroll-reveal');
-        revealElements.forEach(el => observer.observe(el));
     }
 });
