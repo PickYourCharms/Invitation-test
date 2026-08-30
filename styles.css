@@ -1,368 +1,166 @@
-/* --- DESIGN SYSTEM & CSS VARIABLES --- */
-:root {
-    --ivory-cream: #FDFBF7;
-    --antique-gold: #C5A059;
-    --antique-gold-dark: #A08343;
-    --bengali-red: #8C1D2F;
-    --wedding-maroon: #5E131F;
-    
-    /* Event Specific Palettes */
-    --mehendi-green: #4A5D4E;
-    --mehendi-cream: #F0F4EE;
-    --haldi-yellow: #E6B839;
-    --haldi-bg: #FDF8EE;
-    --bidaye-blush: #EAD0CF;
-    --bidaye-rose: #9E5B62;
-    --reception-navy: #182238;
-    --reception-gold: #D4AF37;
+/* ===================================================
+   SIX DISTINCT VISUAL MOODS FOR BENGALI WEDDING
+   =================================================== */
 
-    --font-serif: 'Playfair Display', Georgia, serif;
-    --font-body: 'Lora', 'Times New Roman', serif;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html, body {
-    width: 100%;
-    min-height: 100%;
-    background-color: var(--ivory-cream);
-    font-family: var(--font-body);
-    color: var(--bengali-red);
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-}
-
-.hidden { display: none !important; }
-
-/* --- OPENING / COVER STYLING --- */
-#opening-screen {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2.5rem 1.5rem;
-    background: radial-gradient(circle at center, #FFFFFF 0%, var(--ivory-cream) 100%);
-    position: relative;
-    z-index: 10;
-}
-
-.opening-card {
-    width: 100%;
-    max-width: 420px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.bengali-artwork {
-    width: 130px;
-    height: auto;
-    margin-bottom: 1.75rem;
-    opacity: 0.95;
-}
-
-.photo-frame {
-    width: 200px;
-    height: 255px;
-    padding: 6px;
-    border: 1px solid var(--antique-gold);
-    background-color: #FFFFFF;
-    box-shadow: 0 10px 30px rgba(197, 160, 89, 0.15);
-    margin-bottom: 1.75rem;
-}
-
-.cover-photo, .close-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.couple-names {
-    font-family: var(--font-serif);
-    font-size: 2.35rem;
-    font-weight: 600;
-    color: var(--bengali-red);
-    letter-spacing: 0.5px;
-    margin-bottom: 0.5rem;
-}
-
-.couple-names .amp {
-    font-family: var(--font-serif);
-    font-style: italic;
-    color: var(--antique-gold);
-    font-weight: 400;
-    padding: 0 0.25rem;
-}
-
-.opening-subtitle {
-    font-size: 1.05rem;
-    color: #665C54;
-    font-style: italic;
-    margin-bottom: 2.25rem;
-}
-
-.invite-entry-box {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-}
-
-#invite-code-input {
-    width: 85%;
-    max-width: 280px;
-    padding: 12px 16px;
-    font-family: var(--font-serif);
-    font-size: 1.05rem;
-    text-align: center;
-    background-color: transparent;
-    border: 1px solid var(--antique-gold);
-    color: var(--bengali-red);
-    outline: none;
-    transition: all 0.3s ease;
-}
-
-#invite-code-input::placeholder {
-    color: #A89F91;
-    font-style: italic;
-}
-
-#invite-code-input:focus {
-    border-color: var(--bengali-red);
-    box-shadow: 0 0 0 2px rgba(140, 29, 47, 0.1);
-}
-
-.ceremonial-action-btn {
-    background-color: var(--bengali-red);
-    color: var(--ivory-cream);
-    border: none;
-    padding: 12px 28px;
-    font-family: var(--font-serif);
-    font-size: 0.95rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.ceremonial-action-btn:hover {
-    background-color: var(--wedding-maroon);
-}
-
-.error-feedback {
-    color: var(--wedding-maroon);
-    font-size: 0.85rem;
-    font-style: italic;
-}
-
-/* --- CONTINUOUS INVITATION JOURNEY & NODES --- */
-.journey-container {
-    width: 100%;
-}
-
-.event-node {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5rem 1.5rem;
-    position: relative;
-    transition: background 0.8s ease;
-}
-
+/* Card Frame Base */
 .node-inner {
-    width: 100%;
-    max-width: 480px;
-    text-align: center;
     position: relative;
-    z-index: 2;
-}
-
-.node-title {
-    font-family: var(--font-serif);
-    font-size: 2.2rem;
-    font-weight: 600;
-    margin-bottom: 0.75rem;
-    letter-spacing: 0.5px;
-}
-
-.node-subtitle {
-    font-size: 0.95rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 1.75rem;
-    opacity: 0.85;
-}
-
-.node-date-time {
-    font-family: var(--font-serif);
-    font-size: 1.15rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-}
-
-.node-venue {
-    font-size: 1.05rem;
-    font-style: italic;
-    margin-bottom: 1.5rem;
-}
-
-.node-copy {
-    font-size: 1.05rem;
-    line-height: 1.65;
-    margin-bottom: 2rem;
-    font-style: italic;
-}
-
-.map-link-btn {
-    display: inline-block;
-    padding: 8px 20px;
-    font-family: var(--font-serif);
-    font-size: 0.9rem;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    border: 1px solid currentColor;
-    transition: all 0.3s ease;
-}
-
-.map-link-btn:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-}
-
-/* --- THEME-SPECIFIC STYLING (Seamless Flow) --- */
-.theme-aiburo {
-    background-color: var(--ivory-cream);
-    color: var(--bengali-red);
-}
-.theme-aiburo .node-subtitle, .theme-aiburo .map-link-btn {
-    color: var(--antique-gold-dark);
-    border-color: var(--antique-gold);
-}
-
-.theme-mehendi {
-    background-color: var(--mehendi-green);
-    color: var(--mehendi-cream);
-}
-.theme-mehendi .node-title {
-    color: #D8E2D6;
-}
-.theme-mehendi .node-subtitle, .theme-mehendi .map-link-btn {
-    color: #A3B8A0;
-    border-color: #A3B8A0;
-}
-
-.theme-holud {
-    background-color: var(--haldi-bg);
-    color: #5C3A21;
-}
-.theme-holud .node-title {
-    color: #8C581E;
-}
-.theme-holud .node-subtitle, .theme-holud .map-link-btn {
-    color: #C28E38;
-    border-color: #C28E38;
-}
-
-.theme-wedding {
-    background-color: var(--wedding-maroon);
-    color: var(--ivory-cream);
-    border-top: 3px solid var(--antique-gold);
-    border-bottom: 3px solid var(--antique-gold);
-}
-.theme-wedding .node-title {
-    color: var(--antique-gold);
-    font-size: 2.5rem;
-}
-.theme-wedding .node-subtitle, .theme-wedding .map-link-btn {
-    color: var(--antique-gold);
-    border-color: var(--antique-gold);
-}
-
-.theme-bidaye {
-    background-color: var(--bidaye-blush);
-    color: #4A2E33;
-}
-.theme-bidaye .node-title {
-    color: var(--bidaye-rose);
-    font-style: italic;
-}
-.theme-bidaye .node-subtitle, .theme-bidaye .map-link-btn {
-    color: var(--bidaye-rose);
-    border-color: var(--bidaye-rose);
-}
-
-.theme-reception {
-    background-color: var(--reception-navy);
-    color: var(--ivory-cream);
-}
-.theme-reception .node-title {
-    color: var(--reception-gold);
-}
-.theme-reception .node-subtitle, .theme-reception .map-link-btn {
-    color: var(--reception-gold);
-    border-color: var(--reception-gold);
-}
-
-/* --- CLOSING NODE STYLING --- */
-.closing-node {
-    background-color: var(--ivory-cream);
-    color: var(--bengali-red);
-    padding: 6rem 1.5rem;
-}
-
-.close-frame {
-    width: 220px;
-    height: 280px;
-    margin: 0 auto 2rem auto;
-}
-
-.closing-sentiment {
     max-width: 380px;
-    margin: 0 auto 2rem auto;
-    font-size: 1.05rem;
-    line-height: 1.65;
+    width: 100%;
+    margin: 0 auto;
+    padding: 42px 24px;
+    border-radius: 16px;
+    box-sizing: border-box;
+    text-align: center;
+    transition: all 0.4s ease;
+}
+
+/* Motif divider under titles */
+.node-title::after {
+    display: block;
+    font-size: 0.9rem;
+    margin: 12px auto 16px auto;
+    letter-spacing: 4px;
+    opacity: 0.9;
+}
+
+
+/* 1. AIBUROBHAT — Ivory, Red, Alpana, Traditional */
+.theme-aiburo {
+    background: radial-gradient(circle at center, #FFFDF9 0%, #F4ECE1 100%);
+    color: #3A2219;
+}
+
+.theme-aiburo .node-inner {
+    border: 2px solid #A01C1C;
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow: 0 10px 30px rgba(160, 28, 28, 0.08);
+}
+
+.theme-aiburo .node-title {
+    color: #A01C1C; /* Traditional Red */
+    font-family: 'Playfair Display', serif;
+}
+
+.theme-aiburo .node-title::after {
+    content: "❖  🌸  ❖";
+    color: #A01C1C;
+}
+
+
+/* 2. MEHENDI / SANGEET — Green, Botanical, Mehendi, Musical */
+.theme-mehendi {
+    background: radial-gradient(circle at center, #264332 0%, #13241A 100%);
+    color: #E6EFEA;
+}
+
+.theme-mehendi .node-inner {
+    border: 1.5px solid rgba(163, 201, 168, 0.4);
+    background: rgba(18, 33, 24, 0.7);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+
+.theme-mehendi .node-title {
+    color: #A8E0B5; /* Botanical Sage Green */
+}
+
+.theme-mehendi .node-title::after {
+    content: "🌿  🎶  🌿";
+    color: #79C28B;
+}
+
+
+/* 3. GAYE HOLUD — Yellow, Marigold, Haldi, Festive */
+.theme-holud {
+    background: radial-gradient(circle at center, #FFF8E1 0%, #FFDC80 100%);
+    color: #4E342E;
+}
+
+.theme-holud .node-inner {
+    border: 2px dashed #E65100; /* Marigold Accent */
+    background: rgba(255, 254, 248, 0.92);
+    box-shadow: 0 10px 30px rgba(230, 81, 0, 0.12);
+}
+
+.theme-holud .node-title {
+    color: #D84315; /* Warm Turmeric / Marigold Red */
+}
+
+.theme-holud .node-title::after {
+    content: "🌼  ✨  🌼";
+    color: #F57C00;
+}
+
+
+/* 4. WEDDING — Deep Bengali Red + Antique Gold, Richly Ceremonial */
+.theme-wedding {
+    background: radial-gradient(circle at center, #5A0A10 0%, #2D0306 100%);
+    color: #FFF2E6;
+}
+
+.theme-wedding .node-inner {
+    border: 2px solid #D4AF37; /* Antique Gold Frame */
+    background: rgba(45, 5, 8, 0.85);
+    box-shadow: 0 14px 40px rgba(212, 175, 55, 0.22);
+}
+
+.theme-wedding .node-title {
+    color: #E5C158; /* Antique Gold */
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.theme-wedding .node-title::after {
+    content: "🪔  ❖  🪔";
+    color: #D4AF37;
+}
+
+
+/* 5. BIDAYE — Soft Pink/Blush, Sparse & Emotional */
+.theme-bidaye {
+    background: radial-gradient(circle at center, #FDF5F3 0%, #F2DDD8 100%);
+    color: #5C3D38;
+}
+
+.theme-bidaye .node-inner {
+    border: 1px solid rgba(184, 137, 131, 0.35);
+    background: rgba(255, 255, 255, 0.65);
+    padding: 54px 28px; /* Extra breathing room for sparse, tender feel */
+    box-shadow: 0 8px 24px rgba(140, 90, 86, 0.06);
+}
+
+.theme-bidaye .node-title {
+    color: #8C5A56;
+    font-weight: 400;
     font-style: italic;
-    color: #554A42;
 }
 
-.signoff-title {
-    font-family: var(--font-serif);
-    font-size: 1.6rem;
-    color: var(--antique-gold-dark);
-    font-style: italic;
-    line-height: 1.4;
+.theme-bidaye .node-title::after {
+    content: "🌸";
+    font-size: 0.75rem;
+    color: #B88983;
+    opacity: 0.7;
 }
 
-.signoff-title span {
-    color: var(--bengali-red);
-    font-style: normal;
-    font-weight: 600;
+
+/* 6. RECEPTION — Blue + Gold, Elegant Evening Celebration */
+.theme-reception {
+    background: radial-gradient(circle at center, #0F2042 0%, #050C1B 100%);
+    color: #E2E8F0;
 }
 
-/* --- ANIMATIONS --- */
-.fade-in-up {
-    animation: fadeInUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+.theme-reception .node-inner {
+    border: 1.5px solid rgba(226, 184, 87, 0.65);
+    background: rgba(10, 20, 42, 0.78);
+    box-shadow: 0 14px 38px rgba(0, 0, 0, 0.45);
 }
 
-@keyframes fadeInUp {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
+.theme-reception .node-title {
+    color: #E2B857; /* Evening Gold */
+    letter-spacing: 1px;
 }
 
-.scroll-reveal {
-    opacity: 0;
-    transform: translateY(25px);
-    transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.scroll-reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
+.theme-reception .node-title::after {
+    content: "🥂  ✦  🥂";
+    color: #E2B857;
 }
