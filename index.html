@@ -6,12 +6,11 @@
 
   <title>Chandrima & Arnab — Wedding Invitation</title>
 
-  <!-- Wedding invitation fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=Galada&display=swap"
     rel="stylesheet"
   >
 
@@ -23,25 +22,24 @@
   <main id="app">
 
     <!-- =========================
-         WELCOME / INVITATION GATE
+         OPENING COVER
          ========================= -->
 
     <section class="gate" id="gate">
 
-      <div class="gate-floral floral-top" aria-hidden="true"></div>
-      <div class="gate-floral floral-bottom" aria-hidden="true"></div>
+      <div class="cover-ornament ornament-left" aria-hidden="true"></div>
+      <div class="cover-ornament ornament-right" aria-hidden="true"></div>
 
       <div class="gate-inner">
 
-        <!-- Actual Bengali artwork from the invitation card -->
-        <div class="bengali-logo">
+        <!-- Physical wedding-card artwork -->
+        <div class="wedding-logo">
           <img
             src="images/subho-bibaho.png"
             alt="শুভ বিবাহ"
           >
         </div>
 
-        <!-- Couple photograph -->
         <div class="couple-frame">
           <img
             id="coupleImage"
@@ -54,15 +52,21 @@
           A Wedding Invitation
         </p>
 
-        <h1>
-          Chandrima <span>&amp;</span> Arnab
-        </h1>
+        <div class="couple-names">
+          <span>Chandrima</span>
+          <small>&amp;</small>
+          <span>Arnab</span>
+        </div>
+
+        <div class="name-rule" aria-hidden="true">
+          <i></i>
+          <span>✦</span>
+          <i></i>
+        </div>
 
         <p class="intro">
           I would love for you to be part of my wedding celebrations.
         </p>
-
-        <!-- Invitation code -->
 
         <form id="codeForm" class="code-form">
 
@@ -83,7 +87,7 @@
             >
 
             <button type="submit">
-              Open
+              Open Invitation
             </button>
 
           </div>
@@ -110,74 +114,29 @@
       id="invitation"
     >
 
-      <header class="story-header">
-
-        <!-- Actual Bengali artwork -->
-        <div class="bengali-logo small">
-          <img
-            src="images/subho-bibaho.png"
-            alt="শুভ বিবাহ"
-          >
-        </div>
-
-        <p class="header-name">
-          Chandrima &amp; Arnab
-        </p>
-
-        <button
-          class="change-code"
-          id="changeCode"
-          type="button"
-        >
-          Change invitation
-        </button>
-
-      </header>
-
-
-      <!--
-        The personalized wedding journey
-        is dynamically inserted here.
-      -->
-
       <div id="story"></div>
-
 
       <!-- =========================
            CLOSING
            ========================= -->
 
-      <footer
-        class="closing"
-        id="closing"
-      >
+      <footer class="closing" id="closing">
 
-        <!-- Closing photograph -->
         <div class="closing-image-frame">
           <img
             id="closingImage"
-            src="images/couple-close.jpg"
+            src="images/couple-close.jpeg"
             alt="Chandrima"
           >
         </div>
 
-        <div
-          class="closing-ornament"
-          aria-hidden="true"
-        >
+        <div class="closing-ornament" aria-hidden="true">
           ✦
         </div>
 
-        <!-- Actual Bengali artwork -->
-        <div class="bengali-logo closing-logo">
-          <img
-            src="images/subho-bibaho.png"
-            alt="শুভ বিবাহ"
-          >
-        </div>
-
         <h2>
-          With love, Chandrima
+          With love,<br>
+          Chandrima
         </h2>
 
         <p>
@@ -185,17 +144,19 @@
           I can't wait to celebrate with you.
         </p>
 
+        <div class="closing-rule" aria-hidden="true">
+          <span>❧</span>
+          <i></i>
+          <span>❧</span>
+        </div>
+
       </footer>
 
     </section>
 
   </main>
 
-
-  <!-- Wedding information and guest access -->
   <script src="config/invitation-data.js"></script>
-
-  <!-- Website functionality -->
   <script src="script.js"></script>
 
 </body>
