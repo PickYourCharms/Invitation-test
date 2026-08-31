@@ -1,16 +1,50 @@
 /* =========================================================
    CHANDRIMA & ARNAB
-   BENGALI MOTIF DECORATION LAYER
+   BENGALI MOTIF DECORATION LAYER — v2
    =========================================================
-   
-   IMPORTANT:
-   This file is DECORATION ONLY.
-   It does not alter the existing event layout,
-   typography, spacing, content or functionality.
-   
-   No external image files are required.
-   All motifs are created with CSS.
+
+   DECORATION ONLY. Loaded after styles.css. Does not alter
+   event layout, dimensions, typography, spacing, colours,
+   content or functionality — everything here is absolutely
+   positioned, pointer-events: none, and clipped inside each
+   .event section.
+
+   Every motif below is a real hand-drawn silhouette (topor,
+   kolka, paan-pata, marigold string, folk floral spray,
+   alpana medallion, shehnai) authored as inline SVG and
+   applied with mask-image, so a single line-art asset can be
+   recoloured per ceremony with plain CSS. No external image
+   files, no network requests — the SVGs are inlined as data
+   URIs directly in this stylesheet.
    ========================================================= */
+
+:root {
+  /* Tiered conical bridal crown (topor) with base band + tassels.
+     Used strongly on the Wedding, faintly on Aiburobhat. */
+  --bm-topor: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20130%22%3E%20%3Cpath%20fill%3D%22black%22%20d%3D%22%20M20%2C100%20L80%2C100%20L80%2C86%20L72%2C86%20L72%2C68%20L66%2C68%20L66%2C50%20L60%2C50%20L60%2C30%20L54%2C30%20L50%2C6%20L46%2C30%20L40%2C30%20L40%2C50%20L34%2C50%20L34%2C68%20L28%2C68%20L28%2C86%20L20%2C86%20Z%22/%3E%20%3Crect%20fill%3D%22black%22%20x%3D%2212%22%20y%3D%22100%22%20width%3D%2276%22%20height%3D%2213%22%20rx%3D%226%22/%3E%20%3Ccircle%20fill%3D%22black%22%20cx%3D%229%22%20cy%3D%22109%22%20r%3D%225.5%22/%3E%20%3Ccircle%20fill%3D%22black%22%20cx%3D%2291%22%20cy%3D%22109%22%20r%3D%225.5%22/%3E%20%3Ccircle%20fill%3D%22black%22%20cx%3D%226%22%20cy%3D%22119%22%20r%3D%223.4%22/%3E%20%3Ccircle%20fill%3D%22black%22%20cx%3D%2294%22%20cy%3D%22119%22%20r%3D%223.4%22/%3E%20%3C/svg%3E");
+
+  /* Ornate curling paisley (kolka) with a spiral tail and two
+     tiny flanking leaves — the brush-alpana paisley language. */
+  --bm-kolka: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2080%20120%22%3E%20%3Cpath%20fill%3D%22black%22%20d%3D%22%20M40%2C6%20C60%2C6%2066%2C30%2056%2C46%20C48%2C58%2044%2C66%2052%2C76%20C60%2C84%2058%2C98%2044%2C106%20C50%2C96%2046%2C88%2036%2C86%20C20%2C82%2014%2C68%2022%2C56%20C28%2C46%2034%2C40%2030%2C28%20C28%2C18%2032%2C10%2040%2C6%20Z%22/%3E%20%3Cpath%20fill%3D%22black%22%20d%3D%22M46%2C92%20C52%2C94%2054%2C100%2048%2C104%20C44%2C101%2043%2C96%2046%2C92%20Z%22/%3E%20%3Cpath%20fill%3D%22black%22%20d%3D%22M18%2C50%20C10%2C46%208%2C38%2014%2C32%20C20%2C38%2022%2C46%2018%2C50%20Z%22/%3E%20%3Cpath%20fill%3D%22black%22%20d%3D%22M62%2C40%20C70%2C36%2072%2C28%2066%2C22%20C60%2C28%2058%2C36%2062%2C40%20Z%22/%3E%20%3C/svg%3E");
+
+  /* Paan-pata (betel leaf) with a subtractive centre vein. */
+  --bm-paan: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2080%2090%22%3E%20%3Cpath%20fill%3D%22black%22%20fill-rule%3D%22evenodd%22%20d%3D%22%20M40%2C4%20C58%2C4%2074%2C20%2074%2C40%20C74%2C62%2056%2C78%2040%2C86%20C24%2C78%206%2C62%206%2C40%20C6%2C20%2022%2C4%2040%2C4%20Z%20M40%2C12%20L43%2C42%20L40%2C80%20L37%2C42%20Z%22/%3E%20%3C/svg%3E");
+
+  /* Single marigold bloom — tiled with mask-repeat to form a
+     hanging marigold string along the Gaye Holud top edge. */
+  --bm-marigold: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2040%2046%22%3E%20%3Cline%20x1%3D%2220%22%20y1%3D%2221%22%20x2%3D%2220%22%20y2%3D%2246%22%20stroke%3D%22black%22%20stroke-width%3D%222%22/%3E%20%3Cellipse%20cx%3D%2227.5%22%20cy%3D%2214.0%22%20rx%3D%226%22%20ry%3D%223%22%20transform%3D%22rotate%280.0%2027.5%2014.0%29%22%20fill%3D%22black%22/%3E%3Cellipse%20cx%3D%2225.3%22%20cy%3D%2219.3%22%20rx%3D%226%22%20ry%3D%223%22%20transform%3D%22rotate%2845.0%2025.3%2019.3%29%22%20fill%3D%22black%22/%3E%3Cellipse%20cx%3D%2220.0%22%20cy%3D%2221.5%22%20rx%3D%226%22%20ry%3D%223%22%20transform%3D%22rotate%2890.0%2020.0%2021.5%29%22%20fill%3D%22black%22/%3E%3Cellipse%20cx%3D%2214.7%22%20cy%3D%2219.3%22%20rx%3D%226%22%20ry%3D%223%22%20transform%3D%22rotate%28135.0%2014.7%2019.3%29%22%20fill%3D%22black%22/%3E%3Cellipse%20cx%3D%2212.5%22%20cy%3D%2214.0%22%20rx%3D%226%22%20ry%3D%223%22%20transform%3D%22rotate%28180.0%2012.5%2014.0%29%22%20fill%3D%22black%22/%3E%3Cellipse%20cx%3D%2214.7%22%20cy%3D%228.7%22%20rx%3D%226%22%20ry%3D%223%22%20transform%3D%22rotate%28225.0%2014.7%208.7%29%22%20fill%3D%22black%22/%3E%3Cellipse%20cx%3D%2220.0%22%20cy%3D%226.5%22%20rx%3D%226%22%20ry%3D%223%22%20transform%3D%22rotate%28270.0%2020.0%206.5%29%22%20fill%3D%22black%22/%3E%3Cellipse%20cx%3D%2225.3%22%20cy%3D%228.7%22%20rx%3D%226%22%20ry%3D%223%22%20transform%3D%22rotate%28315.0%2025.3%208.7%29%22%20fill%3D%22black%22/%3E%20%3Ccircle%20cx%3D%2220%22%20cy%3D%2214%22%20r%3D%224%22%20fill%3D%22black%22/%3E%20%3C/svg%3E");
+
+  /* Delicate layered folk flower on a curved stem with two small
+     leaves — the Bengali folk-floral language for Mehendi/Bidaye. */
+  --bm-folk: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2090%20130%22%3E%20%3Cpath%20fill%3D%22black%22%20d%3D%22M45%2C72%20C40%2C92%2030%2C108%2016%2C124%20C15%2C125%2013%2C124%2013.4%2C122%20C22%2C104%2030%2C88%2038%2C70%20Z%22/%3E%20%3Cpath%20fill%3D%22black%22%20d%3D%22M24%2C96%20C14%2C94%206%2C98%202%2C106%20C12%2C110%2020%2C106%2024%2C96%20Z%22/%3E%20%3Cpath%20fill%3D%22black%22%20d%3D%22M30%2C110%20C20%2C110%2012%2C116%2010%2C124%20C20%2C126%2028%2C120%2030%2C110%20Z%22/%3E%20%3Cpath%20fill%3D%22black%22%20transform%3D%22rotate%280.0%2045%2040%29%22%20d%3D%22M45%2C32%20C54%2C26%2054%2C14%2045%2C8%20C36%2C14%2036%2C26%2045%2C32%20Z%22/%3E%3Cpath%20fill%3D%22black%22%20transform%3D%22rotate%2860.0%2045%2040%29%22%20d%3D%22M45%2C32%20C54%2C26%2054%2C14%2045%2C8%20C36%2C14%2036%2C26%2045%2C32%20Z%22/%3E%3Cpath%20fill%3D%22black%22%20transform%3D%22rotate%28120.0%2045%2040%29%22%20d%3D%22M45%2C32%20C54%2C26%2054%2C14%2045%2C8%20C36%2C14%2036%2C26%2045%2C32%20Z%22/%3E%3Cpath%20fill%3D%22black%22%20transform%3D%22rotate%28180.0%2045%2040%29%22%20d%3D%22M45%2C32%20C54%2C26%2054%2C14%2045%2C8%20C36%2C14%2036%2C26%2045%2C32%20Z%22/%3E%3Cpath%20fill%3D%22black%22%20transform%3D%22rotate%28240.0%2045%2040%29%22%20d%3D%22M45%2C32%20C54%2C26%2054%2C14%2045%2C8%20C36%2C14%2036%2C26%2045%2C32%20Z%22/%3E%3Cpath%20fill%3D%22black%22%20transform%3D%22rotate%28300.0%2045%2040%29%22%20d%3D%22M45%2C32%20C54%2C26%2054%2C14%2045%2C8%20C36%2C14%2036%2C26%2045%2C32%20Z%22/%3E%20%3Ccircle%20cx%3D%2245%22%20cy%3D%2240%22%20r%3D%227%22%20fill%3D%22black%22/%3E%20%3C/svg%3E");
+
+  /* Concentric dotted quarter-arcs radiating from a corner point —
+     an alpana rangoli corner medallion. */
+  --bm-alpana: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20140%20140%22%3E%20%3Cpath%20d%3D%22M0%2C116%20A24%2C24%200%200%201%2024%2C140%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20stroke-dasharray%3D%221%207.5%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M0%2C94%20A46%2C46%200%200%201%2046%2C140%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20stroke-dasharray%3D%221%207.5%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M0%2C72%20A68%2C68%200%200%201%2068%2C140%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20stroke-dasharray%3D%221%207.5%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M0%2C50%20A90%2C90%200%200%201%2090%2C140%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20stroke-dasharray%3D%221%207.5%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M0%2C28%20A112%2C112%200%200%201%20112%2C140%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20stroke-dasharray%3D%221%207.5%22%20stroke-linecap%3D%22round%22/%3E%20%3Ccircle%20cx%3D%229.0%22%20cy%3D%22117.7%22%20r%3D%222.3%22%20fill%3D%22black%22/%3E%3Ccircle%20cx%3D%2217.0%22%20cy%3D%22123.0%22%20r%3D%222.3%22%20fill%3D%22black%22/%3E%3Ccircle%20cx%3D%2222.3%22%20cy%3D%22131.0%22%20r%3D%222.3%22%20fill%3D%22black%22/%3E%3Ccircle%20cx%3D%2217.2%22%20cy%3D%2297.3%22%20r%3D%222.3%22%20fill%3D%22black%22/%3E%3Ccircle%20cx%3D%2232.5%22%20cy%3D%22107.5%22%20r%3D%222.3%22%20fill%3D%22black%22/%3E%3Ccircle%20cx%3D%2242.7%22%20cy%3D%22122.8%22%20r%3D%222.3%22%20fill%3D%22black%22/%3E%3Ccircle%20cx%3D%2225.5%22%20cy%3D%2277.0%22%20r%3D%222.3%22%20fill%3D%22black%22/%3E%3Ccircle%20cx%3D%2248.1%22%20cy%3D%2291.9%22%20r%3D%222.3%22%20fill%3D%22black%22/%3E%3Ccircle%20cx%3D%2263.0%22%20cy%3D%22114.5%22%20r%3D%222.3%22%20fill%3D%22black%22/%3E%3Ccircle%20cx%3D%2233.7%22%20cy%3D%2256.6%22%20r%3D%222.3%22%20fill%3D%22black%22/%3E%3Ccircle%20cx%3D%2263.6%22%20cy%3D%2276.4%22%20r%3D%222.3%22%20fill%3D%22black%22/%3E%3Ccircle%20cx%3D%2283.4%22%20cy%3D%22106.3%22%20r%3D%222.3%22%20fill%3D%22black%22/%3E%3Ccircle%20cx%3D%2242.0%22%20cy%3D%2236.2%22%20r%3D%222.3%22%20fill%3D%22black%22/%3E%3Ccircle%20cx%3D%2279.2%22%20cy%3D%2260.8%22%20r%3D%222.3%22%20fill%3D%22black%22/%3E%3Ccircle%20cx%3D%22103.8%22%20cy%3D%2298.0%22%20r%3D%222.3%22%20fill%3D%22black%22/%3E%20%3Ccircle%20cx%3D%220%22%20cy%3D%22140%22%20r%3D%227%22%20fill%3D%22black%22/%3E%20%3C/svg%3E");
+
+  /* A single shehnai horn — the quiet nod to music on Mehendi. */
+  --bm-shehnai: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2090%2050%22%3E%20%3Cpath%20fill%3D%22black%22%20d%3D%22%20M2%2C20%20L54%2C10%20C68%2C7%2080%2C10%2088%2C2%20L88%2C10%20C82%2C16%2072%2C16%2066%2C20%20C72%2C24%2082%2C24%2088%2C30%20L88%2C38%20C80%2C30%2068%2C33%2054%2C30%20L2%2C24%20Z%22/%3E%20%3Ccircle%20cx%3D%226%22%20cy%3D%2222%22%20r%3D%225%22%20fill%3D%22black%22/%3E%20%3C/svg%3E");
+}
 
 
 /* =========================================================
@@ -22,12 +56,12 @@
   overflow: hidden;
 }
 
-/* Keep all decoration behind the existing content */
-
 .event::before,
 .event::after {
-  pointer-events: none;
+  content: "";
   position: absolute;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .event-content {
@@ -35,658 +69,462 @@
   z-index: 5;
 }
 
+.event-content::before,
+.event-content::after {
+  pointer-events: none;
+}
+
 
 /* =========================================================
    AIBUROBHAAT
    ---------------------------------------------------------
-   Reference language:
-   - quiet alpana
-   - shola / mukut geometry
-   - ivory + muted red
+   Very subtle: a quarter alpana medallion tucked in the
+   bottom-left corner, and a faint topor silhouette resting
+   near the top. Intimate, not busy — nothing else.
    ========================================================= */
 
 .theme-aiburo::before {
-  content: "";
-  z-index: 1;
+  width: 130px;
+  height: 130px;
 
-  width: 190px;
-  height: 190px;
+  left: -14px;
+  bottom: 6%;
 
-  left: -92px;
-  bottom: 7%;
+  background-color: #a91d2d;
+  -webkit-mask: var(--bm-alpana) no-repeat left bottom / contain;
+  mask: var(--bm-alpana) no-repeat left bottom / contain;
 
-  opacity: .18;
-
-  border: 1px solid currentColor;
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle at center,
-      transparent 0 23%,
-      currentColor 24% 24.8%,
-      transparent 25% 39%,
-      currentColor 40% 40.8%,
-      transparent 41% 56%,
-      currentColor 57% 57.7%,
-      transparent 58%
-    );
-
-  color: #a91d2d;
+  opacity: 0.16;
 }
 
-
-/* Alpana petals */
-
 .theme-aiburo::after {
-  content: "";
+  width: 46px;
+  height: 60px;
 
-  z-index: 2;
-
-  width: 72px;
-  height: 82px;
-
-  top: 9%;
+  top: 6%;
   left: 50%;
-
   transform: translateX(-50%);
 
-  opacity: .34;
+  background-color: #a91d2d;
+  -webkit-mask: var(--bm-topor) no-repeat center / contain;
+  mask: var(--bm-topor) no-repeat center / contain;
 
-  background:
-    radial-gradient(
-      ellipse at center top,
-      transparent 0 27%,
-      #a91d2d 28% 31%,
-      transparent 32%
-    ),
-    radial-gradient(
-      ellipse at center bottom,
-      transparent 0 27%,
-      #a91d2d 28% 31%,
-      transparent 32%
-    ),
-    radial-gradient(
-      ellipse at left center,
-      transparent 0 27%,
-      #a91d2d 28% 31%,
-      transparent 32%
-    ),
-    radial-gradient(
-      ellipse at right center,
-      transparent 0 27%,
-      #a91d2d 28% 31%,
-      transparent 32%
-    );
-
-  border: 1px solid #a91d2d;
-  border-radius: 50% 50% 45% 45%;
+  opacity: 0.16;
 }
 
 
 /* =========================================================
    MEHENDI & SANGEET
    ---------------------------------------------------------
-   Reference language:
-   - Bengali folk/floral ornament
-   - delicate curling stem
-   - tiny musical suggestion
+   A delicate folk floral spray at one corner, and a single
+   quiet shehnai silhouette at the other — festive and
+   artistic, without a generic mehndi-template feel.
    ========================================================= */
 
 .theme-mehendi::before {
-  content: "";
+  width: 78px;
+  height: 112px;
 
-  z-index: 1;
+  left: -6px;
+  top: 7%;
 
-  width: 125px;
-  height: 170px;
+  background-color: #245c49;
+  -webkit-mask: var(--bm-folk) no-repeat center / contain;
+  mask: var(--bm-folk) no-repeat center / contain;
 
-  left: -32px;
-  top: 8%;
+  opacity: 0.24;
 
-  opacity: .24;
-
-  border-left: 2px solid #245c49;
-  border-radius: 0 0 80% 0;
-
-  transform: rotate(-8deg);
-
-  background:
-    radial-gradient(
-      ellipse at 30% 18%,
-      transparent 0 17px,
-      #245c49 18px 19px,
-      transparent 20px
-    ),
-    radial-gradient(
-      ellipse at 52% 37%,
-      transparent 0 14px,
-      #245c49 15px 16px,
-      transparent 17px
-    ),
-    radial-gradient(
-      ellipse at 31% 59%,
-      transparent 0 12px,
-      #245c49 13px 14px,
-      transparent 15px
-    ),
-    radial-gradient(
-      ellipse at 61% 75%,
-      transparent 0 10px,
-      #245c49 11px 12px,
-      transparent 13px
-    );
+  transform: rotate(-6deg);
 }
 
-
-/* Folk dots / musical rhythm */
-
 .theme-mehendi::after {
-  content: "♪  ♫  ♪";
+  width: 68px;
+  height: 38px;
 
-  z-index: 2;
+  right: -4px;
+  bottom: 9%;
 
-  right: 10%;
-  bottom: 12%;
+  background-color: #b9860f;
+  -webkit-mask: var(--bm-shehnai) no-repeat center / contain;
+  mask: var(--bm-shehnai) no-repeat center / contain;
 
-  font-family: Georgia, serif;
-  font-size: 27px;
-  letter-spacing: 8px;
+  opacity: 0.22;
 
-  color: #39735d;
+  transform: rotate(4deg);
+}
 
-  opacity: .38;
+.theme-mehendi .event-content::before {
+  content: "";
 
-  white-space: nowrap;
+  position: absolute;
+
+  width: 40px;
+  height: 58px;
+
+  right: 4px;
+  top: -14px;
+
+  background-color: #245c49;
+  -webkit-mask: var(--bm-folk) no-repeat center / contain;
+  mask: var(--bm-folk) no-repeat center / contain;
+
+  opacity: 0.2;
+
+  transform: scaleX(-1) rotate(-10deg);
 }
 
 
 /* =========================================================
    GAYE HOLUD
    ---------------------------------------------------------
-   Reference language:
-   - marigold strings
-   - Bengali floral decoration
-   - festive but not generic Indian wedding graphics
+   Two short marigold strings hang from the top corners —
+   restrained, not a full curtain — plus a single warm folk
+   bloom low in the opposite corner.
    ========================================================= */
 
 .theme-holud::before {
-  content: "";
+  width: 40px;
+  height: 96px;
 
-  z-index: 1;
+  left: 6%;
+  top: 0;
 
-  width: 118px;
-  height: 205px;
+  background-color: #d49300;
+  -webkit-mask-image: var(--bm-marigold);
+  -webkit-mask-repeat: repeat-y;
+  -webkit-mask-size: 40px 46px;
+  -webkit-mask-position: top;
+  mask-image: var(--bm-marigold);
+  mask-repeat: repeat-y;
+  mask-size: 40px 46px;
+  mask-position: top;
 
-  left: -8px;
-  top: -8px;
-
-  opacity: .52;
-
-  background:
-    radial-gradient(
-      circle at 20px 12px,
-      #e8a900 0 5px,
-      transparent 6px
-    ),
-    radial-gradient(
-      circle at 20px 28px,
-      #f0b500 0 6px,
-      transparent 7px
-    ),
-    radial-gradient(
-      circle at 20px 46px,
-      #e8a900 0 5px,
-      transparent 6px
-    ),
-    radial-gradient(
-      circle at 20px 64px,
-      #f0b500 0 6px,
-      transparent 7px
-    ),
-    radial-gradient(
-      circle at 20px 82px,
-      #e8a900 0 5px,
-      transparent 6px
-    ),
-    radial-gradient(
-      circle at 20px 100px,
-      #f0b500 0 6px,
-      transparent 7px
-    ),
-    radial-gradient(
-      circle at 20px 118px,
-      #e8a900 0 5px,
-      transparent 6px
-    ),
-    radial-gradient(
-      circle at 20px 136px,
-      #f0b500 0 6px,
-      transparent 7px
-    ),
-    radial-gradient(
-      circle at 20px 154px,
-      #e8a900 0 5px,
-      transparent 6px
-    ),
-    radial-gradient(
-      circle at 20px 172px,
-      #f0b500 0 6px,
-      transparent 7px
-    );
-
-  border-left: 2px solid #d49300;
+  opacity: 0.55;
 }
 
-
-/* Small floral accent */
-
 .theme-holud::after {
-  content: "✽";
+  width: 40px;
+  height: 78px;
 
-  z-index: 2;
+  right: 9%;
+  top: 0;
 
-  right: 11%;
-  top: 17%;
+  background-color: #e8a900;
+  -webkit-mask-image: var(--bm-marigold);
+  -webkit-mask-repeat: repeat-y;
+  -webkit-mask-size: 34px 40px;
+  -webkit-mask-position: top;
+  mask-image: var(--bm-marigold);
+  mask-repeat: repeat-y;
+  mask-size: 34px 40px;
+  mask-position: top;
 
-  font-family: Georgia, serif;
-  font-size: 38px;
+  opacity: 0.45;
+}
 
-  color: #c97d00;
+.theme-holud .event-content::before {
+  content: "";
 
-  opacity: .38;
+  position: absolute;
+
+  width: 54px;
+  height: 78px;
+
+  left: -6px;
+  bottom: -24px;
+
+  background-color: #c97d00;
+  -webkit-mask: var(--bm-folk) no-repeat center / contain;
+  mask: var(--bm-folk) no-repeat center / contain;
+
+  opacity: 0.3;
+
+  transform: scaleX(-1) rotate(8deg);
 }
 
 
 /* =========================================================
-   WEDDING
+   THE WEDDING
    ---------------------------------------------------------
-   STRONGEST BENGALI CUE
-   
-   Reference language:
-   - topor
-   - shola geometry
-   - kolka / paan-pata
-   - traditional Bengali ornamental symmetry
+   The strongest identity: a proper topor crown at the top,
+   a kolka paisley and paan-pata leaf pairing in one corner,
+   and a matching kolka echo at the opposite corner — all in
+   antique gold, still restrained against the deep red.
    ========================================================= */
 
 .theme-wedding::before {
-  content: "";
+  width: 66px;
+  height: 86px;
 
-  z-index: 1;
-
-  width: 92px;
-  height: 105px;
-
-  top: 7%;
+  top: 6.5%;
   left: 50%;
-
   transform: translateX(-50%);
 
-  opacity: .34;
+  background-color: #d5b25d;
+  -webkit-mask: var(--bm-topor) no-repeat center / contain;
+  mask: var(--bm-topor) no-repeat center / contain;
 
-  border: 2px solid #d5b25d;
-
-  border-bottom: none;
-
-  border-radius: 48% 48% 0 0;
-
-  background:
-    radial-gradient(
-      circle at 50% 34%,
-      #d5b25d 0 5px,
-      transparent 6px
-    ),
-    radial-gradient(
-      ellipse at 50% 52%,
-      transparent 0 18px,
-      #d5b25d 19px 21px,
-      transparent 22px
-    );
-
-  clip-path: polygon(
-    50% 0%,
-    68% 19%,
-    76% 42%,
-    92% 70%,
-    72% 70%,
-    50% 100%,
-    28% 70%,
-    8% 70%,
-    24% 42%,
-    32% 19%
-  );
+  opacity: 0.42;
 }
 
-
-/* Bengali kolka / paan-pata form */
-
 .theme-wedding::after {
+  width: 96px;
+  height: 96px;
+
+  right: -18px;
+  bottom: 8%;
+
+  background-color: #d5b25d;
+  -webkit-mask-image: var(--bm-kolka), var(--bm-paan);
+  -webkit-mask-repeat: no-repeat, no-repeat;
+  -webkit-mask-position: right 6px top 0, left 4px bottom 6px;
+  -webkit-mask-size: 46px 68px, 40px 44px;
+  mask-image: var(--bm-kolka), var(--bm-paan);
+  mask-repeat: no-repeat, no-repeat;
+  mask-position: right 6px top 0, left 4px bottom 6px;
+  mask-size: 46px 68px, 40px 44px;
+
+  opacity: 0.3;
+
+  transform: rotate(8deg);
+}
+
+.theme-wedding .event-content::before {
   content: "";
 
-  z-index: 1;
+  position: absolute;
 
-  width: 155px;
-  height: 195px;
+  width: 30px;
+  height: 45px;
 
-  right: -45px;
-  bottom: 3%;
+  left: -2px;
+  top: -18px;
 
-  opacity: .26;
+  background-color: #e0bd62;
+  -webkit-mask: var(--bm-kolka) no-repeat center / contain;
+  mask: var(--bm-kolka) no-repeat center / contain;
 
-  border: 2px solid #d5b25d;
+  opacity: 0.4;
 
-  border-radius: 70% 0 70% 0;
+  transform: scaleX(-1) rotate(-6deg);
+}
 
-  transform: rotate(25deg);
+.theme-wedding .event-content::after {
+  content: "";
 
-  background:
-    radial-gradient(
-      circle at 38% 35%,
-      #d5b25d 0 3px,
-      transparent 4px
-    ),
-    radial-gradient(
-      circle at 52% 48%,
-      #d5b25d 0 3px,
-      transparent 4px
-    ),
-    radial-gradient(
-      circle at 64% 62%,
-      #d5b25d 0 3px,
-      transparent 4px
-    );
+  position: absolute;
+
+  width: 30px;
+  height: 45px;
+
+  right: -2px;
+  bottom: -20px;
+
+  background-color: #e0bd62;
+  -webkit-mask: var(--bm-kolka) no-repeat center / contain;
+  mask: var(--bm-kolka) no-repeat center / contain;
+
+  opacity: 0.4;
+
+  transform: rotate(174deg);
 }
 
 
 /* =========================================================
    BIDAYE
    ---------------------------------------------------------
-   Reference language:
-   - soft floral Bengali ornament
-   - quieter
-   - delicate farewell feeling
+   Quieter than the Wedding: a single muted folk-floral
+   spray, low opacity, one corner only.
    ========================================================= */
 
 .theme-bidaye::before {
-  content: "";
+  width: 62px;
+  height: 90px;
 
-  z-index: 1;
+  left: -8px;
+  top: 10%;
 
-  width: 145px;
-  height: 175px;
+  background-color: #a65d73;
+  -webkit-mask: var(--bm-folk) no-repeat center / contain;
+  mask: var(--bm-folk) no-repeat center / contain;
 
-  left: -42px;
-  top: 12%;
+  opacity: 0.18;
 
-  opacity: .17;
-
-  border: 2px solid #a65d73;
-
-  border-radius: 75% 25% 75% 25%;
-
-  transform: rotate(-28deg);
-
-  background:
-    radial-gradient(
-      ellipse at 45% 25%,
-      transparent 0 13px,
-      #a65d73 14px 15px,
-      transparent 16px
-    ),
-    radial-gradient(
-      ellipse at 55% 50%,
-      transparent 0 11px,
-      #a65d73 12px 13px,
-      transparent 14px
-    ),
-    radial-gradient(
-      ellipse at 45% 75%,
-      transparent 0 9px,
-      #a65d73 10px 11px,
-      transparent 12px
-    );
+  transform: rotate(-10deg);
 }
 
-
-/* Ganch-kouto inspired little ornamental seal */
-
 .theme-bidaye::after {
-  content: "✦";
+  width: 26px;
+  height: 39px;
 
-  z-index: 2;
+  right: 6%;
+  bottom: 8%;
 
-  right: 12%;
-  bottom: 15%;
+  background-color: #a65d73;
+  -webkit-mask: var(--bm-kolka) no-repeat center / contain;
+  mask: var(--bm-kolka) no-repeat center / contain;
 
-  font-size: 24px;
+  opacity: 0.16;
 
-  color: #a65d73;
-
-  opacity: .30;
+  transform: rotate(150deg);
 }
 
 
 /* =========================================================
    RECEPTION
    ---------------------------------------------------------
-   Reference language:
-   - elegant Bengali ornamental border
-   - kolka
-   - formal evening finish
+   Formal and elegant: matching alpana medallions in two
+   corners, echoing the Aiburobhat motif to bookend the
+   sequence, plus a small paan-pata accent for warmth.
    ========================================================= */
 
 .theme-reception::before {
-  content: "";
+  width: 150px;
+  height: 150px;
 
-  z-index: 1;
-
-  width: 130px;
-  height: 175px;
-
-  left: -42px;
+  left: -20px;
   top: 6%;
 
-  opacity: .22;
+  background-color: #d8b95e;
+  -webkit-mask: var(--bm-alpana) no-repeat left top / contain;
+  mask: var(--bm-alpana) no-repeat left top / contain;
 
-  border: 1px solid #d8b95e;
+  opacity: 0.2;
 
-  border-radius: 70% 0 70% 0;
-
-  transform: rotate(-25deg);
-
-  background:
-    radial-gradient(
-      circle at 45% 30%,
-      #d8b95e 0 4px,
-      transparent 5px
-    ),
-    radial-gradient(
-      circle at 55% 48%,
-      #d8b95e 0 3px,
-      transparent 4px
-    ),
-    radial-gradient(
-      circle at 65% 65%,
-      #d8b95e 0 3px,
-      transparent 4px
-    );
+  transform: rotate(180deg);
 }
-
-
-/* Mirrored ornamental corner */
 
 .theme-reception::after {
+  width: 150px;
+  height: 150px;
+
+  right: -20px;
+  bottom: 6%;
+
+  background-color: #d8b95e;
+  -webkit-mask: var(--bm-alpana) no-repeat left top / contain;
+  mask: var(--bm-alpana) no-repeat left top / contain;
+
+  opacity: 0.2;
+}
+
+.theme-reception .event-content::before {
   content: "";
 
-  z-index: 1;
+  position: absolute;
 
-  width: 145px;
-  height: 180px;
+  width: 30px;
+  height: 34px;
 
-  right: -48px;
-  bottom: 4%;
+  right: 6px;
+  top: -14px;
 
-  opacity: .20;
+  background-color: #d8b95e;
+  -webkit-mask: var(--bm-paan) no-repeat center / contain;
+  mask: var(--bm-paan) no-repeat center / contain;
 
-  border: 1px solid #d8b95e;
+  opacity: 0.28;
 
-  border-radius: 0 70% 0 70%;
-
-  transform: rotate(-25deg);
-
-  background:
-    radial-gradient(
-      circle at 55% 32%,
-      #d8b95e 0 4px,
-      transparent 5px
-    ),
-    radial-gradient(
-      circle at 45% 50%,
-      #d8b95e 0 3px,
-      transparent 4px
-    ),
-    radial-gradient(
-      circle at 35% 68%,
-      #d8b95e 0 3px,
-      transparent 4px
-    );
-}
-
-
-/* =========================================================
-   SUBTLE BENGALI ORNAMENTAL RULE
-   ---------------------------------------------------------
-   Gives the event cards a little of the reference-card
-   feeling without changing their dimensions.
-   ========================================================= */
-
-.theme-aiburo .event-content::after,
-.theme-mehendi .event-content::after,
-.theme-holud .event-content::after,
-.theme-wedding .event-content::after,
-.theme-bidaye .event-content::after,
-.theme-reception .event-content::after {
-
-  content: "✦";
-
-  display: block;
-
-  margin-top: 18px;
-
-  text-align: center;
-
-  font-family: Georgia, serif;
-  font-size: 15px;
-
-  opacity: .38;
-}
-
-
-/* =========================================================
-   EVENT-SPECIFIC ORNAMENT COLOURS
-   ========================================================= */
-
-.theme-aiburo .event-content::after {
-  color: #a91d2d;
-}
-
-.theme-mehendi .event-content::after {
-  color: #39735d;
-}
-
-.theme-holud .event-content::after {
-  color: #b97800;
-}
-
-.theme-wedding .event-content::after {
-  color: #e0bd62;
-}
-
-.theme-bidaye .event-content::after {
-  color: #a65d73;
-}
-
-.theme-reception .event-content::after {
-  color: #d8b95e;
+  transform: rotate(-16deg);
 }
 
 
 /* =========================================================
    MOBILE
    ---------------------------------------------------------
-   Decorations scale down only.
-   Existing layout remains untouched.
+   Scale the motifs down on narrow screens. Layout, spacing
+   and card dimensions are untouched — only the decoration
+   shrinks so nothing crowds the text or causes overflow.
    ========================================================= */
 
 @media (max-width: 480px) {
 
   .theme-aiburo::before {
-    width: 155px;
-    height: 155px;
-    left: -78px;
+    width: 104px;
+    height: 104px;
   }
 
   .theme-aiburo::after {
-    width: 58px;
-    height: 68px;
+    width: 38px;
+    height: 50px;
   }
 
-
   .theme-mehendi::before {
-    width: 100px;
-    height: 145px;
-    left: -30px;
+    width: 62px;
+    height: 90px;
   }
 
   .theme-mehendi::after {
-    right: 8%;
-    bottom: 11%;
-    font-size: 22px;
-    letter-spacing: 5px;
+    width: 54px;
+    height: 30px;
   }
 
+  .theme-mehendi .event-content::before {
+    width: 32px;
+    height: 46px;
+  }
 
   .theme-holud::before {
-    width: 92px;
-    height: 165px;
+    width: 32px;
+    height: 78px;
+    left: 3%;
   }
 
   .theme-holud::after {
-    font-size: 30px;
-    right: 9%;
+    width: 32px;
+    height: 64px;
+    right: 5%;
   }
 
+  .theme-holud .event-content::before {
+    width: 44px;
+    height: 64px;
+  }
 
   .theme-wedding::before {
-    width: 72px;
-    height: 86px;
-    top: 7%;
+    width: 52px;
+    height: 68px;
   }
 
   .theme-wedding::after {
-    width: 125px;
-    height: 160px;
-    right: -42px;
+    width: 78px;
+    height: 78px;
+    right: -14px;
   }
 
+  .theme-wedding .event-content::before,
+  .theme-wedding .event-content::after {
+    width: 24px;
+    height: 36px;
+  }
 
   .theme-bidaye::before {
-    width: 110px;
-    height: 145px;
-    left: -34px;
+    width: 48px;
+    height: 70px;
   }
 
-
-  .theme-reception::before {
-    width: 110px;
-    height: 150px;
-    left: -38px;
+  .theme-bidaye::after {
+    width: 20px;
+    height: 30px;
   }
 
+  .theme-reception::before,
   .theme-reception::after {
-    width: 120px;
-    height: 155px;
-    right: -40px;
+    width: 116px;
+    height: 116px;
+  }
+
+  .theme-reception .event-content::before {
+    width: 24px;
+    height: 27px;
   }
 }
+
+
+/* =========================================================
+   REDUCED MOTION / SAFETY
+   ---------------------------------------------------------
+   These motifs are static (no animation of their own), so
+   nothing additional is required here — kept as a marker in
+   case future motion is added to this layer.
+   ========================================================= */
