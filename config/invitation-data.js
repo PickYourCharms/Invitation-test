@@ -1,13 +1,12 @@
 /*
-  EDIT THIS FILE when you want to change event details, guest codes,
-  Google Maps links, or the couple image filename.
-
-  Image:
-  Replace images/couple.jpg with your chosen couple photograph.
-  Keep the filename "couple.jpg" and no code changes are needed.
+  CHANDRIMA & ARNAB — WEDDING INVITATION DATA
 
   Guest codes:
-  Create as many codes as you need. Each code points to one profile.
+  BORMALA
+  SHANAI
+  SINDUR
+  GACH-KOUTO
+  TOPOR
 */
 
 window.INVITATION_DATA = {
@@ -19,10 +18,11 @@ window.INVITATION_DATA = {
       subtitle: "Morning / Afternoon · At Home",
       time: "Morning / Afternoon",
       venue: "Home",
-      mapUrl: "REPLACE_WITH_GOOGLE_MAPS_LINK",
+      mapUrl: "https://maps.app.goo.gl/VrffqppUcJPYTSqR9?g_st=ac",
       theme: "theme-aiburo",
       copy: "A beautiful beginning to the celebrations — an intimate day of tradition, blessings and family."
     },
+
     {
       key: "mehendi",
       date: "8 December",
@@ -30,10 +30,11 @@ window.INVITATION_DATA = {
       subtitle: "Evening · At Home",
       time: "Evening",
       venue: "Home",
-      mapUrl: "REPLACE_WITH_GOOGLE_MAPS_LINK",
+      mapUrl: "https://maps.app.goo.gl/VrffqppUcJPYTSqR9?g_st=ac",
       theme: "theme-mehendi",
       copy: "An evening of music, laughter, colour and all the little moments that make a celebration unforgettable."
     },
+
     {
       key: "holud",
       date: "9 December",
@@ -41,10 +42,11 @@ window.INVITATION_DATA = {
       subtitle: "Morning / Afternoon · Parbon",
       time: "Morning / Afternoon",
       venue: "Parbon",
-      mapUrl: "REPLACE_WITH_GOOGLE_MAPS_LINK",
+      mapUrl: "https://maps.app.goo.gl/BVucpXj8eBAuA6LAA?g_st=ac",
       theme: "theme-holud",
       copy: "Come celebrate with me as the festivities burst into colour, laughter and blessings."
     },
+
     {
       key: "wedding",
       date: "9 December",
@@ -52,10 +54,11 @@ window.INVITATION_DATA = {
       subtitle: "Evening · Parbon",
       time: "Evening",
       venue: "Parbon",
-      mapUrl: "REPLACE_WITH_GOOGLE_MAPS_LINK",
+      mapUrl: "https://maps.app.goo.gl/BVucpXj8eBAuA6LAA?g_st=ac",
       theme: "theme-wedding",
       copy: "The day I've been waiting for. I would be so happy to have you beside me as I begin this new chapter."
     },
+
     {
       key: "bidaye",
       date: "10 December",
@@ -63,44 +66,96 @@ window.INVITATION_DATA = {
       subtitle: "At Home",
       time: "10 December",
       venue: "Home",
-      mapUrl: "REPLACE_WITH_GOOGLE_MAPS_LINK",
+      mapUrl: "https://maps.app.goo.gl/VrffqppUcJPYTSqR9?g_st=ac",
       theme: "theme-bidaye",
       copy: "A tender farewell, filled with love, memories and the beginning of a beautiful new chapter."
     },
+
     {
       key: "reception",
       date: "11 December",
       title: "Reception",
-      subtitle: "Evening · Rajbari",
+      subtitle: "Evening · Raja Palace Banquet Hall",
       time: "Evening",
-      venue: "Rajbari",
-      mapUrl: "REPLACE_WITH_GOOGLE_MAPS_LINK",
+      venue: "Raja Palace Banquet Hall",
+      mapUrl: "https://maps.app.goo.gl/Wps7q1Mmz68JFKjB8",
       theme: "theme-reception",
       copy: "The celebrations continue. Come raise a glass, dance, laugh and celebrate with us."
     }
   ],
 
+
   profiles: {
-    /* Replace these sample codes with your real codes. */
-    "ALL-001": {
+
+    /*
+      BORMALA
+      All six events
+    */
+    "BORMALA": {
       name: "All Events",
-      events: ["aiburobhat","mehendi","holud","wedding","bidaye","reception"]
+      events: [
+        "aiburobhat",
+        "mehendi",
+        "holud",
+        "wedding",
+        "bidaye",
+        "reception"
+      ]
     },
-    "TYPE2-001": {
+
+
+    /*
+      SHANAI
+      Aiburobhat + Holud + Wedding
+    */
+    "SHANAI": {
       name: "Aiburobhat + Holud + Wedding",
-      events: ["aiburobhat","holud","wedding"]
+      events: [
+        "aiburobhat",
+        "holud",
+        "wedding"
+      ]
     },
-    "TYPE3-001": {
+
+
+    /*
+      SINDUR
+      Holud + Wedding
+    */
+    "SINDUR": {
       name: "Holud + Wedding",
-      events: ["holud","wedding"]
+      events: [
+        "holud",
+        "wedding"
+      ]
     },
-    "TYPE4-001": {
+
+
+    /*
+      GACH-KOUTO
+      Aiburobhat + Mehendi + Holud + Wedding
+    */
+    "GACH-KOUTO": {
       name: "Aiburobhat + Mehendi + Holud + Wedding",
-      events: ["aiburobhat","mehendi","holud","wedding"]
+      events: [
+        "aiburobhat",
+        "mehendi",
+        "holud",
+        "wedding"
+      ]
     },
-    "TYPE5-001": {
+
+
+    /*
+      TOPOR
+      Wedding only
+    */
+    "TOPOR": {
       name: "Wedding Only",
-      events: ["wedding"]
+      events: [
+        "wedding"
+      ]
     }
+
   }
 };
